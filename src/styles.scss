@@ -1,1 +1,31 @@
 /* You can add global styles to this file, and also import other style files */
+@import url("https://fonts.googleapis.com/css2?family=Quicksand&display=swap");
+
+* {
+   box-sizing: border-box;
+}
+
+html {
+   font-size: 16px;
+   &, button { font-family: "Quicksand", "sans-serif"; }
+}
+
+body { margin: 0; }
+a { text-decoration: none; }
+
+
+
+
+// #region SCROLLBAR
+::-webkit-scrollbar { width: 5px; }
+
+/* Track */
+::-webkit-scrollbar-track { background: var(--dark-900); }
+
+/* Handle */
+::-webkit-scrollbar-thumb { background: var(--primary-300); }
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover { background: var(--primary-500); }
+// #endregion SCROLLBAR
+
