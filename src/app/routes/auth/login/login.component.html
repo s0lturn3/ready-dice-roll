@@ -1,3 +1,23 @@
-<p>login works!</p>
+<div class="container-100vh-flex">
+   <div class="content">
+      <div class="auth-header">
+         <h1 class="text-lg"> Bem-vindo! </h1>
+         <h2 class="text-2xl"> Crie uma nova conta ou faça login </h2>
+      </div>
 
-<app-footer></app-footer>
+      <div class="auth-body">
+         <p class="text-base">Digite seu e-mail ou nome de usuário</p>
+
+         <form [formGroup]="loginForm">
+            <div class="input-field-column">
+               <label for="username_email_input">*E-mail</label>
+               <input type="text" id="username_email_input" placeholder="usuario@email.com" formControlName="EMAIL_USERNAME">
+            </div>
+
+            <button type="submit" (click)="validateEmail()"> CONTINUAR </button>
+         </form>
+      </div>
+   </div>
+
+   <app-footer></app-footer>
+</div>
