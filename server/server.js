@@ -19,10 +19,6 @@ app.use(cors());  // Permitindo todas as origens
 // Endpoint para validar se existe email na base
 app.get('/api/users/validateUsernameEmail', async (req, res) => {
   const username_email = req.query.username_email;
-  
-  console.log("req.query: ", req.query);
-  console.log("req.query.username_email: ", req.query.username_email);
-  
 
   if (!username_email) {
     return res.status(400).json({ error: 'Você deve informar um usuário ou e-mail para validar!' });
@@ -30,7 +26,12 @@ app.get('/api/users/validateUsernameEmail', async (req, res) => {
 
   try {
     const response = await usersDb.validateUsernameEmail(username_email);
-    res.status(200).json(response);
+
+    if (Array.isArray(response) && response.length === 0) {
+      return res.status(200).json({ newUser: true });
+    }
+    
+    return res.status(200).json(response);
   }
   catch (err) {
     console.error('Erro ao buscar a informação na base:', err.message);
@@ -49,11 +50,40 @@ app.get('/api/users/validateLogin', async (req, res) => {
 
   try {
     const response = await usersDb.validateLogin(username_email, password);
-    res.status(200).json(response);
+    
+    if (Array.isArray(response) && response.length === 0) {
+      return res.status(404).json({ error: "Credenciais incorretas!" });
+    }
+
+    await usersDb.updateLastLogin(response[0].Id);
+    return res.status(200).json(response);
   }
   catch (err) {
     console.error('Erro ao fazer login:', err.message);
     res.status(500).json({ error: 'Ocorreu um erro ao realizar login...' });
+  }
+});
+
+
+// Endpoint para criar um usuário
+app.post('/api/users', async (req, res) => {
+  const user = req.body;
+
+  if (!user["username"] || !user["email"] || !user["senha"]) {
+    return res.status(400).json({ error: "Todos os campos são obrigatórios!" });
+  }
+
+  try {
+    const response = await usersDb.createUser(user);
+
+    console.log(response);
+    
+    await usersDb.updateLastLogin(response.id);
+    return res.status(200).json(response);
+  }
+  catch (err) {
+    console.error('Erro ao criar conta do usuário:', err.message);
+    res.status(500).json({ error: 'Ocorreu um erro ao realizar o seu registro.' });
   }
 });
 
@@ -73,19 +103,6 @@ app.post('/api/users/create', async (req, res) => {
   } catch (err) {
     console.error('Erro ao criar usuário:', err.message);
     res.status(500).json({ error: 'Erro ao criar usuário.' });
-  }
-});
-
-// Endpoint para buscar todos os usuários
-app.get('/api/users', async (req, res) => {
-  console.log("entrou na api");
-  
-  try {
-    const users = await usersDb.getUsers();
-    res.status(200).json(users);
-  } catch (err) {
-    console.error('Erro ao buscar usuários:', err.message);
-    res.status(500).json({ error: 'Erro ao buscar usuários.' });
   }
 });
 

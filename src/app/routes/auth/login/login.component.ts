@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { LoginTextPipe } from '../../../shared/pipes/login-text.pipe';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { AuthService } from '../../../shared/services/auth.service';
+import { User } from '../../../shared/models/user.model';
 
 
 export enum AuthStep {
@@ -32,43 +33,19 @@ export class LoginComponent implements OnInit {
   // #region ==========> PROPERTIES <==========
   
   // #region PRIVATE
-  private _currentStep: AuthStep = AuthStep.Validation;
   // #endregion PRIVATE
-
+  
   // #region PUBLIC
   @ViewChild('passwordLogin', { static: false }) 
-   set passwordLoginInput(element: ElementRef<HTMLInputElement>) {
-     if(element) {
-       element.nativeElement.focus()
-     }
-  }
-
-  public mode: "signin" | "login" = "login";
-
-  public get step(): AuthStep { return this._currentStep; }
-  public set step(value: AuthStep) {
-    this._currentStep = value;
-    console.log(value);
-
-    switch(value) {
-      case AuthStep.Validation:
-        break;
-
-      case AuthStep.Login:
-        this.loginForm.patchValue({
-          EMAIL_USERNAME: this.validationForm.controls["EMAIL_USERNAME"].value
-        });
-
-        console.log(this.passwordLoginInput);
-        break;
-
-      case AuthStep.SignIn:
-        break;
-
-      case AuthStep.OAuth:
-        break;
+  set passwordLoginInput(element: ElementRef<HTMLInputElement>) {
+    if(element) {
+      element.nativeElement.focus()
     }
   }
+  
+  public step: AuthStep = AuthStep.Validation;
+  // public mode: "signin" | "login" = "login";
+
   // #endregion PUBLIC
 
   // #endregion ==========> PROPERTIES <==========
@@ -104,9 +81,7 @@ export class LoginComponent implements OnInit {
   constructor(
     private _authService: AuthService,
     private _router: Router,
-  ) {
-    this.getParms();
-  }
+  ) { }
 
   ngOnInit(): void { }
   // #endregion ==========> INITIALIZATION <==========
@@ -139,7 +114,16 @@ export class LoginComponent implements OnInit {
 
     this._authService.validateEmail(emailValue).subscribe({
       next: response => {
-        this.step = 1;
+        if (response.newUser !== undefined && response.newUser === true) {
+          this.step = 2;
+        }
+        else {
+          this.loginForm.patchValue({
+            EMAIL_USERNAME: this.validationForm.controls["EMAIL_USERNAME"].value
+          });
+
+          this.step = 1;
+        }
       },
       error: error => {
         throw new Error(error);
@@ -153,7 +137,8 @@ export class LoginComponent implements OnInit {
 
     this._authService.validateLogin(emailValue, passwordValue).subscribe({
       next: response => {
-        this.step++;
+        console.log(response);
+        this._router.navigate(['/dashboard']);
       },
       error: error => {
         throw new Error(error);
@@ -161,10 +146,22 @@ export class LoginComponent implements OnInit {
     });
   }
 
+  public createUser(): void {
+    const user: User = {
+      email: this.signinForm.controls["EMAIL"].value,
+      username: this.signinForm.controls["USERNAME"].value,
+      senha: this.signinForm.controls["SENHA"].value
+    };
 
-  private getParms(): void {
-    if    (this._router.url.includes('signin')) this.mode = "signin";
-    else  this.mode = "login";
+    this._authService.createUser(user).subscribe({
+      next: response => {
+        localStorage.setItem('authToken', response["id"]);
+      },
+      error: error => {
+        console.log(error);
+        throw new Error(error);
+      }
+    });
   }
   // #endregion ==========> UTILS <==========
 

@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { environment } from '../../../environments/environment.development';
 import { Observable, take, tap } from 'rxjs';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { User } from '../models/user.model';
 
 @Injectable({
   providedIn: 'root'
@@ -34,34 +35,49 @@ export class AuthService {
   // #endregion PREPARATION
 
   // #region GET
-  public validateEmail(username_email: string): Observable<string> {
+  public validateEmail(username_email: string): Observable<any> {
     const params = new HttpParams().set('username_email', username_email);
-    console.log(params);
     
     const url = `${this.USERS_URL}/validateUsernameEmail`
 
-    return this._httpClient.get<string>(url, {
+    return this._httpClient.get<any>(url, {
       'headers': this.HTTP_HEADERS,
       'params': params
     });
   }
 
-  public validateLogin(username_email: string, password: string): Observable<string> {
+  public validateLogin(username_email: string, password: string): Observable<any> {
     const params = new HttpParams()
       .set('username_email', username_email)
       .set('password', password);
     
     const url = `${this.USERS_URL}/validateLogin`;
 
-    return this._httpClient.get<string>(url, {
+    return this._httpClient.get<any>(url, {
       'headers': this.HTTP_HEADERS,
       'params': params
-    });
+    }).pipe(
+      tap(response => {
+        if (!response) { throw Error(response); }
+        else { localStorage.setItem('authToken', response[0].Id) }
+      })
+    );
   }
   // #endregion GET
 
   // #region POST
-  // [...]
+  public createUser(user: User): Observable<any> {
+    const url = `${this.USERS_URL}`;
+
+    return this._httpClient.post<any>(url, JSON.stringify(user), {
+      'headers': this.HTTP_HEADERS
+    }).pipe(
+      tap(response => {
+        if (!response) { throw Error(response); }
+        else { localStorage.setItem('authToken', response.id) }
+      })
+    );
+  }
   // #endregion POST
 
   // #region DELETE

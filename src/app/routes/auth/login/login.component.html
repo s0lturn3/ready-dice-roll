@@ -13,31 +13,50 @@
                <form [formGroup]="validationForm">
                   <div class="input-field-column">
                      <label for="username_email_input">*E-mail</label>
-                     <input type="text" id="username_email_input" placeholder="usuario@email.com" formControlName="EMAIL_USERNAME">
+                     <input #emailValidation type="email" id="username_email_input" placeholder="usuario@email.com" formControlName="EMAIL_USERNAME">
                   </div>
 
                   <button type="submit" (click)="validateEmail()"> CONTINUAR </button>
                </form>
             }
             @case (1) {
-               <p class="text-base">Usuário encontrado! Informe sua senha</p>
+               <p class="text-base">Informe sua senha</p>
 
                <form [formGroup]="loginForm">
                   <div class="input-field-column">
-                     <label for="username_email_input">*E-mail</label>
-                     <input type="text" id="username_email_input" placeholder="usuario@email.com" formControlName="EMAIL_USERNAME">
+                     <label for="login_email_input">*E-mail</label>
+                     <input #emailLogin type="email" id="login_email_input" placeholder="usuario@email.com" formControlName="EMAIL_USERNAME">
                   </div>
 
                   <div class="input-field-column">
-                     <label for="password_input">*Senha</label>
-                     <input #passwordLogin type="password" id="password_input" formControlName="SENHA" placeholder="********">
+                     <label for="login_password_input">*Senha</label>
+                     <input #passwordLogin type="password" id="login_password_input" formControlName="SENHA" placeholder="********">
                   </div>
 
-                  <button type="submit" (click)="validateLogin()"> CONTINUAR </button>
+                  <button type="submit" (click)="validateLogin()"> LOGIN </button>
                </form>
             }
             @case (2) {
+               <p class="text-base">Crie sua conta</p>
 
+               <form [formGroup]="signinForm">
+                  <div class="input-field-column">
+                     <label for="signin_email_input">*E-mail</label>
+                     <input #emailSignin type="email" id="signin_email_input" placeholder="usuario@email.com" formControlName="EMAIL">
+                  </div>
+                  
+                  <div class="input-field-column">
+                     <label for="signin_username_input">*Usuário</label>
+                     <input #usernameSignin type="text" id="signin_username_input" placeholder="usuario@email.com" formControlName="USERNAME">
+                  </div>
+
+                  <div class="input-field-column">
+                     <label for="signin_password_input">*Senha</label>
+                     <input #passwordSignin type="password" id="signin_password_input" formControlName="SENHA" placeholder="********">
+                  </div>
+
+                  <button type="submit" (click)="createUser()"> CRIAR CONTA! </button>
+               </form>
             }
             @case (3) {
 
