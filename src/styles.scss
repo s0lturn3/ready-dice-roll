@@ -5,14 +5,27 @@
    box-sizing: border-box;
 }
 
+html, body {
+   padding: 0;
+   margin: 0;
+   height: 100%;
+}
+
 html {
    font-size: 16px;
    &, button { font-family: "Quicksand", "sans-serif"; }
 }
-
 body { margin: 0; }
+
 a { text-decoration: none; }
 
+
+
+// #region IMPORT UTILS
+@import "./app/shared/styles/classes";
+@import "./app/shared/styles/forms";
+@import "./app/shared/styles/fonts";
+// #endregion IMPORT UTILS
 
 
 
