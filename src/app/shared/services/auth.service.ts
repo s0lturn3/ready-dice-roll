@@ -36,8 +36,22 @@ export class AuthService {
   // #region GET
   public validateEmail(username_email: string): Observable<string> {
     const params = new HttpParams().set('username_email', username_email);
-
+    console.log(params);
+    
     const url = `${this.USERS_URL}/validateUsernameEmail`
+
+    return this._httpClient.get<string>(url, {
+      'headers': this.HTTP_HEADERS,
+      'params': params
+    });
+  }
+
+  public validateLogin(username_email: string, password: string): Observable<string> {
+    const params = new HttpParams()
+      .set('username_email', username_email)
+      .set('password', password);
+    
+    const url = `${this.USERS_URL}/validateLogin`;
 
     return this._httpClient.get<string>(url, {
       'headers': this.HTTP_HEADERS,

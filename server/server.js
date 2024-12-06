@@ -1,6 +1,7 @@
 const express = require('express');
 const cors = require('cors');  // Importa o CORS
-const db = require('./db/db'); // Importa as funções de `db.js`
+//const db = require('./db/db'); // Importa as funções de `db.js`
+const usersDb = require('./db/users'); // Importa as funções de `db.js`
 
 const app = express();
 const port = 3000;
@@ -28,12 +29,31 @@ app.get('/api/users/validateUsernameEmail', async (req, res) => {
   }
 
   try {
-    const response = await db.validateUsernameEmail(username_email);
+    const response = await usersDb.validateUsernameEmail(username_email);
     res.status(200).json(response);
   }
   catch (err) {
     console.error('Erro ao buscar a informação na base:', err.message);
     res.status(500).json({ error: 'Ocorreu um erro ao procurar pelo usuário/e-mail.' });
+  }
+});
+
+// Endpoint para validar login
+app.get('/api/users/validateLogin', async (req, res) => {
+  const username_email = req.query.username_email;
+  const password = req.query.password;  
+
+  if (!username_email || !password) {
+    return res.status(400).json({ error: 'Todos os campos são obrigatórios!' });
+  }
+
+  try {
+    const response = await usersDb.validateLogin(username_email, password);
+    res.status(200).json(response);
+  }
+  catch (err) {
+    console.error('Erro ao fazer login:', err.message);
+    res.status(500).json({ error: 'Ocorreu um erro ao realizar login...' });
   }
 });
 
@@ -48,7 +68,7 @@ app.post('/api/users/create', async (req, res) => {
   }
 
   try {
-    const result = await db.createUser(username, email, password);
+    const result = await usersDb.createUser(username, email, password);
     res.status(201).json({ message: 'Usuário criado com sucesso.', id: result.id });
   } catch (err) {
     console.error('Erro ao criar usuário:', err.message);
@@ -61,7 +81,7 @@ app.get('/api/users', async (req, res) => {
   console.log("entrou na api");
   
   try {
-    const users = await db.getUsers();
+    const users = await usersDb.getUsers();
     res.status(200).json(users);
   } catch (err) {
     console.error('Erro ao buscar usuários:', err.message);
@@ -76,6 +96,6 @@ app.listen(port, () => {
 
 // Fechando a conexão ao encerrar o servidor (opcional)
 process.on('SIGINT', () => {
-  db.closeConnection();
+  usersDb.closeConnection();
   process.exit(0);
 });
