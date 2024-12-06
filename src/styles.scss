@@ -22,9 +22,16 @@ a { text-decoration: none; }
 
 
 // #region IMPORT UTILS
+@import "./app/shared/styles/variables";
+
 @import "./app/shared/styles/classes";
+@import "./app/shared/styles/typography";
+
 @import "./app/shared/styles/forms";
-@import "./app/shared/styles/fonts";
+@import "./app/shared/styles/buttons";
+
+@import "./app/shared/styles/themes";
+@import "./app/shared/styles/utilities";
 // #endregion IMPORT UTILS
 
 
