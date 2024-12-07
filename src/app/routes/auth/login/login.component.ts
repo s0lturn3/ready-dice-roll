@@ -1,10 +1,13 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { FooterComponent } from "../../../shared/components/footer/footer.component";
-import { Router } from '@angular/router';
-import { LoginTextPipe } from '../../../shared/pipes/login-text.pipe';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { AuthService } from '../../../shared/services/auth.service';
+import { Router } from '@angular/router';
+
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { faArrowLeft, faArrowRight } from '@fortawesome/free-solid-svg-icons';
+
+import { FooterComponent } from "../../../shared/components/footer/footer.component";
 import { User } from '../../../shared/models/user.model';
+import { AuthService } from '../../../shared/services/auth.service';
 
 
 export enum AuthStep {
@@ -21,9 +24,9 @@ export enum AuthStep {
   selector: 'app-login',
   standalone: true,
   imports: [
-    // LoginTextPipe,
+    FontAwesomeModule,
+    FooterComponent,
     ReactiveFormsModule,
-    FooterComponent
   ],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss'
@@ -33,6 +36,7 @@ export class LoginComponent implements OnInit {
   // #region ==========> PROPERTIES <==========
   
   // #region PRIVATE
+  // [...]
   // #endregion PRIVATE
   
   // #region PUBLIC
@@ -44,8 +48,9 @@ export class LoginComponent implements OnInit {
   }
   
   public step: AuthStep = AuthStep.Validation;
-  // public mode: "signin" | "login" = "login";
 
+  faArrowLeft = faArrowLeft;
+  faArrowRight = faArrowRight;
   // #endregion PUBLIC
 
   // #endregion ==========> PROPERTIES <==========
@@ -70,9 +75,9 @@ export class LoginComponent implements OnInit {
   });
   // #endregion FORM FIELDS
 
-  // #region FORM BUILDER
+  // #region FORM UTILS
   // [...]
-  // #endregion FORM BUILDER
+  // #endregion FORM UTILS
 
   // #endregion ==========> FORM BUILDER <==========
 
@@ -89,26 +94,7 @@ export class LoginComponent implements OnInit {
 
   // #region ==========> SERVICE METHODS <==========
 
-  // #region PREPARATION
-  // [...]
-  // #endregion PREPARATION
-
   // #region GET
-  // [...]
-  // #endregion GET
-
-  // #region POST
-  // [...]
-  // #endregion POST
-
-  // #region DELETE
-  // [...]
-  // #endregion DELETE
-
-  // #endregion ==========> SERVICE METHODS <==========
-
-
-  // #region ==========> UTILS <==========
   public validateEmail(): void {
     const emailValue = this.validationForm.controls["EMAIL_USERNAME"].value;
 
@@ -126,6 +112,7 @@ export class LoginComponent implements OnInit {
         }
       },
       error: error => {
+        alert(error);
         throw new Error(error);
       }
     });
@@ -141,11 +128,14 @@ export class LoginComponent implements OnInit {
         this._router.navigate(['/dashboard']);
       },
       error: error => {
+        alert(error);
         throw new Error(error);
       }
     });
   }
+  // #endregion GET
 
+  // #region POST
   public createUser(): void {
     const user: User = {
       email: this.signinForm.controls["EMAIL"].value,
@@ -158,10 +148,23 @@ export class LoginComponent implements OnInit {
         localStorage.setItem('authToken', response["id"]);
       },
       error: error => {
-        console.log(error);
+        alert(error);
         throw new Error(error);
       }
     });
+  }
+  // #endregion POST
+
+  // #region DELETE
+  // [...]
+  // #endregion DELETE
+
+  // #endregion ==========> SERVICE METHODS <==========
+
+
+  // #region ==========> UTILS <==========
+  returnHome(): void {
+    this._router.navigate(['/inicio']);
   }
   // #endregion ==========> UTILS <==========
 

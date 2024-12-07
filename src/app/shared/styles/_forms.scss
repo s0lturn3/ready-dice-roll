@@ -1,9 +1,13 @@
 .input-field-column {
    display: flex;
    flex-direction: column;
+   margin: 1rem 0;
 
    label {
       font-weight: bold;
+      line-height: 2rem;
+
+      color: $text-primary;
    }
 }
 
@@ -13,8 +17,23 @@ input[type="text"],
 input[type="email"],
 input[type="password"],
 input[type="phone"] {
-   padding: .5rem;
+   padding: 1rem;
+   font-size: 1rem;
 
-   border: 1px solid #222;
+   background-color: $secondary-bg;
+   
+   border: 1px solid $accent-color;
    border-radius: 4px;
+   
+   &::placeholder {
+      color: $text-secondary;
+   }
+   
+   &:-internal-autofill-selected {
+      background-color: $secondary-bg !important;
+   }
+   
+   &:disabled {
+      color: $text-secondary;
+   }
 }

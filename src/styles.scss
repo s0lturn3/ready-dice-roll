@@ -1,26 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
 @import url("https://fonts.googleapis.com/css2?family=Quicksand&display=swap");
 
-* {
-   box-sizing: border-box;
-}
-
-html, body {
-   padding: 0;
-   margin: 0;
-   height: 100%;
-}
-
-html {
-   font-size: 16px;
-   &, button { font-family: "Quicksand", "sans-serif"; }
-}
-body { margin: 0; }
-
-a { text-decoration: none; }
-
-
-
 // #region IMPORT UTILS
 @import "./app/shared/styles/variables";
 
@@ -33,6 +13,34 @@ a { text-decoration: none; }
 @import "./app/shared/styles/themes";
 @import "./app/shared/styles/utilities";
 // #endregion IMPORT UTILS
+
+
+* {
+   box-sizing: border-box;
+}
+
+html, body {
+   background-color: $background-main;
+   color: $text-secondary;
+
+   padding: 0;
+   margin: 0;
+   height: 100%;
+}
+
+html {
+   font-size: 16px;
+   &, button { font-family: "Quicksand", "sans-serif"; }
+}
+body { margin: 0; }
+
+a {
+   text-decoration: none;
+   color: $text-secondary;
+}
+
+
+
 
 
 
@@ -48,4 +56,3 @@ a { text-decoration: none; }
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover { background: var(--primary-500); }
 // #endregion SCROLLBAR
-

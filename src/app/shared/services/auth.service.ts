@@ -59,7 +59,7 @@ export class AuthService {
     }).pipe(
       tap(response => {
         if (!response) { throw Error(response); }
-        else { localStorage.setItem('authToken', response[0].Id) }
+        else { localStorage.setItem('authToken', response?.Id) }
       })
     );
   }

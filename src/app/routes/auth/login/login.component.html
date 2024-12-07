@@ -1,8 +1,11 @@
 <div class="container-100vh-flex">
    <div class="content">
       <div class="auth-header">
-         <h1 class="text-lg"> Bem-vindo! </h1>
-         <h2 class="text-2xl"> Crie uma nova conta ou faça login </h2>
+         <h1 class="text-lg text-primary">
+            <fa-icon [icon]="faArrowLeft" class="btn" (click)="returnHome()"></fa-icon>
+            Bem-vindo!
+         </h1>
+         <h2 class="text-2xl text-primary"> Crie uma nova conta ou faça login </h2>
       </div>
 
       <div class="auth-body">
@@ -16,7 +19,7 @@
                      <input #emailValidation type="email" id="username_email_input" placeholder="usuario@email.com" formControlName="EMAIL_USERNAME">
                   </div>
 
-                  <button type="submit" (click)="validateEmail()"> CONTINUAR </button>
+                  <button type="submit" class="btn btn-primary" (click)="validateEmail()"> CONTINUAR <fa-icon [icon]="faArrowRight"></fa-icon> </button>
                </form>
             }
             @case (1) {
@@ -33,7 +36,7 @@
                      <input #passwordLogin type="password" id="login_password_input" formControlName="SENHA" placeholder="********">
                   </div>
 
-                  <button type="submit" (click)="validateLogin()"> LOGIN </button>
+                  <button type="submit" class="btn btn-primary" (click)="validateLogin()"> LOGIN </button>
                </form>
             }
             @case (2) {
@@ -55,7 +58,7 @@
                      <input #passwordSignin type="password" id="signin_password_input" formControlName="SENHA" placeholder="********">
                   </div>
 
-                  <button type="submit" (click)="createUser()"> CRIAR CONTA! </button>
+                  <button type="submit" class="btn btn-primary" (click)="createUser()"> CRIAR CONTA! </button>
                </form>
             }
             @case (3) {

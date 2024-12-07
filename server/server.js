@@ -51,11 +51,11 @@ app.get('/api/users/validateLogin', async (req, res) => {
   try {
     const response = await usersDb.validateLogin(username_email, password);
     
-    if (Array.isArray(response) && response.length === 0) {
+    if (!response) {
       return res.status(404).json({ error: "Credenciais incorretas!" });
     }
 
-    await usersDb.updateLastLogin(response[0].Id);
+    await usersDb.updateLastLogin(response?.Id);
     return res.status(200).json(response);
   }
   catch (err) {
