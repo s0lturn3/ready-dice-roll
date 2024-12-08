@@ -1,13 +1,21 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+import { AuthService } from './shared/services/auth.service';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet],
+  imports: [ RouterOutlet ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
 export class AppComponent {
-  title = 'campaign-manager';
+
+  constructor( private authService: AuthService ) {
+    this.authService.jwttest().subscribe({
+      next: response => { },
+      error: error => { console.error(error); }
+    });
+  }
+
 }

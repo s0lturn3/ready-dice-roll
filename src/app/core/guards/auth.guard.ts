@@ -13,7 +13,10 @@ export class AuthGuard {
   constructor(private router: Router) { }
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-    if (localStorage.getItem('authToken')) {
+    const localToken = localStorage.getItem('authToken');
+    const sessionToken = sessionStorage.getItem('authToken');
+
+    if ((localToken && localToken !== undefined) || (sessionToken && sessionToken !== undefined)) {
       // logged in so return true
       return true;
     }

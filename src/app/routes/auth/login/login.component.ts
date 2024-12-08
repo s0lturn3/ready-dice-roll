@@ -3,11 +3,13 @@ import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { Router } from '@angular/router';
 
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { faArrowLeft, faArrowRight } from '@fortawesome/free-solid-svg-icons';
+import { faArrowLeft, faArrowRight, faArrowRightToBracket, faPen } from '@fortawesome/free-solid-svg-icons';
 
 import { FooterComponent } from "../../../shared/components/footer/footer.component";
 import { User } from '../../../shared/models/user.model';
 import { AuthService } from '../../../shared/services/auth.service';
+import { CommonModule } from '@angular/common';
+import { IUserLogin } from '../../../shared/models/iuser-login.model';
 
 
 export enum AuthStep {
@@ -24,6 +26,7 @@ export enum AuthStep {
   selector: 'app-login',
   standalone: true,
   imports: [
+    CommonModule,
     FontAwesomeModule,
     FooterComponent,
     ReactiveFormsModule,
@@ -42,15 +45,16 @@ export class LoginComponent implements OnInit {
   // #region PUBLIC
   @ViewChild('passwordLogin', { static: false }) 
   set passwordLoginInput(element: ElementRef<HTMLInputElement>) {
-    if(element) {
-      element.nativeElement.focus()
-    }
+    if(element) element.nativeElement.focus()
   }
   
   public step: AuthStep = AuthStep.Validation;
+  editEmail: boolean = false;
 
   faArrowLeft = faArrowLeft;
   faArrowRight = faArrowRight;
+  faArrowRightToBracket = faArrowRightToBracket;
+  faPen = faPen;
   // #endregion PUBLIC
 
   // #endregion ==========> PROPERTIES <==========
@@ -63,16 +67,31 @@ export class LoginComponent implements OnInit {
     EMAIL_USERNAME: new FormControl<string>("", [Validators.required])
   });
 
-  public loginForm: FormGroup = new FormGroup({
-    EMAIL_USERNAME: new FormControl<string>({ value: "", disabled: true }, [Validators.required]),
-    SENHA: new FormControl<string>("", [Validators.required]),
-  });
+  public get EMAIL_USERNAME_VALIDATION(): FormControl { return this.validationForm.get('EMAIL_USERNAME') as FormControl; }
 
+
+  public loginForm: FormGroup = new FormGroup({
+    EMAIL_USERNAME: new FormControl<string>({ value: "", disabled: this.editEmail }, [Validators.required]),
+    SENHA: new FormControl<string>("", [Validators.required]),
+    REMEMBER_ME: new FormControl<boolean>(false),
+  });
+  
+  public get EMAIL_USERNAME_LOGIN(): FormControl { return this.loginForm.get('EMAIL_USERNAME') as FormControl; }
+  public get SENHA_LOGIN(): FormControl { return this.loginForm.get('SENHA') as FormControl; }
+  public get REMEMBER_ME_LOGIN(): boolean { return this.loginForm.get('REMEMBER_ME')?.value; }
+  
+  
   public signinForm: FormGroup = new FormGroup({
     EMAIL: new FormControl<string>("", [Validators.required]),
     USERNAME: new FormControl<string>("", [Validators.required]),
-    SENHA: new FormControl<string>("", [Validators.required])
+    SENHA: new FormControl<string>("", [Validators.required]),
+    REMEMBER_ME: new FormControl<boolean>(false),
   });
+  
+  public get EMAIL_SIGNIN(): FormControl { return this.signinForm.get('EMAIL') as FormControl; }
+  public get USERNAME_SIGNIN(): FormControl { return this.signinForm.get('USERNAME') as FormControl; }
+  public get SENHA_SIGNIN(): FormControl { return this.signinForm.get('SENHA') as FormControl; }
+  public get REMEMBER_ME_SIGNIN(): boolean { return this.loginForm.get('REMEMBER_ME')?.value; }
   // #endregion FORM FIELDS
 
   // #region FORM UTILS
@@ -98,9 +117,9 @@ export class LoginComponent implements OnInit {
   public validateEmail(): void {
     const emailValue = this.validationForm.controls["EMAIL_USERNAME"].value;
 
-    this._authService.validateEmail(emailValue).subscribe({
+    this._authService.validateUsernameEmail(emailValue).subscribe({
       next: response => {
-        if (response.newUser !== undefined && response.newUser === true) {
+        if (response.body !== undefined && response.body.newUser === true) {
           this.step = 2;
         }
         else {
@@ -118,13 +137,14 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  public validateLogin(): void {
-    const emailValue = this.loginForm.controls["EMAIL_USERNAME"].value;
-    const passwordValue = this.loginForm.controls["SENHA"].value;
+  public login(): void {
+    const userForm: IUserLogin = {
+      usernameOrEmail: this.loginForm.controls["EMAIL_USERNAME"].value,
+      password: this.loginForm.controls["SENHA"].value
+    }
 
-    this._authService.validateLogin(emailValue, passwordValue).subscribe({
-      next: response => {
-        console.log(response);
+    this._authService.login(userForm, this.REMEMBER_ME_LOGIN).subscribe({
+      next: () => {
         this._router.navigate(['/dashboard']);
       },
       error: error => {
@@ -143,9 +163,9 @@ export class LoginComponent implements OnInit {
       senha: this.signinForm.controls["SENHA"].value
     };
 
-    this._authService.createUser(user).subscribe({
-      next: response => {
-        localStorage.setItem('authToken', response["id"]);
+    this._authService.createUser(user, this.REMEMBER_ME_SIGNIN).subscribe({
+      next: () => {
+        this._router.navigate(['/dashboard']);
       },
       error: error => {
         alert(error);

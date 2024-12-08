@@ -15,11 +15,12 @@
 
                <form [formGroup]="validationForm">
                   <div class="input-field-column">
-                     <label for="username_email_input">*E-mail</label>
-                     <input #emailValidation type="email" id="username_email_input" placeholder="usuario@email.com" formControlName="EMAIL_USERNAME">
+                     <label for="username_email_input">*Username ou e-mail</label>
+                     <input #emailValidation type="email" id="username_email_input" placeholder="usuario ou usuario@email.com" formControlName="EMAIL_USERNAME">
                   </div>
 
-                  <button type="submit" class="btn btn-primary" (click)="validateEmail()"> CONTINUAR <fa-icon [icon]="faArrowRight"></fa-icon> </button>
+                  <button type="submit" class="btn btn-primary point-right-anim" (click)="validateEmail()">
+                     CONTINUAR <fa-icon [icon]="faArrowRight" class="arrow-right"></fa-icon> </button>
                </form>
             }
             @case (1) {
@@ -28,15 +29,30 @@
                <form [formGroup]="loginForm">
                   <div class="input-field-column">
                      <label for="login_email_input">*E-mail</label>
-                     <input #emailLogin type="email" id="login_email_input" placeholder="usuario@email.com" formControlName="EMAIL_USERNAME">
+                     <input #emailLogin *ngIf="editEmail; else staticEmail" type="email" id="login_email_input" formControlName="EMAIL_USERNAME"
+                        [class.invalid]="EMAIL_SIGNIN.invalid && (EMAIL_SIGNIN.touched || EMAIL_SIGNIN.dirty)">
+                     
+                     <ng-template #staticEmail>
+                        <div class="static-input">
+                           <span>{{ loginForm.controls['EMAIL_USERNAME'].value }}</span>
+                           <fa-icon [icon]="faPen" class="cursor-pointer" (click)="editEmail = true"></fa-icon>
+                        </div>
+                     </ng-template>
                   </div>
 
                   <div class="input-field-column">
                      <label for="login_password_input">*Senha</label>
-                     <input #passwordLogin type="password" id="login_password_input" formControlName="SENHA" placeholder="********">
+                     <input #passwordLogin type="password" id="login_password_input" formControlName="SENHA"
+                        [class.invalid]="SENHA_LOGIN.invalid && (SENHA_LOGIN.touched || SENHA_LOGIN.dirty)">
                   </div>
 
-                  <button type="submit" class="btn btn-primary" (click)="validateLogin()"> LOGIN </button>
+                  <div class="input-field-row">
+                     <label for="login_remember_check">Lembre-se de mim</label>
+                     <input type="checkbox" id="login_remember_check" formControlName="REMEMBER_ME">
+                  </div>
+
+                  <button type="submit" class="btn btn-primary point-right-anim" (click)="login()">
+                     LOGIN <fa-icon [icon]="faArrowRightToBracket" class="arrow-right"></fa-icon> </button>
                </form>
             }
             @case (2) {
@@ -45,20 +61,29 @@
                <form [formGroup]="signinForm">
                   <div class="input-field-column">
                      <label for="signin_email_input">*E-mail</label>
-                     <input #emailSignin type="email" id="signin_email_input" placeholder="usuario@email.com" formControlName="EMAIL">
+                     <input #emailSignin type="email" id="signin_email_input" formControlName="EMAIL"
+                        [class.invalid]="EMAIL_SIGNIN.invalid && (EMAIL_SIGNIN.touched || EMAIL_SIGNIN.dirty)">
                   </div>
                   
                   <div class="input-field-column">
                      <label for="signin_username_input">*Usuário</label>
-                     <input #usernameSignin type="text" id="signin_username_input" placeholder="usuario@email.com" formControlName="USERNAME">
+                     <input #usernameSignin type="text" id="signin_username_input" formControlName="USERNAME"
+                        [class.invalid]="USERNAME_SIGNIN.invalid && (USERNAME_SIGNIN.touched || USERNAME_SIGNIN.dirty)">
                   </div>
 
                   <div class="input-field-column">
                      <label for="signin_password_input">*Senha</label>
-                     <input #passwordSignin type="password" id="signin_password_input" formControlName="SENHA" placeholder="********">
+                     <input #passwordSignin type="password" id="signin_password_input" formControlName="SENHA"
+                        [class.invalid]="SENHA_SIGNIN.invalid && (SENHA_SIGNIN.touched || SENHA_SIGNIN.dirty)">
                   </div>
 
-                  <button type="submit" class="btn btn-primary" (click)="createUser()"> CRIAR CONTA! </button>
+                  <div class="input-field-row">
+                     <label for="login_remember_check">Lembre-se de mim</label>
+                     <input type="checkbox" id="login_remember_check" formControlName="REMEMBER_ME">
+                  </div>
+
+                  <button type="submit" class="btn btn-primary point-right-anim" (click)="createUser()">
+                     CRIAR CONTA <fa-icon [icon]="faArrowRight" class="arrow-right"></fa-icon> </button>
                </form>
             }
             @case (3) {

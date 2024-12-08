@@ -1,0 +1,14 @@
+.point-right-anim {
+   .arrow-right {
+      display: inline-block;
+   }
+
+   &:hover .arrow-right {
+      animation: arrow-point-right .6s ease-out infinite;
+   }
+}
+
+@keyframes arrow-point-right {
+   0%, 100% { transform: translateX(0); }
+   50% { transform: translateX(10px); }
+}
