@@ -1,5 +1,9 @@
+let hostName: any = window.location.hostname.includes("localhost")
+  ? `http://${ window.location.hostname }`
+  : `https://${ window.location.hostname }`;
+
 export const environment = {
    production: true,
 
-   apiUrl: 'https://campaign-manager-fbnngcndd-solturne-personal.vercel.app/api'
+   apiUrl: `${hostName}/api`;
 };
