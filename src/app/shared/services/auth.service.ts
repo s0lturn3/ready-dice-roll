@@ -75,7 +75,7 @@ export class AuthService {
   }
 
   public login(userForm: IUserLogin, rememberMe: boolean): Observable<ApiResponse<{ user: string, token: string }>> {
-    const url = `${this.USERS_URL}/validateLogin`;
+    const url = `${this.USERS_URL}/login`;
 
     return this._httpClient.post<ApiResponse<{ user: string, token: string }>>(url, JSON.stringify(userForm), {
       'headers': this.buildHeaders(false)
@@ -90,7 +90,7 @@ export class AuthService {
 
   // #region POST
   public createUser(user: User, rememberMe: boolean): Observable<ApiResponse<{ user: string, token: string }>> {
-    const url = `${this.USERS_URL}`;
+    const url = `${this.USERS_URL}/signin`;
 
     return this._httpClient.post<ApiResponse<{ user: string, token: string }>>(url, JSON.stringify(user), {
       'headers': this.buildHeaders(false)

@@ -1,6 +1,7 @@
 const sqlite3 = require('sqlite3').verbose();
 const { v4: uuidv4 } = require('uuid');
 
+
 // Configuração e conexão com o banco de dados
 const dbPath = 'server/db/campaign-manager.db';
 const db = new sqlite3.Database(dbPath, (err) => {
@@ -12,21 +13,6 @@ const db = new sqlite3.Database(dbPath, (err) => {
   }
 });
 
-
-// Função para buscar todos os usuários
-const getUsers = () => {
-  return new Promise((resolve, reject) => {
-    const query = `SELECT * FROM Usuario`;
-
-    db.all(query, [], (err, rows) => {
-      if (err) {
-        reject(err);
-      } else {
-        resolve(rows);
-      }
-    });
-  });
-};
 
 // Função para validar se usuário/e-mail existem na base
 const validateUsernameEmail = (username_email) => {
@@ -106,13 +92,11 @@ const updateLastLogin = (userId) => {
 // Fechando a conexão (opcional)
 const closeConnection = () => {
   db.close((err) => {
-    if (err) {
-      console.error('Erro ao fechar conexão com SQLite:', err.message);
-    } else {
-      console.log('Conexão com SQLite fechada.');
-    }
+    if (err)  console.error('Erro ao fechar conexão com SQLite:', err.message);
+    else      console.log('Conexão com SQLite fechada.');
   });
 };
+
 
 module.exports = {
   validateUsernameEmail,
