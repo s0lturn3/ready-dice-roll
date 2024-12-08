@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { AuthService } from './shared/services/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -11,11 +10,6 @@ import { AuthService } from './shared/services/auth.service';
 })
 export class AppComponent {
 
-  constructor( private authService: AuthService ) {
-    this.authService.jwttest().subscribe({
-      next: response => { },
-      error: error => { console.error(error); }
-    });
-  }
+  constructor() { }
 
 }

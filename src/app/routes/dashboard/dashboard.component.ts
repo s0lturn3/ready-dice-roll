@@ -12,17 +12,17 @@ export class DashboardComponent implements OnInit {
 
   constructor(
     private auth: AuthService
-  ) {}
+  ) { }
 
   ngOnInit(): void {
-      this.auth.jwttest().subscribe({
-        next: response => {
-          console.log(response);
-        },
-        error: error => {
-          console.log(error);
-        }
-      });
+    this.auth.jwttest().subscribe({
+      next: response => {
+        console.log(response);
+      },
+      error: error => {
+        console.log(error);
+      }
+    });
   }
 
 }

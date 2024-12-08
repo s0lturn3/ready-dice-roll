@@ -183,7 +183,13 @@ app.post('/api/users', validatePayload, async (req, res) => {
   try {
     const response = await usersDb.createUser(user);
     
-    returnModel.body = response;
+    const userWithoutPassword = [...user['username'], user['email']];
+    const token = jwt.sign({ name: userWithoutPassword }, JWTSecretKey, { expiresIn: 15 });
+    returnModel.body = {
+      user: userWithoutPassword,
+      token: token
+    };
+    
     await usersDb.updateLastLogin(response.id);
     return res.status(200).json(returnModel);
   }

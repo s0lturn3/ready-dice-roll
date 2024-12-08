@@ -47,7 +47,7 @@ export class AuthService {
       message: string,
       expiredAt: string
   }>>(url, {
-      'headers': this.buildHeaders()
+      'headers': this.buildHeaders(true)
     }).pipe(
       catchError(this.handleTokenError),
       tap(response => {
@@ -65,7 +65,7 @@ export class AuthService {
     const url = `${this.USERS_URL}/validateUsernameEmail`
 
     return this._httpClient.get<ApiResponse<{ newUser: boolean }>>(url, {
-      'headers': this.buildHeaders(),
+      'headers': this.buildHeaders(false),
       'params': params
     }).pipe(
       tap(response => {
@@ -78,7 +78,7 @@ export class AuthService {
     const url = `${this.USERS_URL}/validateLogin`;
 
     return this._httpClient.post<ApiResponse<{ user: string, token: string }>>(url, JSON.stringify(userForm), {
-      'headers': this.buildHeaders()
+      'headers': this.buildHeaders(false)
     }).pipe(
       tap(response => {
         this.handleError(response);
@@ -93,7 +93,7 @@ export class AuthService {
     const url = `${this.USERS_URL}`;
 
     return this._httpClient.post<ApiResponse<{ user: string, token: string }>>(url, JSON.stringify(user), {
-      'headers': this.buildHeaders()
+      'headers': this.buildHeaders(false)
     }).pipe(
       tap(response => {
         this.handleError(response);
@@ -117,14 +117,16 @@ export class AuthService {
   }
 
 
-  private buildHeaders(): HttpHeaders {
+  private buildHeaders(appendToken: boolean): HttpHeaders {
     const headersConfig: any = {
       'Content-type': 'application/json',
       'Accept': 'application/json'
     };
 
-    const token = this.getToken();
-    if (token) headersConfig['Authorization'] = `Token ${token}`;
+    if (appendToken) {
+      const token = this.getToken();
+      if (token) headersConfig['Authorization'] = `Token ${token}`;
+    }
 
     return new HttpHeaders(headersConfig);
   }
@@ -145,10 +147,7 @@ export class AuthService {
 
 
   private handleError(response: ApiResponse<any>) {
-    if (response.error) {
-
-      console.log(response);
-      
+    if (response.error) {      
       if (response.body['message'] === 'jwt expired') {
          this.destroyToken();
       }
