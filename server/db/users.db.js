@@ -103,6 +103,5 @@ module.exports = {
   validateLogin,
   createUser,
   updateLastLogin,
-  getUsers,
   closeConnection,
 };

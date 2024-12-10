@@ -5,11 +5,11 @@ import { Router } from '@angular/router';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faArrowLeft, faArrowRight, faArrowRightToBracket, faPen } from '@fortawesome/free-solid-svg-icons';
 
-import { FooterComponent } from "../../../shared/components/footer/footer.component";
 import { User } from '../../../shared/models/user.model';
 import { AuthService } from '../../../shared/services/auth.service';
 import { CommonModule } from '@angular/common';
 import { IUserLogin } from '../../../shared/models/iuser-login.model';
+import { faGithub, faGoogle, faMicrosoft } from '@fortawesome/free-brands-svg-icons';
 
 
 export enum AuthStep {
@@ -28,7 +28,6 @@ export enum AuthStep {
   imports: [
     CommonModule,
     FontAwesomeModule,
-    FooterComponent,
     ReactiveFormsModule,
   ],
   templateUrl: './login.component.html',
@@ -52,9 +51,11 @@ export class LoginComponent implements OnInit {
   editEmail: boolean = false;
 
   faArrowLeft = faArrowLeft;
-  faArrowRight = faArrowRight;
-  faArrowRightToBracket = faArrowRightToBracket;
   faPen = faPen;
+
+  faGoogle = faGoogle;
+  faMicrosoft = faMicrosoft;
+  faGithub = faGithub;
   // #endregion PUBLIC
 
   // #endregion ==========> PROPERTIES <==========
@@ -64,9 +65,15 @@ export class LoginComponent implements OnInit {
 
   // #region FORM FIELDS
   public validationForm: FormGroup = new FormGroup({
-    EMAIL_USERNAME: new FormControl<string>("", [Validators.required])
+    EMAIL_OR_USERNAME: new FormControl<"EMAIL" | "USERNAME">("EMAIL", [Validators.required]),
+    EMAIL: new FormControl<string>(""),
+    USERNAME: new FormControl<string>(""),
+    EMAIL_USERNAME: new FormControl<string>("")
   });
 
+  public get EMAIL_OR_USERNAME_VALIDATION(): "EMAIL" | "USUARIO" { return this.validationForm.get('EMAIL_OR_USERNAME')?.value; }
+  public get EMAIL_VALIDATION(): FormControl { return this.validationForm.get('EMAIL') as FormControl; }
+  public get USERNAME_VALIDATION(): FormControl { return this.validationForm.get('USERNAME') as FormControl; }
   public get EMAIL_USERNAME_VALIDATION(): FormControl { return this.validationForm.get('EMAIL_USERNAME') as FormControl; }
 
 
