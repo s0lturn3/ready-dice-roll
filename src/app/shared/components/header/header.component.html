@@ -4,16 +4,20 @@
 
       <nav>
          <ul>
-            <li> <a routerLink="/login" > Login </a> </li>
+            @if (userLoggedIn) {
+               <li class="menu-container">
+                  <a> Solturne </a>
+                  <div class="menu">
+                     <a routerLink=""> Perfil </a>
+                     <a routerLink=""> Campanhas </a>
+                     <a (click)="logout()"> Sair </a>
+                  </div>
+               </li>
+            }
+            @else {
+               <li> <a routerLink="/auth" > Login </a> </li>
+            }
 
-            <li class="menu-container">
-               <a routerLink="/dashboard"> Solturne </a>
-               <div class="menu">
-                  <a routerLink=""> Perfil </a>
-                  <a routerLink=""> Campanhas </a>
-                  <a routerLink=""> Sair </a>
-               </div>
-            </li>
          </ul>
       </nav>
    </div>

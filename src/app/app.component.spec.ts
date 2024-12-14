@@ -14,16 +14,16 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have the 'campaign-manager' title`, () => {
+  it(`should have the 'ready-dice-roll' title`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
-    expect(app.title).toEqual('campaign-manager');
+    expect(app.title).toEqual('ready-dice-roll');
   });
 
   it('should render title', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('h1')?.textContent).toContain('Hello, campaign-manager');
+    expect(compiled.querySelector('h1')?.textContent).toContain('Hello, ready-dice-roll');
   });
 });
