@@ -1,1 +1,58 @@
 /* You can add global styles to this file, and also import other style files */
+@import url("https://fonts.googleapis.com/css2?family=Quicksand&display=swap");
+
+// #region IMPORT UTILS
+@import "./app/shared/styles/variables";
+
+@import "./app/shared/styles/classes";
+@import "./app/shared/styles/typography";
+
+@import "./app/shared/styles/forms";
+@import "./app/shared/styles/buttons";
+
+@import "./app/shared/styles/themes";
+@import "./app/shared/styles/utilities";
+
+@import "./app/shared/styles/animations";
+// #endregion IMPORT UTILS
+
+
+* {
+   box-sizing: border-box;
+}
+
+html, body {
+   background-color: $color-surface-a0;
+   color: $text-light;
+
+   padding: 0;
+   margin: 0;
+   height: 100%;
+}
+
+html {
+   font-size: 16px;
+   &, button { font-family: "Quicksand", "sans-serif"; }
+}
+body { margin: 0; }
+
+a {
+   text-decoration: none;
+   color: $color-primary-a40;
+}
+
+
+// #region SCROLLBAR
+::-webkit-scrollbar { width: 5px; }
+
+/* Track */
+::-webkit-scrollbar-track { background: var(--dark-900); }
+
+/* Handle */
+::-webkit-scrollbar-thumb { background: var(--primary-300); }
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover { background: var(--primary-500); }
+// #endregion SCROLLBAR
+
+@import "./app/shared/styles/media_queries";
