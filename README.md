@@ -1,4 +1,4 @@
-# 🌎 Campaign Manager 🎲
+# 🌎 Ready, Dice, Roll! 🎲
 Campaign Manager é uma ferramenta interativa desenvolvida para mestres e jogadores de RPG de mesa no estilo D&D. O projeto tem como foco principal a criação e gestão de árvores de habilidades personalizáveis, com funcionalidades voltadas para a administração de campanhas e personagens.
 
 <p align="center">
