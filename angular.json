@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "campaign-manager": {
+    "ready-dice-roll": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/campaign-manager",
+            "outputPath": "dist/ready-dice-roll",
             "index": "src/index.html",
             "browser": "src/main.ts",
             "polyfills": [
@@ -74,10 +74,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "campaign-manager:build:production"
+              "buildTarget": "ready-dice-roll:build:production"
             },
             "development": {
-              "buildTarget": "campaign-manager:build:development"
+              "buildTarget": "ready-dice-roll:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -85,7 +85,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "buildTarget": "campaign-manager:build"
+            "buildTarget": "ready-dice-roll:build"
           }
         },
         "test": {

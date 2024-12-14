@@ -3,7 +3,7 @@ const { v4: uuidv4 } = require('uuid');
 
 
 // Configuração e conexão com o banco de dados
-const dbPath = 'server/db/campaign-manager.db';
+const dbPath = 'server/db/ready-dice-roll.db';
 const db = new sqlite3.Database(dbPath, (err) => {
   if (err) {
     console.error('Erro ao conectar com SQLite:', err.message);
