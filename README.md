@@ -2,7 +2,7 @@
 Campaign Manager é uma ferramenta interativa desenvolvida para mestres e jogadores de RPG de mesa no estilo D&D. O projeto tem como foco principal a criação e gestão de árvores de habilidades personalizáveis, com funcionalidades voltadas para a administração de campanhas e personagens.
 
 <p align="center">
-  <a href="https://campaign-manager-orpin.vercel.app/"><img src="https://img.shields.io/badge/website-ff1463?style=for-the-badge&logo=About.me&logoColor=white"></a>
+  <a href="https://ready-dice-roll.vercel.app/"><img src="https://img.shields.io/badge/website-ff1463?style=for-the-badge&logo=About.me&logoColor=white"></a>
   <a href="mailto:erickcarvalho.contato20@gmail.com"><img src="https://img.shields.io/badge/Email-red?style=for-the-badge&logo=gmail&logoColor=white"></a>
 </p>
 
