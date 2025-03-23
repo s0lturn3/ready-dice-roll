@@ -1,0 +1,21 @@
+<div style="height: 600px;">
+   <ngx-graph
+     [nodes]="nodes"
+     [links]="links"
+     [layoutSettings]="layoutSettings"
+     [draggingEnabled]="false"
+     [panningEnabled]="true"
+     [enableZoom]="true"
+     (nodeClick)="onNodeClick($event)">
+     
+     <!-- Template customizado para os nós -->
+     <ng-template #nodeTemplate let-node>
+       <svg:g class="node" (click)="onNodeClick(node)">
+         <!-- Exemplo: exibe um retângulo e o nome da habilidade -->
+         <svg:rect width="150" height="50" fill="#e0e0e0" stroke="#000" stroke-width="1"></svg:rect>
+         <svg:text x="10" y="25" alignment-baseline="middle">{{node.label}}</svg:text>
+       </svg:g>
+     </ng-template>
+   </ngx-graph>
+ </div>
+ 
