@@ -5,6 +5,7 @@ import { HttpClient, HttpErrorResponse, HttpHeaders, HttpParams } from '@angular
 import { User } from '../models/user.model';
 import { ApiResponse } from '../models/api-response.model';
 import { IUserLogin } from '../models/iuser-login.model';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +15,7 @@ export class AuthService {
   // #region ==========> PROPERTIES <==========
 
   // #region PRIVATE
-  private readonly USERS_URL: string = `${environment.apiUrl}/users`;
+  private readonly USERS_URL: string = `${ environment.apiUrl }/auth`;
   // #endregion PRIVATE
 
   // #region PUBLIC
@@ -25,7 +26,10 @@ export class AuthService {
 
 
   // #region ==========> INITIALIZATION <==========
-  constructor( private _httpClient: HttpClient ) {
+  constructor(
+    private _httpClient: HttpClient,
+    private _router: Router,
+  ) {
     const token = this.getToken();
     this.loggedIn = new BehaviorSubject<boolean>(token ? true : false);
   }
@@ -52,15 +56,13 @@ export class AuthService {
       catchError(this.handleTokenError),
       tap(response => {
         console.log(response);
-        console.log(response.body);
-
         this.handleError(response);
       })
     );
   }
 
-  public validateUsernameEmail(username_email: string): Observable<ApiResponse<{ newUser: boolean }>> {
-    const params = new HttpParams().set('username_email', username_email);
+  public validateUsernameEmail(usernameOrEmail: string): Observable<ApiResponse<{ newUser: boolean }>> {
+    const params = new HttpParams().set('usernameOrEmail', usernameOrEmail);
     
     const url = `${this.USERS_URL}/validateUsernameEmail`
 
@@ -74,30 +76,32 @@ export class AuthService {
     );
   }
 
-  public login(userForm: IUserLogin, rememberMe: boolean): Observable<ApiResponse<{ user: string, token: string }>> {
+  public login(userForm: IUserLogin, rememberMe: boolean): Observable<ApiResponse<{ access_token: string, userId: string }>> {
     const url = `${this.USERS_URL}/login`;
 
-    return this._httpClient.post<ApiResponse<{ user: string, token: string }>>(url, JSON.stringify(userForm), {
+    return this._httpClient.post<ApiResponse<{ access_token: string, userId: string }>>(url, JSON.stringify(userForm), {
       'headers': this.buildHeaders(false)
     }).pipe(
       tap(response => {
         this.handleError(response);
-        this.setToken(response.body!.token, rememberMe);
+        this.setToken(response.body!.access_token, response.body!.userId, rememberMe);
       })
     );
   }
   // #endregion GET
 
   // #region POST
-  public createUser(user: User, rememberMe: boolean): Observable<ApiResponse<{ user: string, token: string }>> {
-    const url = `${this.USERS_URL}/signin`;
+  public createUser(user: User, rememberMe: boolean): Observable<ApiResponse<{ access_token: string, userId: string }>> {
+    const url = `${this.USERS_URL}/signIn`;
 
-    return this._httpClient.post<ApiResponse<{ user: string, token: string }>>(url, JSON.stringify(user), {
+    return this._httpClient.post<ApiResponse<{ access_token: string, userId: string }>>(url, JSON.stringify(user), {
       'headers': this.buildHeaders(false)
     }).pipe(
       tap(response => {
         this.handleError(response);
-        this.setToken(response.body!.token, rememberMe);
+        this.setToken(response.body!.access_token, response.body!.userId, rememberMe);
+
+
       })
     );
   }
@@ -132,15 +136,26 @@ export class AuthService {
   }
 
   private getToken(): string { return window.localStorage['authToken'] || window.sessionStorage['authToken']; }
-  private setToken(token: string, rememberMe: boolean = false) {
-    if (rememberMe) localStorage['authToken'] = token;
-    else sessionStorage['authToken'] = token;
+  private setToken(token: string, loggedUserId: string, rememberMe: boolean = false) {
+    if (rememberMe) {
+      localStorage['authToken'] = token;
+      localStorage['loggedUserId'] = loggedUserId;
+    }
+    else {
+      sessionStorage['authToken'] = token;
+      sessionStorage['loggedUserId'] = loggedUserId;
+    }
 
     this.loggedIn.next(true);
   }
+
+
   private destroyToken(): void {
     window.localStorage.removeItem('authToken');
     window.sessionStorage.removeItem('authToken');
+
+    window.localStorage.removeItem('loggedUserId');
+    window.sessionStorage.removeItem('loggedUserId');
 
     location.reload();
   }
@@ -149,20 +164,22 @@ export class AuthService {
   private handleError(response: ApiResponse<any>) {
     if (response.error) {      
       if (response.body['message'] === 'jwt expired') {
-         this.destroyToken();
+        this.destroyToken();
       }
 
       throw new Error(response.errorMessage);
     }
   }
   private handleTokenError(error: HttpErrorResponse) {
-    if (error.error.body && error.error.body['message'] === 'jwt expired') {
-      alert('Sessão expirada.');
+    if (error.error['message'] && error.error['message'] === 'Sessão expirada. Faça login novamente.') {
+      console.error(error.error['message']);
 
       window.localStorage.removeItem('authToken');
       window.sessionStorage.removeItem('authToken');
+      
+      window.localStorage.removeItem('loggedUserId');
+      window.sessionStorage.removeItem('loggedUserId');
 
-      this.loggedIn.next(false);
       location.reload();
     }
 

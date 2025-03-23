@@ -22,7 +22,9 @@ export class AuthGuard {
     }
 
     // not logged in so redirect to login page with the return url
-    this.router.navigate(['/auth']);
+    this.router.navigate(['/auth']).then(() => {
+      alert('Você precisa estar logado para acessar essa página. Realize o login novamente.');
+    });
     return false;
   }
 }

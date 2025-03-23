@@ -1,13 +1,13 @@
 export interface User {
-   id?: string;
-   username: string;
-   email: string;
-   senha: string;
+   Id?: string;
+   Username: string;
+   Email: string;
+   Senha: string;
 
-   dtCriacao?: Date | string;
-   dtUltimoLogin?: Date | string;
+   DtCriacao?: Date | string;
+   DtUltimoLogin?: Date | string;
 
-   googleId?: string;
-   githubId?: string;
-   microsoftId?: string;
+   GoogleId?: string;
+   GithubId?: string;
+   MicrosoftId?: string;
 }

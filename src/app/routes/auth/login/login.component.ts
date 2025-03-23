@@ -151,7 +151,7 @@ export class LoginComponent implements OnInit {
     }
 
     this._authService.login(userForm, this.REMEMBER_ME_LOGIN).subscribe({
-      next: () => {
+      next: response => {
         this._router.navigate(['/dashboard']);
       },
       error: error => {
@@ -165,9 +165,9 @@ export class LoginComponent implements OnInit {
   // #region POST
   public createUser(): void {
     const user: User = {
-      email: this.signinForm.controls["EMAIL"].value,
-      username: this.signinForm.controls["USERNAME"].value,
-      senha: this.signinForm.controls["SENHA"].value
+      Email: this.signinForm.controls["EMAIL"].value,
+      Username: this.signinForm.controls["USERNAME"].value,
+      Senha: this.signinForm.controls["SENHA"].value
     };
 
     this._authService.createUser(user, this.REMEMBER_ME_SIGNIN).subscribe({

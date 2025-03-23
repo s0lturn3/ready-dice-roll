@@ -5,5 +5,5 @@ let hostName: any = window.location.hostname.includes("localhost")
 export const environment = {
    production: true,
 
-   apiUrl: `${hostName}/api`
+   apiUrl: `${hostName}`
 };
