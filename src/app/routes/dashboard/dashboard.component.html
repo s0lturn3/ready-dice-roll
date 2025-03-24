@@ -55,11 +55,11 @@
         <a href="#" class="nav-link">
           <img class="rounded-circle" src="../../../assets/images/perfil3.jpg" width="24px" height="24px" alt="Me">
           <!-- <box-icon name="user" color="currentColor" style="min-width: 24px;"></box-icon> -->
-          <span class="nav-label">Profile</span>
+          <span class="nav-label">{{ loggedUser ? loggedUser : "Perfil" }}</span>
         </a>
-        <span class="nav-tooltip">Profile</span>
+        <span class="nav-tooltip">{{ loggedUser ? loggedUser : "Perfil" }}</span>
       </li>
-      <li class="nav-item">
+      <li class="nav-item" (click)="logout()">
         <a href="#" class="nav-link">
           <box-icon name="log-out" color="currentColor" style="min-width: 24px;"></box-icon>
           <span class="nav-label">Logout</span>

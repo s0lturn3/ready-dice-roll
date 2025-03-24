@@ -10,4 +10,6 @@ export interface User {
    GoogleId?: string;
    GithubId?: string;
    MicrosoftId?: string;
+
+   Imagem?: string | File;
 }

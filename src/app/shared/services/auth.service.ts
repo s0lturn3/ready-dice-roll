@@ -76,30 +76,30 @@ export class AuthService {
     );
   }
 
-  public login(userForm: IUserLogin, rememberMe: boolean): Observable<ApiResponse<{ access_token: string, userId: string }>> {
+  public login(userForm: IUserLogin, rememberMe: boolean): Observable<ApiResponse<{ access_token: string, userId: string, userName: string }>> {
     const url = `${this.USERS_URL}/login`;
 
-    return this._httpClient.post<ApiResponse<{ access_token: string, userId: string }>>(url, JSON.stringify(userForm), {
+    return this._httpClient.post<ApiResponse<{ access_token: string, userId: string, userName: string }>>(url, JSON.stringify(userForm), {
       'headers': this.buildHeaders(false)
     }).pipe(
       tap(response => {
         this.handleError(response);
-        this.setToken(response.body!.access_token, response.body!.userId, rememberMe);
+        this.setToken(response.body!.access_token, response.body!.userId, response.body!.userName, rememberMe);
       })
     );
   }
   // #endregion GET
 
   // #region POST
-  public createUser(user: User, rememberMe: boolean): Observable<ApiResponse<{ access_token: string, userId: string }>> {
+  public createUser(user: User, rememberMe: boolean): Observable<ApiResponse<{ access_token: string, userId: string, userName: string }>> {
     const url = `${this.USERS_URL}/signIn`;
 
-    return this._httpClient.post<ApiResponse<{ access_token: string, userId: string }>>(url, JSON.stringify(user), {
+    return this._httpClient.post<ApiResponse<{ access_token: string, userId: string, userName: string }>>(url, JSON.stringify(user), {
       'headers': this.buildHeaders(false)
     }).pipe(
       tap(response => {
         this.handleError(response);
-        this.setToken(response.body!.access_token, response.body!.userId, rememberMe);
+        this.setToken(response.body!.access_token, response.body!.userId, response.body!.userName, rememberMe);
 
 
       })
@@ -116,8 +116,8 @@ export class AuthService {
 
   // #region ==========> UTILS <==========
   public logout(): void {
-    this.destroyToken();
     this.loggedIn.next(false);
+    this.destroyToken();
   }
 
 
@@ -136,14 +136,16 @@ export class AuthService {
   }
 
   private getToken(): string { return window.localStorage['authToken'] || window.sessionStorage['authToken']; }
-  private setToken(token: string, loggedUserId: string, rememberMe: boolean = false) {
+  private setToken(token: string, loggedUserId: string, loggedUserName: string, rememberMe: boolean = false) {
     if (rememberMe) {
       localStorage['authToken'] = token;
       localStorage['loggedUserId'] = loggedUserId;
+      localStorage['loggedUserName'] = loggedUserName;
     }
     else {
       sessionStorage['authToken'] = token;
       sessionStorage['loggedUserId'] = loggedUserId;
+      sessionStorage['loggedUserName'] = loggedUserName;
     }
 
     this.loggedIn.next(true);
@@ -153,9 +155,12 @@ export class AuthService {
   private destroyToken(): void {
     window.localStorage.removeItem('authToken');
     window.sessionStorage.removeItem('authToken');
-
+    
     window.localStorage.removeItem('loggedUserId');
     window.sessionStorage.removeItem('loggedUserId');
+
+    window.localStorage.removeItem('loggedUserName');
+    window.sessionStorage.removeItem('loggedUserName');
 
     location.reload();
   }
@@ -179,6 +184,9 @@ export class AuthService {
       
       window.localStorage.removeItem('loggedUserId');
       window.sessionStorage.removeItem('loggedUserId');
+
+      window.localStorage.removeItem('loggedUserName');
+      window.sessionStorage.removeItem('loggedUserName');
 
       location.reload();
     }

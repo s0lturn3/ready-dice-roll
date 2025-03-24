@@ -16,7 +16,7 @@ export const routes: Routes = [
    { path: 'dashboard', title: 'Dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
    
 
-   { path: '',   redirectTo: '/inicio', pathMatch: 'full' },
+   { path: '',   redirectTo: '/auth', pathMatch: 'full' },
    { path: 'nao-autorizado', component: UserNotAuthenticatedComponent },
    { path: '**', component: PageNotFoundComponent },
 ];

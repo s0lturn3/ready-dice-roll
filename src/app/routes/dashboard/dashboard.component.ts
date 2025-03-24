@@ -8,7 +8,7 @@ import { SkillTreeComponent } from '../../shared/components/skill-tree/skill-tre
   standalone: true,
   imports: [
     NgxGraphModule,
-    SkillTreeComponent,
+    // SkillTreeComponent,
   ],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
   templateUrl: './dashboard.component.html',
@@ -24,6 +24,8 @@ export class DashboardComponent implements OnInit {
 
   // #region PUBLIC
   public menuOpen: boolean = false;
+
+  public loggedUser: string | null = null;
   // #endregion PUBLIC
 
   // #endregion ==========> PROPERTIES <==========
@@ -38,6 +40,8 @@ export class DashboardComponent implements OnInit {
     });
 
     this.adjustSidebar();
+
+    this.loggedUser = window.localStorage.getItem('loggedUserName') || window.sessionStorage.getItem('loggedUserName');
   }
 
 
@@ -63,6 +67,11 @@ export class DashboardComponent implements OnInit {
 
 
   // #region ==========> UTILS <==========
+  public logout(): void {
+    this._authService.logout();
+  }
+
+
   private adjustSidebar(): void {
     const sidebar = document.querySelector(".sidebar") as HTMLElement;
     const sidebarToggler = document.querySelector(".sidebar-toggler");
