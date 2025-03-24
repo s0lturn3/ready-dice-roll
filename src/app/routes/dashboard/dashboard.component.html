@@ -1,3 +1,77 @@
-<p>dashboard works!</p>
+<div class="sidebar" [class.active]="menuOpen">
+  <div class="top">
+    <div class="logo">
+      <box-icon name="codepen" type="logo" color="white" class="ms-1"></box-icon>
+      <span>Ready, Dice, Roll!</span>
+    </div>
+    <box-icon name="menu" id="btn" color="white" (click)="menuOpen = !menuOpen" ></box-icon>
+  </div>
 
-<skill-tree></skill-tree>
+  <div class="user">
+    <img src="../../../assets/images/perfil3.jpg" alt="ME" class="user-img">
+    <div>
+      <p class="bold">Solturne</p>
+      <p>Admin</p>
+    </div>
+  </div>
+
+  <ul>
+    <li>
+      <a href="#">
+        <box-icon name="grid-alt" color="white"></box-icon>
+        <span class="nav-item">Dashboard</span>
+      </a>
+    </li>
+    <li>
+      <a href="#">
+        <box-icon name="shopping-bag" color="white"></box-icon>
+        <span class="nav-item">Products</span>
+      </a>
+    </li>
+    <li>
+      <a href="#">
+        <box-icon name="list-check" color="white"></box-icon>
+        <span class="nav-item">Categories</span>
+      </a>
+    </li>
+    <li>
+      <a href="#">
+        <box-icon name="food-menu" color="white"></box-icon>
+        <span class="nav-item">Orders</span>
+      </a>
+    </li>
+    <li>
+      <a href="#">
+        <box-icon name="body" color="white"></box-icon>
+        <span class="nav-item">Customers</span>
+      </a>
+    </li>
+    <li>
+      <a href="#">
+        <box-icon name="location-plus" color="white"></box-icon>
+        <span class="nav-item">Shipping</span>
+      </a>
+    </li>
+    <li>
+      <a href="#">
+        <box-icon name="cog" color="white"></box-icon>
+        <span class="nav-item">Settings</span>
+      </a>
+    </li>
+    <li>
+      <a href="#">
+        <box-icon name="log-out" color="white"></box-icon>
+        <span class="nav-item">Logout</span>
+      </a>
+    </li>
+  </ul>
+</div>
+
+<div class="main-content">
+  <div class="container">
+    <h1>Ready, Dice, Roll!</h1>
+  </div>
+</div>
+
+<!-- <p>dashboard works!</p>
+<skill-tree></skill-tree> -->
