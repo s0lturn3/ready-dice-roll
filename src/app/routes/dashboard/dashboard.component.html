@@ -1,76 +1,78 @@
-<div class="sidebar" [class.active]="menuOpen">
-  <div class="top">
-    <div class="logo">
-      <box-icon name="codepen" type="logo" color="white" class="ms-1"></box-icon>
-      <span>Ready, Dice, Roll!</span>
-    </div>
-    <box-icon name="menu" id="btn" color="white" (click)="menuOpen = !menuOpen" ></box-icon>
-  </div>
+<aside class="sidebar collapsed">
+  <header class="sidebar-header">
+    <a href="#" class="header-logo">
+      <img src="../../../assets/icons/Logo=White.png" alt="Me">
+    </a>
+    <button class="toggler sidebar-toggler">
+      <box-icon name="chevron-left" color="currentColor" style="min-width: 24px;"></box-icon>
+    </button>
+    <button class="toggler menu-toggler">
+      <box-icon name="menu" color="currentColor" style="min-width: 24px;"></box-icon>
+    </button>
+  </header>
 
-  <div class="user">
-    <img src="../../../assets/images/perfil3.jpg" alt="ME" class="user-img">
-    <div>
-      <p class="bold">Solturne</p>
-      <p>Admin</p>
-    </div>
-  </div>
+  <nav class="sidebar-nav">
+    <ul class="nav-list primary-nav">
+      <li class="nav-item">
+        <a href="#" class="nav-link">
+          <box-icon name="grid-alt" color="currentColor" style="min-width: 24px;"></box-icon>
+          <span class="nav-label">Dashboard</span>
+        </a>
+        <span class="nav-tooltip">Dashboard</span>
+      </li>
+      <li class="nav-item">
+        <a href="#" class="nav-link">
+          <box-icon name="world" color="currentColor" style="min-width: 24px;"></box-icon>
+          <span class="nav-label">Campanhas</span>
+        </a>
+        <span class="nav-tooltip">Campanhas</span>
+      </li>
+      <li class="nav-item">
+        <a href="#" class="nav-link">
+          <box-icon name="cube" type="solid" color="currentColor" style="min-width: 24px;"></box-icon>
+          <span class="nav-label">Sistemas</span>
+        </a>
+        <span class="nav-tooltip">Sistemas</span>
+      </li>
+      <li class="nav-item">
+        <a href="#" class="nav-link">
+          <box-icon name="bell" type="solid" color="currentColor" style="min-width: 24px;"></box-icon>
+          <span class="nav-label">Notificações</span>
+        </a>
+        <span class="nav-tooltip">Notificações</span>
+      </li>
+      <li class="nav-item">
+        <a href="#" class="nav-link">
+          <box-icon name="cog" color="currentColor" style="min-width: 24px;"></box-icon>
+          <span class="nav-label">Settings</span>
+        </a>
+        <span class="nav-tooltip">Settings</span>
+      </li>
+    </ul>
 
-  <ul>
-    <li>
-      <a href="#">
-        <box-icon name="grid-alt" color="white"></box-icon>
-        <span class="nav-item">Dashboard</span>
-      </a>
-    </li>
-    <li>
-      <a href="#">
-        <box-icon name="shopping-bag" color="white"></box-icon>
-        <span class="nav-item">Products</span>
-      </a>
-    </li>
-    <li>
-      <a href="#">
-        <box-icon name="list-check" color="white"></box-icon>
-        <span class="nav-item">Categories</span>
-      </a>
-    </li>
-    <li>
-      <a href="#">
-        <box-icon name="food-menu" color="white"></box-icon>
-        <span class="nav-item">Orders</span>
-      </a>
-    </li>
-    <li>
-      <a href="#">
-        <box-icon name="body" color="white"></box-icon>
-        <span class="nav-item">Customers</span>
-      </a>
-    </li>
-    <li>
-      <a href="#">
-        <box-icon name="location-plus" color="white"></box-icon>
-        <span class="nav-item">Shipping</span>
-      </a>
-    </li>
-    <li>
-      <a href="#">
-        <box-icon name="cog" color="white"></box-icon>
-        <span class="nav-item">Settings</span>
-      </a>
-    </li>
-    <li>
-      <a href="#">
-        <box-icon name="log-out" color="white"></box-icon>
-        <span class="nav-item">Logout</span>
-      </a>
-    </li>
-  </ul>
-</div>
+    <ul class="nav-list secondary-nav">
+      <li class="nav-item">
+        <a href="#" class="nav-link">
+          <img class="rounded-circle" src="../../../assets/images/perfil3.jpg" width="24px" height="24px" alt="Me">
+          <!-- <box-icon name="user" color="currentColor" style="min-width: 24px;"></box-icon> -->
+          <span class="nav-label">Profile</span>
+        </a>
+        <span class="nav-tooltip">Profile</span>
+      </li>
+      <li class="nav-item">
+        <a href="#" class="nav-link">
+          <box-icon name="log-out" color="currentColor" style="min-width: 24px;"></box-icon>
+          <span class="nav-label">Logout</span>
+        </a>
+        <span class="nav-tooltip">Logout</span>
+      </li>
+    </ul>
+  </nav>
+</aside>
+
 
 <div class="main-content">
-  <div class="container">
-    <h1>Ready, Dice, Roll!</h1>
-  </div>
+  <h1>Ready, Dice, Roll!</h1>
 </div>
 
 <!-- <p>dashboard works!</p>
