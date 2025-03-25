@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
-import { User } from '../../../shared/models/user.model';
+import { Usuario } from '../../../shared/models/db/usuario.model';
 import { AuthService } from '../../../shared/services/auth.service';
 import { CommonModule } from '@angular/common';
 import { IUserLogin } from '../../../shared/models/iuser-login.model';
@@ -106,10 +106,9 @@ export class LoginComponent implements OnInit {
       }
   
       this._authService.login(userForm, this.REMEMBER_ME_LOGIN).subscribe({
-        next: response => {
+        next: () => {
           this.loading = false;
-
-          // this._router.navigate(['/dashboard']);
+          this._router.navigate(['/dashboard']);
         },
         error: error => {
           this.loading = false;
@@ -131,7 +130,7 @@ export class LoginComponent implements OnInit {
     if (this.signinForm.valid) {
       this.loading = true;
 
-      const user: User = {
+      const user: Usuario = {
         Email: this.signinForm.controls["EMAIL"].value,
         Username: this.signinForm.controls["USERNAME"].value,
         Senha: this.signinForm.controls["SENHA"].value
@@ -140,8 +139,7 @@ export class LoginComponent implements OnInit {
       this._authService.createUser(user, this.REMEMBER_ME_SIGNIN).subscribe({
         next: () => {
           this.loading = false;
-
-          // this._router.navigate(['/dashboard']);
+          this._router.navigate(['/dashboard']);
         },
         error: error => {
           this.loading = false;

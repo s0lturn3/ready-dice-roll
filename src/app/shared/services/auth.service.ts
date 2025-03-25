@@ -2,10 +2,11 @@ import { Injectable } from '@angular/core';
 import { environment } from '../../../environments/environment.development';
 import { BehaviorSubject, catchError, Observable, tap, throwError } from 'rxjs';
 import { HttpClient, HttpErrorResponse, HttpHeaders, HttpParams } from '@angular/common/http';
-import { User } from '../models/user.model';
+
 import { ApiResponse } from '../models/api-response.model';
 import { IUserLogin } from '../models/iuser-login.model';
 import { Router } from '@angular/router';
+import { Usuario } from '../models/db/usuario.model';
 
 @Injectable({
   providedIn: 'root'
@@ -61,21 +62,6 @@ export class AuthService {
     );
   }
 
-  public validateUsernameEmail(usernameOrEmail: string): Observable<ApiResponse<{ newUser: boolean }>> {
-    const params = new HttpParams().set('usernameOrEmail', usernameOrEmail);
-    
-    const url = `${this.USERS_URL}/validateUsernameEmail`
-
-    return this._httpClient.get<ApiResponse<{ newUser: boolean }>>(url, {
-      'headers': this.buildHeaders(false),
-      'params': params
-    }).pipe(
-      tap(response => {
-        this.handleError(response);
-      })
-    );
-  }
-
   public login(userForm: IUserLogin, rememberMe: boolean): Observable<ApiResponse<{ access_token: string, userId: string, userName: string }>> {
     const url = `${this.USERS_URL}/login`;
 
@@ -91,7 +77,7 @@ export class AuthService {
   // #endregion GET
 
   // #region POST
-  public createUser(user: User, rememberMe: boolean): Observable<ApiResponse<{ access_token: string, userId: string, userName: string }>> {
+  public createUser(user: Usuario, rememberMe: boolean): Observable<ApiResponse<{ access_token: string, userId: string, userName: string }>> {
     const url = `${this.USERS_URL}/signIn`;
 
     return this._httpClient.post<ApiResponse<{ access_token: string, userId: string, userName: string }>>(url, JSON.stringify(user), {
