@@ -1,4 +1,4 @@
-export interface User {
+export interface Usuario {
    Id?: string;
    Username: string;
    Email: string;
@@ -10,4 +10,6 @@ export interface User {
    GoogleId?: string;
    GithubId?: string;
    MicrosoftId?: string;
+
+   Imagem?: string | File;
 }

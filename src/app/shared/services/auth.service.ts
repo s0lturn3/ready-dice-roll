@@ -2,10 +2,11 @@ import { Injectable } from '@angular/core';
 import { environment } from '../../../environments/environment.development';
 import { BehaviorSubject, catchError, Observable, tap, throwError } from 'rxjs';
 import { HttpClient, HttpErrorResponse, HttpHeaders, HttpParams } from '@angular/common/http';
-import { User } from '../models/user.model';
+
 import { ApiResponse } from '../models/api-response.model';
 import { IUserLogin } from '../models/iuser-login.model';
 import { Router } from '@angular/router';
+import { Usuario } from '../models/db/usuario.model';
 
 @Injectable({
   providedIn: 'root'
@@ -61,45 +62,30 @@ export class AuthService {
     );
   }
 
-  public validateUsernameEmail(usernameOrEmail: string): Observable<ApiResponse<{ newUser: boolean }>> {
-    const params = new HttpParams().set('usernameOrEmail', usernameOrEmail);
-    
-    const url = `${this.USERS_URL}/validateUsernameEmail`
-
-    return this._httpClient.get<ApiResponse<{ newUser: boolean }>>(url, {
-      'headers': this.buildHeaders(false),
-      'params': params
-    }).pipe(
-      tap(response => {
-        this.handleError(response);
-      })
-    );
-  }
-
-  public login(userForm: IUserLogin, rememberMe: boolean): Observable<ApiResponse<{ access_token: string, userId: string }>> {
+  public login(userForm: IUserLogin, rememberMe: boolean): Observable<ApiResponse<{ access_token: string, userId: string, userName: string }>> {
     const url = `${this.USERS_URL}/login`;
 
-    return this._httpClient.post<ApiResponse<{ access_token: string, userId: string }>>(url, JSON.stringify(userForm), {
+    return this._httpClient.post<ApiResponse<{ access_token: string, userId: string, userName: string }>>(url, JSON.stringify(userForm), {
       'headers': this.buildHeaders(false)
     }).pipe(
       tap(response => {
         this.handleError(response);
-        this.setToken(response.body!.access_token, response.body!.userId, rememberMe);
+        this.setToken(response.body!.access_token, response.body!.userId, response.body!.userName, rememberMe);
       })
     );
   }
   // #endregion GET
 
   // #region POST
-  public createUser(user: User, rememberMe: boolean): Observable<ApiResponse<{ access_token: string, userId: string }>> {
+  public createUser(user: Usuario, rememberMe: boolean): Observable<ApiResponse<{ access_token: string, userId: string, userName: string }>> {
     const url = `${this.USERS_URL}/signIn`;
 
-    return this._httpClient.post<ApiResponse<{ access_token: string, userId: string }>>(url, JSON.stringify(user), {
+    return this._httpClient.post<ApiResponse<{ access_token: string, userId: string, userName: string }>>(url, JSON.stringify(user), {
       'headers': this.buildHeaders(false)
     }).pipe(
       tap(response => {
         this.handleError(response);
-        this.setToken(response.body!.access_token, response.body!.userId, rememberMe);
+        this.setToken(response.body!.access_token, response.body!.userId, response.body!.userName, rememberMe);
 
 
       })
@@ -116,8 +102,8 @@ export class AuthService {
 
   // #region ==========> UTILS <==========
   public logout(): void {
-    this.destroyToken();
     this.loggedIn.next(false);
+    this.destroyToken();
   }
 
 
@@ -136,14 +122,16 @@ export class AuthService {
   }
 
   private getToken(): string { return window.localStorage['authToken'] || window.sessionStorage['authToken']; }
-  private setToken(token: string, loggedUserId: string, rememberMe: boolean = false) {
+  private setToken(token: string, loggedUserId: string, loggedUserName: string, rememberMe: boolean = false) {
     if (rememberMe) {
       localStorage['authToken'] = token;
       localStorage['loggedUserId'] = loggedUserId;
+      localStorage['loggedUserName'] = loggedUserName;
     }
     else {
       sessionStorage['authToken'] = token;
       sessionStorage['loggedUserId'] = loggedUserId;
+      sessionStorage['loggedUserName'] = loggedUserName;
     }
 
     this.loggedIn.next(true);
@@ -153,9 +141,12 @@ export class AuthService {
   private destroyToken(): void {
     window.localStorage.removeItem('authToken');
     window.sessionStorage.removeItem('authToken');
-
+    
     window.localStorage.removeItem('loggedUserId');
     window.sessionStorage.removeItem('loggedUserId');
+
+    window.localStorage.removeItem('loggedUserName');
+    window.sessionStorage.removeItem('loggedUserName');
 
     location.reload();
   }
@@ -179,6 +170,9 @@ export class AuthService {
       
       window.localStorage.removeItem('loggedUserId');
       window.sessionStorage.removeItem('loggedUserId');
+
+      window.localStorage.removeItem('loggedUserName');
+      window.sessionStorage.removeItem('loggedUserName');
 
       location.reload();
     }

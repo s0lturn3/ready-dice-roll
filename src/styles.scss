@@ -22,8 +22,10 @@
 }
 
 html, body {
-   background-color: $color-surface-a0;
-   color: $text-light;
+   // background-color: $color-surface-a0;
+   // color: $text-light;
+   background-color: #00030F !important;
+   color: #ece8f3 !important;
 
    padding: 0;
    margin: 0;
@@ -56,3 +58,22 @@ a {
 // #endregion SCROLLBAR
 
 @import "./app/shared/styles/media_queries";
+
+
+
+// #region Bootstrap
+
+$theme-colors: (
+   "primary": #4560e9,
+   "secondary": #e94560,
+
+   "light": #FFFFFF,
+   "dark": #00030F,
+);
+
+@import "../node_modules/bootstrap/scss/bootstrap.scss";
+// * Import do Bootstrap DEVE estar depois dos overrides, pois nos arquivos internos da biblioteca eles possuem a flag de "!default" junto com os valores.
+// * A ideia é que caso um novo valor seja declarado, o que é !default vai ser sobreescrito com esse novo valor,
+// * o !default serve só pra definir um valor caso nenhum outro seja declarado explicitamente. Por isso o import do Bootstrap nesse caso deve estar depois dos overrides.
+
+// #endregion Bootstrap

@@ -1,121 +1,121 @@
-<div class="login-container container-100vh-flex">
-   <div class="content">
-      <div class="auth-header">
-         <h1 class="text-lg text-primary">
-            <fa-icon [icon]="faArrowLeft" class="btn" (click)="returnHome()"></fa-icon>
-         </h1>
-         <h2 class="text-2xl text-primary"> Crie uma nova conta ou faça login </h2>
-      </div>
+<div class="row h-100">
+   <div class="col-5 background-image"></div>
 
-      <div class="auth-body">
-         <div class="form-fields">
-            @switch (step) {
-               @case (0) {
-                  <form [formGroup]="validationForm" class="width-100">
-                     <div class="mydict">
-                        <div>
-                           <label>
-                              <input type="radio" name="EMAIL_OR_USERNAME" value="EMAIL" checked formControlName="EMAIL_OR_USERNAME" />
-                              <span>E-MAIL</span>
-                           </label>
-                           <label>
-                              <input type="radio" name="EMAIL_OR_USERNAME" value="USUARIO" formControlName="EMAIL_OR_USERNAME" />
-                              <span>USUÁRIO</span>
-                           </label>
-                        </div>
-                     </div>
-
-
-                     <div class="input-field-column">
-                        <label for="username_email_input">
-                           {{ EMAIL_OR_USERNAME_VALIDATION === 'EMAIL' ? 'E-mail' : 'Usuário' }}
-                        </label>
-                        <input #emailValidation id="username_email_input" formControlName="EMAIL_USERNAME"
-                           [type]="EMAIL_OR_USERNAME_VALIDATION === 'EMAIL' ? 'email' : 'text'"
-                           [placeholder]="EMAIL_OR_USERNAME_VALIDATION === 'EMAIL' ? 'seuemail@exemplo.com' : 'seuusuario'" >
-                     </div>
-   
-                     <div class="form-button text-center">
-                        <button type="submit" class="btn btn-primary width-100" (click)="validateEmail()">CONTINUAR</button>
-                     </div>
-                  </form>
-               }
-               @case (1) {
-                  <form [formGroup]="loginForm" class="width-100">
-                     <div class="input-field-column">
-                        <label for="login_email_input">E-mail</label>
-                        <input #emailLogin *ngIf="editEmail; else staticEmail" type="email" id="login_email_input" formControlName="EMAIL_USERNAME"
-                           [class.invalid]="EMAIL_SIGNIN.invalid && (EMAIL_SIGNIN.touched || EMAIL_SIGNIN.dirty)">
-                        
-                        <ng-template #staticEmail>
-                           <div class="static-input">
-                              <span>{{ loginForm.controls['EMAIL_USERNAME'].value }}</span>
-                              <fa-icon [icon]="faPen" class="cursor-pointer" (click)="editEmail = true"></fa-icon>
-                           </div>
-                        </ng-template>
-                     </div>
-   
-                     <div class="input-field-column">
-                        <label for="login_password_input">Senha</label>
-                        <input #passwordLogin type="password" id="login_password_input" formControlName="SENHA"
-                           [class.invalid]="SENHA_LOGIN.invalid && (SENHA_LOGIN.touched || SENHA_LOGIN.dirty)">
-                     </div>
-   
-                     <div class="input-field-row">
-                        <label for="login_remember_check">Lembre-se de mim</label>
-                        <input type="checkbox" id="login_remember_check" formControlName="REMEMBER_ME">
-                     </div>
-
-                     <button type="submit" class="btn btn-primary width-100" (click)="login()">LOGIN</button>
-
-                     <div class="input-field-row">
-                        <span class="label cursor-pointer">Esqueceu sua senha?</span>
-                     </div>
-                  </form>
-               }
-               @case (2) {
-                  <form [formGroup]="signinForm" class="width-100">
-                     <div class="input-field-column">
-                        <label for="signin_email_input">E-mail</label>
-                        <input #emailSignin type="email" id="signin_email_input" formControlName="EMAIL"
-                           [class.invalid]="EMAIL_SIGNIN.invalid && (EMAIL_SIGNIN.touched || EMAIL_SIGNIN.dirty)">
-                     </div>
-                     
-                     <div class="input-field-column">
-                        <label for="signin_username_input">Usuário</label>
-                        <input #usernameSignin type="text" id="signin_username_input" formControlName="USERNAME"
-                           [class.invalid]="USERNAME_SIGNIN.invalid && (USERNAME_SIGNIN.touched || USERNAME_SIGNIN.dirty)">
-                     </div>
-   
-                     <div class="input-field-column">
-                        <label for="signin_password_input">Senha</label>
-                        <input #passwordSignin type="password" id="signin_password_input" formControlName="SENHA"
-                           [class.invalid]="SENHA_SIGNIN.invalid && (SENHA_SIGNIN.touched || SENHA_SIGNIN.dirty)">
-                     </div>
-   
-                     <div class="input-field-row">
-                        <label for="login_remember_check">Lembre-se de mim</label>
-                        <input type="checkbox" id="login_remember_check" formControlName="REMEMBER_ME">
-                     </div>
-   
-                     <button type="submit" class="btn btn-primary width-100" (click)="createUser()">CRIAR CONTA</button>
-                  </form>
-               }
-               @case (3) {
-   
-               }
-            }
+   <div class="col-7 p-3 d-flex flex-column justify-content-center align-items-center">
+      <div class="content">
+         <div class="auth-header mb-3 text-center">
+            <img src="../../../../assets/icons/Logo=Default.png" alt="logo">
          </div>
+   
+         <div class="auth-body" style="min-width: 450px;">
+            <div class="form-fields">
+               @switch (step) {
+                  @case (1) {
+                     <form [formGroup]="loginForm" class="w-100 mb-4" data-bs-theme="dark">
+                        <div class="row mb-3">
+                           <div class="col">
+                              <label for="loginEmailInput" class="form-label">E-mail</label>
+                              <input type="email" id="loginEmailInput" class="form-control rounded-3" formControlName="EMAIL"
+                                 [class.invalid]="EMAIL_LOGIN.invalid && (EMAIL_LOGIN.touched || EMAIL_LOGIN.dirty)">
+                           </div>
+                        </div>
 
-         <div class="alternate-logins">
-            <div class="d-flex flex-column">
-               <p class="text-center">Ou entre com</p>
-               <div class="d-flex flex-row justify-content-evenly">
-                  <button class="btn btn-outline-primary"> <fa-icon [icon]="faGoogle" class="btn"></fa-icon> </button>
-                  <button class="btn btn-outline-primary"> <fa-icon [icon]="faMicrosoft" class="btn"></fa-icon> </button>
-                  <button class="btn btn-outline-primary"> <fa-icon [icon]="faGithub" class="btn"></fa-icon> </button>
-               </div>
+                        <div class="row mb-3">
+                           <div class="col">
+                              <label for="loginPasswordInput" class="form-label">Senha</label>
+                              <input type="password" id="loginPasswordInput" class="form-control mb-1 rounded-3" formControlName="SENHA"
+                                 [class.invalid]="SENHA_LOGIN.invalid && (SENHA_LOGIN.touched || SENHA_LOGIN.dirty)">
+
+                              <a type="button" class="fw-bold cursor-pointer text-decoration-none text-primary">Esqueceu sua senha?</a>
+                           </div>
+                        </div>
+
+                        <div class="row mb-4">
+                           <div class="col">
+                              <div class="form-check form-switch">
+                                 <input class="form-check-input" type="checkbox" role="switch" id="loginRememberSwitch" formControlName="REMEMBER_ME">
+                                 <label class="form-check-label" for="loginRememberSwitch">Lembre-se de mim</label>
+                              </div>
+                           </div>
+                        </div>
+   
+                        <button type="submit" class="btn btn btn-primary log-btn w-100 rounded-3 d-flex align-items-center justify-content-center gap-3"
+                           [disabled]="loading" (click)="login()">
+                           @if (loading) { <div class="spinner-border" role="status"> <span class="visually-hidden">Logando...</span> </div> }
+                           @else { LOGIN <box-icon name="log-in-circle" color="currentColor"></box-icon> }
+                        </button>
+                     </form>
+
+                     <span>É novo por aqui? <a class="text-primary text-decoration-none fw-bold cursor-pointer" (click)="step = 2">Crie uma conta aqui</a></span>
+                  }
+                  @case (2) {
+                     <form [formGroup]="signinForm" class="w-100 mb-4" data-bs-theme="dark">
+                        <div class="row mb-3">
+                           <div class="col">
+                              <label for="signinUsernameInput" class="form-label">Usuário</label>
+                              <input type="text" id="signinUsernameInput" class="form-control rounded-3" formControlName="USERNAME"
+                                 [class.invalid]="USERNAME_SIGNIN.invalid && (USERNAME_SIGNIN.touched || USERNAME_SIGNIN.dirty)">
+                           </div>
+                        </div>
+
+                        <div class="row mb-3">
+                           <div class="col">
+                              <label for="signinEmailInput" class="form-label">E-mail</label>
+                              <input type="email" id="signinEmailInput" class="form-control rounded-3" formControlName="EMAIL"
+                                 [class.invalid]="EMAIL_SIGNIN.invalid && (EMAIL_SIGNIN.touched || EMAIL_SIGNIN.dirty)">
+                           </div>
+                        </div>
+
+                        <div class="row mb-3">
+                           <div class="col">
+                              <label for="signinPasswordInput" class="form-label">Senha</label>
+                              <input type="password" id="signinPasswordInput" class="form-control rounded-3" formControlName="SENHA"
+                                 [class.invalid]="SENHA_SIGNIN.invalid && (SENHA_SIGNIN.touched || SENHA_SIGNIN.dirty)">
+                           </div>
+                        </div>
+
+                        <div class="row mb-3">
+                           <div class="col">
+                              <label for="signinConfirmPasswordInput" class="form-label">Confirmar senha</label>
+                              <input type="password" id="signinConfirmPasswordInput" class="form-control rounded-3" formControlName="CONFIRM_SENHA"
+                                 [class.invalid]="CONFIRM_SENHA_SIGNIN.invalid && (CONFIRM_SENHA_SIGNIN.touched || CONFIRM_SENHA_SIGNIN.dirty)">
+                           </div>
+                        </div>
+
+                        <div class="row mb-4">
+                           <div class="col">
+                              <div class="form-check form-switch">
+                                 <input class="form-check-input" type="checkbox" role="switch" id="signinRememberSwitch" formControlName="REMEMBER_ME" >
+                                 <label class="form-check-label" for="signinRememberSwitch">Lembre-se de mim</label>
+                              </div>
+                           </div>
+                        </div>
+      
+                        <button type="submit" class="btn btn btn-primary log-btn w-100 rounded-3 d-flex align-items-center justify-content-center gap-3"
+                           [disabled]="loading" (click)="createUser()">
+                           @if (loading) { <div class="spinner-border" role="status"> <span class="visually-hidden">Logando...</span> </div> }
+                           @else { CRIAR CONTA <box-icon name="log-in-circle" color="currentColor"></box-icon> }
+                        </button>
+                     </form>
+
+                     <span>Já tem uma conta? <a class="text-primary text-decoration-none fw-bold cursor-pointer" (click)="step = 1">Entre aqui</a></span>
+                  }
+                  @case (3) {
+      
+                  }
+               }
             </div>
+   
+            <!-- <div class="alternate-logins">
+               <div class="d-flex flex-column">
+                  <p class="text-center">Ou entre com</p>
+                  <div class="d-flex flex-row justify-content-center gap-5">
+                     <button class="btn btn-outline-primary d-flex align-items-center justify-content-center p-3 rounded-3"> <box-icon name="google" type="logo" color="currentColor" ></box-icon> </button>
+                     <button class="btn btn-outline-primary d-flex align-items-center justify-content-center p-3 rounded-3"> <box-icon name="microsoft" type="logo" color="currentColor" ></box-icon> </button>
+                     <button class="btn btn-outline-primary d-flex align-items-center justify-content-center p-3 rounded-3"> <box-icon name="github" type="logo" color="currentColor" ></box-icon> </button>
+                  </div>
+               </div>
+            </div> -->
          </div>
       </div>
    </div>

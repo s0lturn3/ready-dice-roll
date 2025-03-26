@@ -1,0 +1,44 @@
+<div style="height: 600px;">
+  <ngx-graph 
+    [links]="links" 
+    [nodes]="nodes"
+
+    [layoutSettings]="layoutSettings"
+    [draggingEnabled]="true"
+    [panningEnabled]="false"
+    [enableZoom]="false"
+    [draggable]="true" >
+    
+    <ng-template #nodeTemplate let-node>
+      <svg:g [attr.transform]="'translate(' + node.x + ',' + node.y + ')'">
+        <svg:circle *ngIf="node.data.tipo === 'Passiva'" r="30" fill="lightblue" stroke="blue" stroke-width="3" />
+        <svg:rect *ngIf="node.data.tipo === 'Habilidade'" width="60" height="60" fill="lightgreen" stroke="green" stroke-width="3" />
+        <svg:image *ngIf="node.data.icone" [attr.xlink:href]="node.data.icone" width="50" height="50" x="-25" y="-25" />
+        <svg:text *ngIf="!node.data.icone" x="0" y="5" text-anchor="middle" font-size="12" fill="black">{{ node.label }}</svg:text>
+      </svg:g>
+    </ng-template>
+
+    <!-- <ng-template #linkTemplate let-link>
+      <svg:path stroke="black" stroke-width="2" fill="black" />
+    </ng-template> -->
+  </ngx-graph>
+</div>
+
+
+<!-- MARK: Exemplo básico -->
+<!-- <ngx-graph
+  [nodes]="nodes"
+  [links]="links"
+  [layoutSettings]="layoutSettings"
+  [draggingEnabled]="false"
+  [panningEnabled]="true"
+  [enableZoom]="true"
+  (nodeClick)="onNodeClick($event)">
+
+  <ng-template #nodeTemplate let-node>
+    <svg:g class="node" (click)="onNodeClick(node)">
+      <svg:rect width="150" height="50" fill="#e0e0e0" stroke="#000" stroke-width="1"></svg:rect>
+      <svg:text x="10" y="25" alignment-baseline="middle">{{node.label}}</svg:text>
+    </svg:g>
+  </ng-template>
+</ngx-graph> -->
