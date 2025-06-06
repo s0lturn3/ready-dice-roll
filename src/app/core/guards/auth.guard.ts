@@ -5,7 +5,7 @@
 // };
 
 import { Injectable } from '@angular/core';
-import { Router, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
+import { ActivatedRouteSnapshot, Router, RouterStateSnapshot } from '@angular/router';
 
 @Injectable()
 export class AuthGuard {
@@ -15,6 +15,8 @@ export class AuthGuard {
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
     const localToken = localStorage.getItem('authToken');
     const sessionToken = sessionStorage.getItem('authToken');
+
+    return true; // Temporariamente permitir acessar todas rotas, até o problema do login se resolver
 
     if ((localToken && localToken !== undefined) || (sessionToken && sessionToken !== undefined)) {
       // logged in so return true
