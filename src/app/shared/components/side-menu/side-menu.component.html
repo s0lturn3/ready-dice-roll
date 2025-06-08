@@ -1,0 +1,79 @@
+<aside class="sidebar collapsed">
+  <header class="sidebar-header">
+    <a href="#" class="header-logo">
+      <img src="../../../assets/icons/Logo=White.png" alt="Me">
+    </a>
+    <button class="toggler sidebar-toggler">
+      <box-icon name="chevron-left" color="currentColor" style="min-width: 24px;"></box-icon>
+    </button>
+    <button class="toggler menu-toggler">
+      <box-icon name="menu" color="currentColor" style="min-width: 24px;"></box-icon>
+    </button>
+  </header>
+
+  <nav class="sidebar-nav">
+    <ul class="nav-list primary-nav">
+      <li class="nav-item">
+        <a href="#" class="nav-link">
+          <box-icon name="grid-alt" color="currentColor" style="min-width: 24px;"></box-icon>
+          <span class="nav-label">Dashboard</span>
+        </a>
+        <span class="nav-tooltip">Dashboard</span>
+      </li>
+      <li class="nav-item">
+        <a href="#" class="nav-link">
+          <box-icon name="world" color="currentColor" style="min-width: 24px;"></box-icon>
+          <span class="nav-label">Campanhas</span>
+        </a>
+        <span class="nav-tooltip">Campanhas</span>
+      </li>
+      <li class="nav-item">
+        <a href="#" class="nav-link">
+          <box-icon name="cube" type="solid" color="currentColor" style="min-width: 24px;"></box-icon>
+          <span class="nav-label">Sistemas</span>
+        </a>
+        <span class="nav-tooltip">Sistemas</span>
+      </li>
+      <li class="nav-item">
+        <a href="#" class="nav-link">
+          <box-icon name="bell" type="solid" color="currentColor" style="min-width: 24px;"></box-icon>
+          <span class="nav-label">Notificações</span>
+        </a>
+        <span class="nav-tooltip">Notificações</span>
+      </li>
+      <li class="nav-item">
+        <a href="#" class="nav-link">
+          <box-icon name="cog" color="currentColor" style="min-width: 24px;"></box-icon>
+          <span class="nav-label">Settings</span>
+        </a>
+        <span class="nav-tooltip">Settings</span>
+      </li>
+    </ul>
+
+    <ul class="nav-list secondary-nav">
+      <li class="nav-item">
+        <a href="#" class="nav-link">
+          <img class="rounded-circle" src="../../../assets/images/perfil3.jpg" width="24px" height="24px" alt="Me">
+          <!-- <box-icon name="user" color="currentColor" style="min-width: 24px;"></box-icon> -->
+          <span class="nav-label">{{ loggedUser ? loggedUser : "Perfil" }}</span>
+        </a>
+        <span class="nav-tooltip">{{ loggedUser ? loggedUser : "Perfil" }}</span>
+      </li>
+      <li class="nav-item" (click)="logout()">
+        <a class="nav-link">
+          <box-icon name="log-out" color="currentColor" style="min-width: 24px;"></box-icon>
+          <span class="nav-label">Logout</span>
+        </a>
+        <span class="nav-tooltip">Logout</span>
+      </li>
+    </ul>
+  </nav>
+</aside>
+
+
+<div class="main-content">
+  <router-outlet></router-outlet>
+</div>
+
+<!-- <p>dashboard works!</p>
+<skill-tree></skill-tree> -->

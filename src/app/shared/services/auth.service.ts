@@ -1,12 +1,12 @@
+import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { environment } from '../../../environments/environment.development';
 import { BehaviorSubject, catchError, Observable, tap, throwError } from 'rxjs';
-import { HttpClient, HttpErrorResponse, HttpHeaders, HttpParams } from '@angular/common/http';
+import { environment } from '../../../environments/environment.development';
 
-import { ApiResponse } from '../models/api-response.model';
-import { IUserLogin } from '../models/iuser-login.model';
 import { Router } from '@angular/router';
+import { ApiResponse } from '../models/api-response.model';
 import { Usuario } from '../models/db/usuario.model';
+import { IUserLogin } from '../models/iuser-login.model';
 
 @Injectable({
   providedIn: 'root'
@@ -56,7 +56,7 @@ export class AuthService {
     }).pipe(
       catchError(this.handleTokenError),
       tap(response => {
-        console.log(response);
+        // console.log(response);
         this.handleError(response);
       })
     );
@@ -163,8 +163,6 @@ export class AuthService {
   }
   private handleTokenError(error: HttpErrorResponse) {
     if (error.error['message'] && error.error['message'] === 'Sessão expirada. Faça login novamente.') {
-      console.error(error.error['message']);
-
       window.localStorage.removeItem('authToken');
       window.sessionStorage.removeItem('authToken');
       

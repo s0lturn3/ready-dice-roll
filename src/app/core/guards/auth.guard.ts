@@ -16,8 +16,6 @@ export class AuthGuard {
     const localToken = localStorage.getItem('authToken');
     const sessionToken = sessionStorage.getItem('authToken');
 
-    return true; // Temporariamente permitir acessar todas rotas, até o problema do login se resolver
-
     if ((localToken && localToken !== undefined) || (sessionToken && sessionToken !== undefined)) {
       // logged in so return true
       return true;
@@ -27,6 +25,7 @@ export class AuthGuard {
     this.router.navigate(['/auth']).then(() => {
       alert('Você precisa estar logado para acessar essa página. Realize o login novamente.');
     });
+    
     return false;
   }
 }
