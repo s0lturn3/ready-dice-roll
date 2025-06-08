@@ -1,5 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { RouterModule } from '@angular/router';
+import { CampanhaDto } from '../../../../shared/models/db/campanha.dto';
+import { CampanhasService } from '../../services/campanhas.service';
 
 @Component({
   selector: 'campanhas-list',
@@ -15,14 +17,11 @@ export class CampanhasListComponent {
   // #region ==========> PROPERTIES <==========
   
   // #region PRIVATE
-  // [...]
+  private _campanhas: CampanhasService = inject(CampanhasService);
   // #endregion PRIVATE
 
   // #region PUBLIC
-  public $campanhas: { title: string, route: string }[] = [
-    { title: 'Pharloom', route: 'info/1' },
-    { title: 'Sem nome', route: 'info/2' },
-  ]
+  public $campanhas?: CampanhaDto[];
   // #endregion PUBLIC
 
   // #endregion ==========> PROPERTIES <==========
@@ -30,13 +29,21 @@ export class CampanhasListComponent {
 
   constructor() { }
 
-  ngOnInit(): void { }
+  ngOnInit(): void {
+    this.getCampanhas();
+  }
 
 
   // #region ==========> API METHODS <==========
 
   // #region GET
-  // [...]
+  public getCampanhas(): void {
+    this._campanhas.getCampanhas().subscribe({
+      next: response => {
+        this.$campanhas = response.body
+      }
+    })
+  }
   // #endregion GET
 
   // #region POST
