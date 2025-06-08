@@ -1,37 +1,34 @@
-import { Component, CUSTOM_ELEMENTS_SCHEMA, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { AuthService } from '../../shared/services/auth.service';
 
 @Component({
-  selector: 'app-dashboard',
+  selector: 'campanhas-list',
   standalone: true,
   imports: [
     RouterModule
   ],
-  schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
-  templateUrl: './dashboard.component.html',
-  styleUrl: './dashboard.component.scss'
+  templateUrl: './campanhas-list.component.html',
+  styleUrl: './campanhas-list.component.scss'
 })
-export class DashboardComponent implements OnInit {
+export class CampanhasListComponent {
 
   // #region ==========> PROPERTIES <==========
-
+  
   // #region PRIVATE
   // [...]
   // #endregion PRIVATE
 
   // #region PUBLIC
-  public cards: { title: string, content: string, route: string }[] = [
-    { title: 'Campanhas', content: 'Navegar para as campanhas', route: '/campanhas' },
-    { title: 'Sistemas', content: 'Navegar para os sistemas', route: '/sistemas' },
-    { title: 'Personagens', content: 'Navegar para os personagens', route: '/personagens' },
+  public $campanhas: { title: string, route: string }[] = [
+    { title: 'Pharloom', route: 'info/1' },
+    { title: 'Sem nome', route: 'info/2' },
   ]
   // #endregion PUBLIC
 
   // #endregion ==========> PROPERTIES <==========
 
 
-  constructor(private _authService: AuthService) { }
+  constructor() { }
 
   ngOnInit(): void { }
 

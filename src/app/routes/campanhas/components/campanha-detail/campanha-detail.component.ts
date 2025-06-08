@@ -1,37 +1,36 @@
-import { Component, CUSTOM_ELEMENTS_SCHEMA, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { AuthService } from '../../shared/services/auth.service';
 
 @Component({
-  selector: 'app-dashboard',
+  selector: 'campanha-detail',
   standalone: true,
   imports: [
     RouterModule
   ],
-  schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
-  templateUrl: './dashboard.component.html',
-  styleUrl: './dashboard.component.scss'
+  templateUrl: './campanha-detail.component.html',
+  styleUrl: './campanha-detail.component.scss'
 })
-export class DashboardComponent implements OnInit {
+export class CampanhaDetailComponent {
 
   // #region ==========> PROPERTIES <==========
-
+  
   // #region PRIVATE
   // [...]
   // #endregion PRIVATE
 
   // #region PUBLIC
-  public cards: { title: string, content: string, route: string }[] = [
-    { title: 'Campanhas', content: 'Navegar para as campanhas', route: '/campanhas' },
-    { title: 'Sistemas', content: 'Navegar para os sistemas', route: '/sistemas' },
-    { title: 'Personagens', content: 'Navegar para os personagens', route: '/personagens' },
+  public $cards: { title: string, descricao: string, route: string }[] = [
+    { title: 'Mapas', descricao: '', route: '/campanhas/mapas/1' },
+    { title: 'Habilidades', descricao: '', route: '/campanhas/habilidades/1' },
+    { title: 'Personagens', descricao: '', route: '/campanhas/personagens/1' },
+    { title: 'Jogadores', descricao: '', route: '/campanhas/jogadores/1' },
   ]
   // #endregion PUBLIC
 
   // #endregion ==========> PROPERTIES <==========
 
 
-  constructor(private _authService: AuthService) { }
+  constructor() { }
 
   ngOnInit(): void { }
 
@@ -58,7 +57,7 @@ export class DashboardComponent implements OnInit {
 
 
   // #region ==========> UTILS <==========
-  
+  // [...]
   // #endregion ==========> UTILS <==========
 
 }

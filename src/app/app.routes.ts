@@ -17,6 +17,12 @@ export const routes: Routes = [
          { path: 'inicio', title: 'Início', component: HomeComponent },
          { path: 'dashboard', title: 'Dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
 
+         {
+            path: 'campanhas',
+            loadChildren: () => import('./routes/campanhas/campanhas.routes').then(r => r.CAMPANHAS_ROUTES),
+            canActivate: [ AuthGuard ]
+         },
+
          { path: '', redirectTo: "/dashboard", pathMatch: 'full' },
       ],
       canActivate: [AuthGuard],

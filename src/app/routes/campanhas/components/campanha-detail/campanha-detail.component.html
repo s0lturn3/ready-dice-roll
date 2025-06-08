@@ -1,14 +1,11 @@
-<h1>Ready, Dice, Roll!</h1>
+<p>campanha-detail works!</p>
 
 <div class="d-flex flex-row align-items-center gap-3 my-3">
 
-  @for (item of cards; track $index) {
+  @for (item of $cards; track $index) {
     <button class="btn btn-outline-primary w-25 p-3 text-start" [routerLink]="item.route" routerLinkActive="router-link-active" >
       <h5 class="text-light">{{ item.title }}</h5>
-      <p class="text-light mb-0">{{ item.content }}</p>
     </button>
   }
 
 </div>
-
-<!-- <skill-tree></skill-tree> -->
