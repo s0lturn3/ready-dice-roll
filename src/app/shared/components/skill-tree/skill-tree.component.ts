@@ -1,6 +1,9 @@
 import { NgIf } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
+
 import { Node, Edge, NgxGraphModule } from '@swimlane/ngx-graph';
+import { PopoverModule } from 'ngx-bootstrap/popover';
+import { TooltipModule } from 'ngx-bootstrap/tooltip';
 
 interface Habilidade {
   id: number;
@@ -22,7 +25,9 @@ interface Habilidade {
   standalone: true,
   imports: [
     NgIf,
-    NgxGraphModule
+    NgxGraphModule,
+    TooltipModule,
+    PopoverModule,
   ],
   templateUrl: './skill-tree.component.html',
   styleUrl: './skill-tree.component.scss'
@@ -173,7 +178,7 @@ export class SkillTreeComponent implements OnInit {
       descricaoCompleta: "O mago libera uma tempestade mágica que causa dano massivo a todos ao seu redor.",
       tipo: "Evolução",
       nivel: 6,
-      habilidadeDependenciaId: 4,
+      // habilidadeDependenciaId: 4,
       dataCriacao: "2025-03-23",
       exclusivaClasseId: 1,
     }
@@ -202,6 +207,9 @@ export class SkillTreeComponent implements OnInit {
         target: hab.id.toString(),
         label: 'depende de'
       }));
+
+    console.log('Nodes:', this.nodes);
+    console.log('Links:', this.links);
   }
 
   // Exemplo de evento de clique no nó (para exibir detalhes ou acionar desbloqueio)
