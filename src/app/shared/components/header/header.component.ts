@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-header',
@@ -13,20 +12,8 @@ import { AuthService } from '../../services/auth.service';
 })
 export class HeaderComponent implements OnInit {
 
-  userLoggedIn!: boolean;
+  constructor() { }
 
-  constructor(
-    private _auth: AuthService
-  ) { }
-
-  ngOnInit(): void {
-    this._auth.loggedIn.subscribe(value => {
-      this.userLoggedIn = value;
-    });
-  }
-
-  logout() {
-    this._auth.logout();
-  }
+  ngOnInit(): void { }
 
 }
