@@ -1,13 +1,12 @@
 import { Component, CUSTOM_ELEMENTS_SCHEMA, OnInit } from '@angular/core';
-import { NgxGraphModule } from '@swimlane/ngx-graph';
+import { RouterModule } from '@angular/router';
 import { AuthService } from '../../shared/services/auth.service';
 
 @Component({
   selector: 'app-dashboard',
   standalone: true,
   imports: [
-    NgxGraphModule,
-    // SkillTreeComponent,
+    RouterModule
   ],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
   templateUrl: './dashboard.component.html',
@@ -22,7 +21,11 @@ export class DashboardComponent implements OnInit {
   // #endregion PRIVATE
 
   // #region PUBLIC
-  
+  public cards: { title: string, content: string, route: string }[] = [
+    { title: 'Campanhas', content: 'Navegar para as campanhas', route: '/campanhas' },
+    { title: 'Sistemas', content: 'Navegar para os sistemas', route: '/sistemas' },
+    { title: 'Personagens', content: 'Navegar para os personagens', route: '/personagens' },
+  ]
   // #endregion PUBLIC
 
   // #endregion ==========> PROPERTIES <==========

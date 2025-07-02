@@ -35,8 +35,12 @@ export class SideMenuComponent {
 
   ngOnInit(): void {
     this._authService.jwttest().subscribe({
-      next: response => { console.log(response); },
-      error: error => { console.log(error); }
+      next: response => {
+        // console.log(response);
+      },
+      error: error => {
+        // console.log(error);
+      }
     });
 
     this.adjustSidebar();

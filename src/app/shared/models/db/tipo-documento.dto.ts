@@ -1,17 +1,5 @@
-import { ApiProperty } from "@nestjs/swagger";
-import { IsInt, IsString, IsOptional } from "class-validator";
-
-export class TipoDocumentoDto {
-    @ApiProperty()
-    @IsInt()
+export interface TipoDocumentoDto {
     Id: number;
-
-    @ApiProperty()
-    @IsString()
     Nome: string;
-
-    @ApiProperty()
-    @IsOptional()
-    @IsString()
     Descricao?: string;
 }

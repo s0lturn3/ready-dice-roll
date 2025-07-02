@@ -1,7 +1,6 @@
-/* You can add global styles to this file, and also import other style files */
-@import url("https://fonts.googleapis.com/css2?family=Quicksand&display=swap");
-
 // #region IMPORT UTILS
+@use "./app/shared/styles/themes" as themes;
+
 @import "./app/shared/styles/variables";
 
 @import "./app/shared/styles/classes";
@@ -10,11 +9,14 @@
 @import "./app/shared/styles/forms";
 @import "./app/shared/styles/buttons";
 
-@import "./app/shared/styles/themes";
 @import "./app/shared/styles/utilities";
 
 @import "./app/shared/styles/animations";
 // #endregion IMPORT UTILS
+
+// #region FONTS
+@import url("https://fonts.googleapis.com/css2?family=Quicksand&display=swap");
+// #endregion FONTS
 
 
 * {
@@ -24,7 +26,7 @@
 html, body {
    // background-color: $color-surface-a0;
    // color: $text-light;
-   background-color: #00030F !important;
+   background-color: themes.$black !important;
    color: #ece8f3 !important;
 
    padding: 0;
@@ -66,9 +68,11 @@ a {
 $theme-colors: (
    "primary": #4560e9,
    "secondary": #e94560,
+   "success": #399E5A,
+   "danger": #B80C09,
 
-   "light": #FFFFFF,
-   "dark": #00030F,
+   "light": #E1E5EE,
+   "dark": #0E0F19,
 );
 
 @import "../node_modules/bootstrap/scss/bootstrap.scss";
