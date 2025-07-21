@@ -1,78 +1,35 @@
-// input[type="text"],
-// input[type="email"],
-// input[type="password"],
-// input[type="phone"] {
-//    padding: 1rem;
-//    font-size: 1rem;
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="phone"] {
+  height: 42px !important;
+  border-radius: 6px;
+  border: 1px solid var(--base-dark-lighten2);
+  background-color: var(--base-dark-lighten2);
 
-//    color: $color-primary-a50;
-//    background-color: $color-surface-mixed-a0;
-   
-//    border: 1px solid $color-surface-mixed-a0;
-//    border-radius: 12px;
-   
-//    &::placeholder {
-//       color: $color-primary-a50;
-//    }
-   
-//    &:-internal-autofill-selected {
-//       background-color: $color-surface-mixed-a0 !important;
-//    }
-   
-//    // &:disabled {
-//    //    color: $color-primary-a50;
-//    // }
-// }
-// input[type="checkbox"] {
-//    width: 1rem;
-//    accent-color: $color-primary-a30;
-// }
+  &:focus {
+    background-color: var(--base-dark-lighten3) !important;
+    border: 1px solid transparent !important;
+    box-shadow: none;
+  }
 
+  &[disabled] {
+    background-color: var(--base-dark-darken) !important;
+    cursor: not-allowed;
+  }
+}
 
-// .input-field-column {
-//    display: flex;
-//    flex-direction: column;
-//    margin: 1rem 0;
+input[type="checkbox"] {
+  border: 1px solid var(--base-dark-lighten2);
+  background-color: var(--base-dark-lighten2);
 
-//    label {
-//       font-weight: bold;
-//       line-height: 2rem;
+  &:focus {
+    border: 1px solid transparent !important;
+    box-shadow: none;
+  }
 
-//       color: $text-light;
-//    }
-// }
-// .input-field-row {
-//    display: flex;
-//    flex-direction: row;
-//    margin: 1rem 0;
-
-//    label {
-//       font-weight: bold;
-//       line-height: 2rem;
-
-//       color: $text-light;
-//    }
-// }
-
-
-// .static-input {
-//    padding: 0 .5rem;
-
-//    display: flex;
-//    flex-direction: row;
-//    align-items: center;
-//    justify-content: space-between;
-// }
-
-
-// .invalid {
-//    border-color: red !important;
-// }
-
-
-// .label {
-//    font-weight: bold;
-//    line-height: 2rem;
-
-//    color: $text-light;
-// }
+  &[disabled] {
+    background-color: var(--base-dark-lighten2) !important;
+    cursor: not-allowed;
+  }
+}

@@ -43,13 +43,13 @@ a {
 ::-webkit-scrollbar { width: 5px; }
 
 /* Track */
-::-webkit-scrollbar-track { background: var(--dark-900); }
+::-webkit-scrollbar-track { background: var(--base-dark-darken); }
 
 /* Handle */
-::-webkit-scrollbar-thumb { background: var(--primary-300); }
+::-webkit-scrollbar-thumb { background: var(--base-primary); }
 
 /* Handle on hover */
-::-webkit-scrollbar-thumb:hover { background: var(--primary-500); }
+::-webkit-scrollbar-thumb:hover { background: var(--base-primary-darken1); }
 // #endregion SCROLLBAR
 
 @import "./app/shared/styles/media_queries";

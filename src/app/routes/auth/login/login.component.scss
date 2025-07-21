@@ -1,99 +1,14 @@
-@import "../../../shared/styles/variables";
-
 .background-image {
-   background-image: url("../../../../assets/images/login-background.jpg");
+   background-image: url("../../../../assets/images/login-background.webp");
    background-size: cover;
 }
-
 
 .log-btn {
    height: 48px;
 }
-
-
-// .login-container {
-//    background: #03040a;
-//    background: -webkit-linear-gradient(45deg, #03040a 0%, #160e2b 100%);
-//    background: linear-gradient(45deg, #03040a 0%, #160e2b 100%);
-// }
-// .content {
-//    display: flex;
-//    flex-direction: column;
-//    flex: 1;
-
-//    padding: 1rem;
-
-//    .auth-header {
-//       flex: 1;
-//    }
-//    .auth-body {
-//       flex: 1;
-//    }
-// }
-
 
 .form-fields {
    display: flex;
    flex-direction: column;
    align-items: center;
 }
-
-// .alternate-logins {
-//    padding: 2rem 0;
-// }
-
-
-// /* From Uiverse.io by mahiatlinux */ 
-// :focus {
-//    outline: 0;
-//    border-color: $color-primary-a30;
-// }
- 
-// .mydict {
-//    div {
-//       display: flex;
-//       flex-wrap: wrap;
-//       margin-top: 0.5rem;
-//       justify-content: center;
-//    }
-
-//    input[type="radio"] {
-//       clip: rect(0 0 0 0);
-//       clip-path: inset(100%);
-//       height: 1px;
-//       overflow: hidden;
-//       position: absolute;
-//       white-space: nowrap;
-//       width: 1px;
-//    }
-
-//    input[type="radio"]:checked + span {
-//       box-shadow: 0 0 0 0.0625em $color-primary-a30;
-//       background-color: $color-surface-mixed-a10;
-//       z-index: 1;
-//       color: $color-primary-a30;
-//    }
-// }
- 
-// label {
-//    span {
-//       display: block;
-//       cursor: pointer;
-//       background-color: $color-surface-mixed-a0;
-//       padding: 0.375em 0.75em;
-//       position: relative;
-//       margin-left: 0.0625em;
-//       box-shadow: 0 0 0 0.0625em #4a5568;
-//       letter-spacing: 0.05em;
-//       color: $color-surface-a50;
-//       text-align: center;
-//       transition: background-color 0.5s ease;
-//    }
-
-//    &:first-child span {
-//       border-radius: 0.375em 0 0 0.375em;
-//    }
-//    &:last-child span {
-//       border-radius: 0 0.375em 0.375em 0;
-//    }
-// }
