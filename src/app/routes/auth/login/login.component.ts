@@ -1,8 +1,7 @@
-import { Component, CUSTOM_ELEMENTS_SCHEMA, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 import { CommonModule } from '@angular/common';
 import { Usuario } from '../../../shared/models/db/usuario.model';
@@ -25,10 +24,8 @@ export enum AuthStep {
   standalone: true,
   imports: [
     CommonModule,
-    FontAwesomeModule,
     ReactiveFormsModule,
   ],
-  schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss'
 })

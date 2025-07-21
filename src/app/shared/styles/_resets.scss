@@ -1,5 +1,5 @@
 * {
-   margin: 0 !important;
+   margin: 0;
    padding: 0;
    box-sizing: border-box;
 }
@@ -11,4 +11,7 @@ body {
    font-family: $font-family-base;
    line-height: 1.5;
    color: #ece8f3 !important;
+
+   // Isto resolve o problema de criar um espaço em branco fantasma no bottom e right do corpo
+   overflow: hidden;
 }

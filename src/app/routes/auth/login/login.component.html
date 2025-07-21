@@ -1,4 +1,4 @@
-<div class="row h-100">
+<div class="row vh-100">
    <div class="col-5 background-image"></div>
 
    <div class="col-7 p-3 d-flex flex-column justify-content-center align-items-center">
@@ -33,6 +33,10 @@
                         <div class="row mb-4">
                            <div class="col">
                               <div class="form-check form-switch">
+                                 <input class="form-check-input" type="checkbox" role="switch" id="switchCheckChecked" checked>
+                                 <label class="form-check-label" for="switchCheckChecked">Checked switch checkbox input</label>
+                              </div>
+                              <div class="form-check form-switch">
                                  <input class="form-check-input" type="checkbox" role="switch" id="loginRememberSwitch" formControlName="REMEMBER_ME">
                                  <label class="form-check-label" for="loginRememberSwitch">Lembre-se de mim</label>
                               </div>
@@ -42,7 +46,7 @@
                         <button type="submit" class="btn btn btn-primary log-btn w-100 rounded-3 d-flex align-items-center justify-content-center gap-3"
                            [disabled]="loading" (click)="login()">
                            @if (loading) { <div class="spinner-border" role="status"> <span class="visually-hidden">Logando...</span> </div> }
-                           @else { LOGIN <box-icon name="log-in-circle" color="currentColor"></box-icon> }
+                           @else { LOGIN <i class="bx bx-chevron-right"></i>  }
                         </button>
                      </form>
 
@@ -94,28 +98,17 @@
                         <button type="submit" class="btn btn btn-primary log-btn w-100 rounded-3 d-flex align-items-center justify-content-center gap-3"
                            [disabled]="loading" (click)="createUser()">
                            @if (loading) { <div class="spinner-border" role="status"> <span class="visually-hidden">Logando...</span> </div> }
-                           @else { CRIAR CONTA <box-icon name="log-in-circle" color="currentColor"></box-icon> }
+                           @else { CRIAR CONTA <i class="bx bx-chevron-right"></i> }
                         </button>
                      </form>
 
                      <span>Já tem uma conta? <a class="text-primary text-decoration-none fw-bold cursor-pointer" (click)="step = 1">Entre aqui</a></span>
                   }
                   @case (3) {
-      
+
                   }
                }
             </div>
-   
-            <!-- <div class="alternate-logins">
-               <div class="d-flex flex-column">
-                  <p class="text-center">Ou entre com</p>
-                  <div class="d-flex flex-row justify-content-center gap-5">
-                     <button class="btn btn-outline-primary d-flex align-items-center justify-content-center p-3 rounded-3"> <box-icon name="google" type="logo" color="currentColor" ></box-icon> </button>
-                     <button class="btn btn-outline-primary d-flex align-items-center justify-content-center p-3 rounded-3"> <box-icon name="microsoft" type="logo" color="currentColor" ></box-icon> </button>
-                     <button class="btn btn-outline-primary d-flex align-items-center justify-content-center p-3 rounded-3"> <box-icon name="github" type="logo" color="currentColor" ></box-icon> </button>
-                  </div>
-               </div>
-            </div> -->
          </div>
       </div>
    </div>
