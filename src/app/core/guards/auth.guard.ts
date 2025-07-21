@@ -5,7 +5,7 @@
 // };
 
 import { Injectable } from '@angular/core';
-import { Router, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
+import { ActivatedRouteSnapshot, Router, RouterStateSnapshot } from '@angular/router';
 
 @Injectable()
 export class AuthGuard {
@@ -25,6 +25,7 @@ export class AuthGuard {
     this.router.navigate(['/auth']).then(() => {
       alert('Você precisa estar logado para acessar essa página. Realize o login novamente.');
     });
+    
     return false;
   }
 }

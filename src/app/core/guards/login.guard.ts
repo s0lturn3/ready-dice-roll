@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { ActivatedRouteSnapshot, CanActivateFn, Router, RouterStateSnapshot } from '@angular/router';
+import { ActivatedRouteSnapshot, Router, RouterStateSnapshot } from '@angular/router';
 
 @Injectable()
 export class LoginGuard {
@@ -12,7 +12,7 @@ export class LoginGuard {
 
     if ((localToken && localToken !== undefined) || (sessionToken && sessionToken !== undefined)) {
       // Está logado, então vai para tela de dashboards
-      this.router.navigate(['/dashboard']);
+      this.router.navigate(['/manager/dashboard']);
       return false;
     }
     

@@ -1,12 +1,12 @@
+import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { environment } from '../../../environments/environment.development';
 import { BehaviorSubject, catchError, Observable, tap, throwError } from 'rxjs';
-import { HttpClient, HttpErrorResponse, HttpHeaders, HttpParams } from '@angular/common/http';
+import { environment } from '../../../environments/environment.development';
 
-import { ApiResponse } from '../models/api-response.model';
-import { IUserLogin } from '../models/iuser-login.model';
 import { Router } from '@angular/router';
+import { ApiResponse } from '../models/api-response.model';
 import { Usuario } from '../models/db/usuario.model';
+import { IUserLogin } from '../models/iuser-login.model';
 
 @Injectable({
   providedIn: 'root'
@@ -40,34 +40,21 @@ export class AuthService {
   // #region ==========> SERVICE METHODS <==========
 
   // #region GET
-  public jwttest(): Observable<ApiResponse<{
-    name: string,
-    message: string,
-    expiredAt: string
-}>> {
+  public jwttest(): Observable<ApiResponse<{ name: string, message: string, expiredAt: string }>> {
     const url = `${this.USERS_URL}/jwttest`;
 
-    return this._httpClient.get<ApiResponse<{
-      name: string,
-      message: string,
-      expiredAt: string
-  }>>(url, {
-      'headers': this.buildHeaders(true)
-    }).pipe(
+    return this._httpClient.get<ApiResponse<{ name: string, message: string, expiredAt: string }>>(url, { 'headers': this.buildHeaders(true) })
+    .pipe(
       catchError(this.handleTokenError),
-      tap(response => {
-        console.log(response);
-        this.handleError(response);
-      })
+      tap(response => { this.handleError(response) })
     );
   }
 
   public login(userForm: IUserLogin, rememberMe: boolean): Observable<ApiResponse<{ access_token: string, userId: string, userName: string }>> {
     const url = `${this.USERS_URL}/login`;
 
-    return this._httpClient.post<ApiResponse<{ access_token: string, userId: string, userName: string }>>(url, JSON.stringify(userForm), {
-      'headers': this.buildHeaders(false)
-    }).pipe(
+    return this._httpClient.post<ApiResponse<{ access_token: string, userId: string, userName: string }>>(url, JSON.stringify(userForm), { 'headers': this.buildHeaders(false) })
+    .pipe(
       tap(response => {
         this.handleError(response);
         this.setToken(response.body!.access_token, response.body!.userId, response.body!.userName, rememberMe);
@@ -80,14 +67,11 @@ export class AuthService {
   public createUser(user: Usuario, rememberMe: boolean): Observable<ApiResponse<{ access_token: string, userId: string, userName: string }>> {
     const url = `${this.USERS_URL}/signIn`;
 
-    return this._httpClient.post<ApiResponse<{ access_token: string, userId: string, userName: string }>>(url, JSON.stringify(user), {
-      'headers': this.buildHeaders(false)
-    }).pipe(
+    return this._httpClient.post<ApiResponse<{ access_token: string, userId: string, userName: string }>>(url, JSON.stringify(user), { 'headers': this.buildHeaders(false) })
+    .pipe(
       tap(response => {
         this.handleError(response);
         this.setToken(response.body!.access_token, response.body!.userId, response.body!.userName, rememberMe);
-
-
       })
     );
   }
@@ -163,8 +147,6 @@ export class AuthService {
   }
   private handleTokenError(error: HttpErrorResponse) {
     if (error.error['message'] && error.error['message'] === 'Sessão expirada. Faça login novamente.') {
-      console.error(error.error['message']);
-
       window.localStorage.removeItem('authToken');
       window.sessionStorage.removeItem('authToken');
       

@@ -1,0 +1,11 @@
+<p>campanhas-list works!</p>
+
+<div class="d-flex flex-row align-items-center gap-3 my-3">
+
+  @for (item of $campanhas; track $index) {
+    <button class="btn btn-outline-primary w-25 p-3 text-start" routerLink="info/{{item.Id}}" routerLinkActive="router-link-active" >
+      <h5 class="text-light">{{ item.Nome }}</h5>
+    </button>
+  }
+
+</div>

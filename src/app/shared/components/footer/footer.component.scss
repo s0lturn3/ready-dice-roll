@@ -1,7 +1,33 @@
+@use "../../styles/themes" as themes;
 @import "../../../shared/styles/variables";
 
 footer {
-   background-color: $color-surface-mixed-a20;
-   text-align: center;
-   padding: 2.5rem 0;
+   // text-align: center;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   font-size: 18px;
+
+   position: relative;
+   bottom: 0;
+   width: 100%;
+
+   margin-top: 5rem;
+
+   .container {
+      height: 100px;
+   }
+
+   &::before {
+      content: "";
+      display: block;
+      width: 90%;
+      border-top: 1px solid themes.$white;
+      opacity: 50%;
+   }
+
+   a {
+      font-weight: bold;
+      text-decoration: none;
+   }
 }

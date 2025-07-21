@@ -1,24 +1,11 @@
 <header>
-   <div class="container">
-      <a routerLink="/" class="logo">Campaign Manager</a>
+   <div class="d-flex justify-content-between align-items-center container py-3">
+      <h3>
+         <a routerLink="/home" class="logo text-decoration-none fw-bold text-primary">Ready, Dice, Roll</a>
+      </h3>
 
       <nav>
-         <ul>
-            @if (userLoggedIn) {
-               <li class="menu-container">
-                  <a> Solturne </a>
-                  <div class="menu">
-                     <a routerLink=""> Perfil </a>
-                     <a routerLink=""> Campanhas </a>
-                     <a (click)="logout()"> Sair </a>
-                  </div>
-               </li>
-            }
-            @else {
-               <li> <a routerLink="/auth" > Login </a> </li>
-            }
-
-         </ul>
+         <a type="button" class="btn btn-primary" routerLink="/auth" > Sign In </a>
       </nav>
    </div>
 </header>
