@@ -2,6 +2,7 @@
 @use "./app/shared/styles/themes" as themes;
 
 @import "./app/shared/styles/variables";
+@import "./app/shared/styles/resets";
 
 @import "./app/shared/styles/classes";
 @import "./app/shared/styles/typography";
@@ -18,16 +19,10 @@
 @import url("https://fonts.googleapis.com/css2?family=Quicksand&display=swap");
 // #endregion FONTS
 
-
-* {
-   box-sizing: border-box;
-}
-
 html, body {
    // background-color: $color-surface-a0;
    // color: $text-light;
    background-color: themes.$black !important;
-   color: #ece8f3 !important;
 
    padding: 0;
    margin: 0;
@@ -38,9 +33,6 @@ html {
    &, button { font-family: "Quicksand", "sans-serif"; }
 }
 
-html, body, app-root {
-  height: 100%;
-}
 
 a {
    text-decoration: none;
