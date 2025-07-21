@@ -1,10 +1,13 @@
 <div class="d-flex align-items-center justify-content-center h-100">
-   <div class="col-5 h-100 background-image"></div>
+   <div id="login-image-left" class="col-6 h-100 p-3">
+      <div class="h-100 background-image"></div>
+   </div>
 
-   <div class="col-7 d-flex flex-column justify-content-center align-items-center">
-      <div class="content">
-         <div class="auth-header mb-3 text-center">
+   <div class="col-6 p-5 h-100 d-flex flex-column justify-content-center align-items-center">
+      <div class="content d-flex flex-column justify-content-between h-100">
+         <div class="auth-header text-center">
             <img src="../../../../assets/icons/Logo=Default.png" alt="logo">
+            <h2>Ready, Dice, Roll!</h2>
          </div>
    
          <div class="auth-body" style="min-width: 450px;">
@@ -16,6 +19,7 @@
                            <div class="col">
                               <label for="loginEmailInput" class="form-label">E-mail</label>
                               <input type="email" id="loginEmailInput" class="form-control rounded-3" formControlName="EMAIL"
+                                 placeholder="Digite seu e-mail"
                                  [class.invalid]="EMAIL_LOGIN.invalid && (EMAIL_LOGIN.touched || EMAIL_LOGIN.dirty)">
                            </div>
                         </div>
@@ -24,6 +28,7 @@
                            <div class="col">
                               <label for="loginPasswordInput" class="form-label">Senha</label>
                               <input type="password" id="loginPasswordInput" class="form-control mb-1 rounded-3" formControlName="SENHA"
+                                 placeholder="Digite sua senha"
                                  [class.invalid]="SENHA_LOGIN.invalid && (SENHA_LOGIN.touched || SENHA_LOGIN.dirty)">
 
                               <a type="button" class="fw-bold cursor-pointer text-decoration-none text-primary">Esqueceu sua senha?</a>
@@ -46,7 +51,7 @@
                         </button>
                      </form>
 
-                     <span>É novo por aqui? <a class="text-primary text-decoration-none fw-bold cursor-pointer" (click)="step = 2">Crie uma conta aqui</a></span>
+                     <!-- <span>É novo por aqui? <a class="text-primary text-decoration-none fw-bold cursor-pointer" (click)="step = 2">Crie uma conta aqui</a></span> -->
                   }
                   @case (2) {
                      <form [formGroup]="signinForm" class="w-100 mb-4" data-bs-theme="dark">
@@ -54,6 +59,7 @@
                            <div class="col">
                               <label for="signinUsernameInput" class="form-label">Usuário</label>
                               <input type="text" id="signinUsernameInput" class="form-control rounded-3" formControlName="USERNAME"
+                                 placeholder="Digite seu nome de usuário"
                                  [class.invalid]="USERNAME_SIGNIN.invalid && (USERNAME_SIGNIN.touched || USERNAME_SIGNIN.dirty)">
                            </div>
                         </div>
@@ -62,6 +68,7 @@
                            <div class="col">
                               <label for="signinEmailInput" class="form-label">E-mail</label>
                               <input type="email" id="signinEmailInput" class="form-control rounded-3" formControlName="EMAIL"
+                                 placeholder="Digite seu e-mail"
                                  [class.invalid]="EMAIL_SIGNIN.invalid && (EMAIL_SIGNIN.touched || EMAIL_SIGNIN.dirty)">
                            </div>
                         </div>
@@ -70,6 +77,7 @@
                            <div class="col">
                               <label for="signinPasswordInput" class="form-label">Senha</label>
                               <input type="password" id="signinPasswordInput" class="form-control rounded-3" formControlName="SENHA"
+                                 placeholder="Digite sua senha"
                                  [class.invalid]="SENHA_SIGNIN.invalid && (SENHA_SIGNIN.touched || SENHA_SIGNIN.dirty)">
                            </div>
                         </div>
@@ -78,6 +86,7 @@
                            <div class="col">
                               <label for="signinConfirmPasswordInput" class="form-label">Confirmar senha</label>
                               <input type="password" id="signinConfirmPasswordInput" class="form-control rounded-3" formControlName="CONFIRM_SENHA"
+                                 placeholder="Confirme sua senha"
                                  [class.invalid]="CONFIRM_SENHA_SIGNIN.invalid && (CONFIRM_SENHA_SIGNIN.touched || CONFIRM_SENHA_SIGNIN.dirty)">
                            </div>
                         </div>
@@ -98,13 +107,27 @@
                         </button>
                      </form>
 
-                     <span>Já tem uma conta? <a class="text-primary text-decoration-none fw-bold cursor-pointer" (click)="step = 1">Entre aqui</a></span>
+                     <!-- <span>Já tem uma conta? <a class="text-primary text-decoration-none fw-bold cursor-pointer" (click)="step = 1">Entre aqui</a></span> -->
                   }
                   @case (3) {
 
                   }
                }
             </div>
+         </div>
+
+         <div class="auth-footer align-self-center">
+            @switch (step) {
+               @case (1) {
+                  <span>Não tem uma conta? <a class="text-primary text-decoration-none fw-bold cursor-pointer" (click)="step = 2">Junte-se a nós</a></span>
+               }
+               @case (2) {
+                  <span>Já tem uma conta? <a class="text-primary text-decoration-none fw-bold cursor-pointer" (click)="step = 1">Entre por aqui</a></span>
+               }
+               @case (3) {
+
+               }
+            }
          </div>
       </div>
    </div>
