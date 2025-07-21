@@ -10,16 +10,16 @@ import { UserNotAuthenticatedComponent } from './shared/components/user-not-auth
 
 
 export const routes: Routes = [
-   { path: 'inicio', title: 'Ready, Dice, Roll!', component: HomeComponent },
+   { path: '', title: 'Ready, Dice, Roll!', component: HomeComponent },
 
    {
-      path: '',
+      path: 'manager',
       component: SideMenuComponent,
       children: [
          { path: 'dashboard', title: 'Dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
 
          {
-            path: 'campanhas',
+            path: 'campaigns',
             loadChildren: () => import('./routes/campanhas/campanhas.routes').then(r => r.CAMPANHAS_ROUTES),
             canActivate: [ AuthGuard ]
          },
@@ -29,7 +29,6 @@ export const routes: Routes = [
    },
 
    { path: 'auth', title: 'Autenticação', component: LoginComponent, canActivate: [LoginGuard] },
-   { path: 'nao-autorizado', component: UserNotAuthenticatedComponent },
+   { path: 'not-authorized', component: UserNotAuthenticatedComponent },
    { path: '**', component: PageNotFoundComponent },
-   { path: '', redirectTo: "/inicio", pathMatch: 'full' },
 ];

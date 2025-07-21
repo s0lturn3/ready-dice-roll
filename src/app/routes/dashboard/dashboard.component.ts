@@ -22,9 +22,9 @@ export class DashboardComponent implements OnInit {
 
   // #region PUBLIC
   public cards: { title: string, content: string, route: string }[] = [
-    { title: 'Campanhas', content: 'Navegar para as campanhas', route: '/campanhas' },
-    { title: 'Sistemas', content: 'Navegar para os sistemas', route: '/sistemas' },
-    { title: 'Personagens', content: 'Navegar para os personagens', route: '/personagens' },
+    { title: 'Campanhas', content: 'Navegar para as campanhas', route: '/manager/campaigns' },
+    { title: 'Sistemas', content: 'Navegar para os sistemas', route: '/manager/systems' },
+    { title: 'Personagens', content: 'Navegar para os personagens', route: '/manager/characters' },
   ]
   // #endregion PUBLIC
 

@@ -13,7 +13,7 @@ export class CampanhasService {
   // #region ==========> PROPERTIES <==========
 
   // #region PRIVATE
-  private readonly BASE_URL: string = `${ environment.apiUrl }/campanhas`;
+  private readonly BASE_URL: string = `${ environment.apiUrl }/campaigns`;
 
   private readonly HTTP_HEADERS: HttpHeaders = new HttpHeaders({
     'Content-type': 'application/json',

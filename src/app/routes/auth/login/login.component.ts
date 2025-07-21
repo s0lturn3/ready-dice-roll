@@ -1,13 +1,13 @@
-import { Component, CUSTOM_ELEMENTS_SCHEMA, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, CUSTOM_ELEMENTS_SCHEMA, OnInit } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
-import { Usuario } from '../../../shared/models/db/usuario.model';
-import { AuthService } from '../../../shared/services/auth.service';
 import { CommonModule } from '@angular/common';
+import { Usuario } from '../../../shared/models/db/usuario.model';
 import { IUserLogin } from '../../../shared/models/iuser-login.model';
+import { AuthService } from '../../../shared/services/auth.service';
 
 
 export enum AuthStep {
@@ -108,7 +108,7 @@ export class LoginComponent implements OnInit {
       this._authService.login(userForm, this.REMEMBER_ME_LOGIN).subscribe({
         next: () => {
           this.loading = false;
-          this._router.navigate(['/dashboard']);
+          this._router.navigate(['/manager/dashboard']);
         },
         error: error => {
           this.loading = false;
@@ -139,7 +139,7 @@ export class LoginComponent implements OnInit {
       this._authService.createUser(user, this.REMEMBER_ME_SIGNIN).subscribe({
         next: () => {
           this.loading = false;
-          this._router.navigate(['/dashboard']);
+          this._router.navigate(['/manager/dashboard']);
         },
         error: error => {
           this.loading = false;
