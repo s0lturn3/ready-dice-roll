@@ -20,10 +20,10 @@ export class CampanhaDetailComponent {
 
   // #region PUBLIC
   public $cards: { title: string, descricao: string, route: string }[] = [
-    { title: 'Mapas', descricao: '', route: '/campanhas/mapas/1' },
-    { title: 'Habilidades', descricao: '', route: '/campanhas/habilidades/1' },
-    { title: 'Personagens', descricao: '', route: '/campanhas/personagens/1' },
-    { title: 'Jogadores', descricao: '', route: '/campanhas/jogadores/1' },
+    { title: 'Mapas', descricao: '', route: '/manager/campaigns/maps/1' },
+    { title: 'Habilidades', descricao: '', route: '/manager/campaigns/skills/1' },
+    { title: 'Personagens', descricao: '', route: '/manager/campaigns/characters/1' },
+    { title: 'Jogadores', descricao: '', route: '/manager/campaigns/players/1' },
   ]
   // #endregion PUBLIC
 

@@ -1,5 +1,5 @@
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { RouterModule } from '@angular/router';
 import { NgxGraphModule } from '@swimlane/ngx-graph';
 import { AuthService } from '../../services/auth.service';
 
@@ -8,7 +8,7 @@ import { AuthService } from '../../services/auth.service';
   standalone: true,
   imports: [
     NgxGraphModule,
-    RouterOutlet
+    RouterModule
   ],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
   templateUrl: './side-menu.component.html',

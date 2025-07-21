@@ -8,8 +8,8 @@ export const CAMPANHAS_ROUTES: Routes = [
   { path: '', title: 'Campanhas do usuário', component: CampanhasListComponent },
   { path: 'info/:id', title: 'Informações da campanha', component: CampanhaDetailComponent },
 
-  { path: 'personagens/:id', title: 'Personagens da campanha', component: CampanhaDetailComponent },
-  { path: 'jogadores/:id', title: 'Jogadores da campanha', component: CampanhaDetailComponent },
-  { path: 'habilidades/:id', title: 'Habilidades da campanha', component: HabilidadesListComponent },
-  { path: 'mapas/:id', title: 'Mapas da campanha', component: CampanhaDetailComponent },
+  { path: 'characters/:id', title: 'Personagens da campanha', component: CampanhaDetailComponent },
+  { path: 'players/:id', title: 'Jogadores da campanha', component: CampanhaDetailComponent },
+  { path: 'skills/:id', title: 'Habilidades da campanha', component: HabilidadesListComponent },
+  { path: 'maps/:id', title: 'Mapas da campanha', component: CampanhaDetailComponent },
 ];
