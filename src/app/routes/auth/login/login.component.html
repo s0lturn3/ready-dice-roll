@@ -1,16 +1,20 @@
 <div class="d-flex align-items-center justify-content-center h-100">
-   <div id="login-image-left" class="col-6 h-100 p-3">
-      <div class="h-100 background-image"></div>
+   <div id="login-image-left" class="col-7 h-100 py-5 ps-5">
+      <div class="h-100 background-image">
+         <div class="h-100 w-100 inner-content">
+            <span>Your adventure starts here.</span>
+         </div>
+      </div>
    </div>
 
-   <div class="col-6 p-5 h-100 d-flex flex-column justify-content-center align-items-center">
+   <div class="col-5 p-5 h-100 d-flex flex-column justify-content-center align-items-center">
       <div class="content d-flex flex-column justify-content-between h-100">
-         <div class="auth-header text-center">
-            <img src="../../../../assets/icons/Logo=Default.png" alt="logo">
+         <div id="auth-header" class="text-center d-flex flex-row align-items-center justify-content-center gap-2">
+            <img src="../../../../assets/icons/Logo=White.png" alt="logo" height="48px">
             <h2>Ready, Dice, Roll!</h2>
          </div>
-   
-         <div class="auth-body" style="min-width: 450px;">
+
+         <div id="auth-body" style="min-width: 450px;">
             <div class="form-fields">
                @switch (step) {
                   @case (1) {
@@ -116,7 +120,7 @@
             </div>
          </div>
 
-         <div class="auth-footer align-self-center">
+         <div id="auth-footer" class="align-self-center w-100 text-center">
             @switch (step) {
                @case (1) {
                   <span>Não tem uma conta? <a class="text-primary text-decoration-none fw-bold cursor-pointer" (click)="step = 2">Junte-se a nós</a></span>
@@ -128,6 +132,14 @@
 
                }
             }
+            <div id="other-logins" class="text-center">
+               <p class="mb-0">ou</p>
+               <div class="d-flex align-items-center justify-content-center gap-2">
+                  <a type="button" class="btn btn-outline-primary"> <i class="bxl bx-google"></i> </a>
+                  <a type="button" class="btn btn-outline-primary"> <i class="bxl bx-github"></i> </a>
+                  <a type="button" class="btn btn-outline-primary"> <i class="bxl bx-microsoft"></i> </a>
+               </div>
+            </div>
          </div>
       </div>
    </div>
