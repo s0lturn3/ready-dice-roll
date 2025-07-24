@@ -1,5 +1,5 @@
 <div class="d-flex align-items-center justify-content-center h-100">
-   <div id="login-image-left" class="col-7 h-100 py-5 ps-5">
+   <div id="login-image-left" class="col-7 h-100 py-3 ps-3">
       <div class="h-100 background-image">
          <div class="h-100 w-100 inner-content">
             <span>Your adventure starts here.</span>
@@ -9,9 +9,9 @@
 
    <div class="col-5 p-5 h-100 d-flex flex-column justify-content-center align-items-center">
       <div class="content d-flex flex-column justify-content-between h-100">
-         <div id="auth-header" class="text-center d-flex flex-row align-items-center justify-content-center gap-2">
-            <img src="../../../../assets/icons/Logo=White.png" alt="logo" height="48px">
-            <h2>Ready, Dice, Roll!</h2>
+         <div id="auth-header" class="text-center d-flex flex-row align-items-center justify-content-center gap-2 mt-5">
+            <img src="../../../../assets/icons/Logo=White.png" alt="logo" height="32px">
+            <h2 class="mb-0">Ready, Dice, Roll!</h2>
          </div>
 
          <div id="auth-body" style="min-width: 450px;">
@@ -48,10 +48,10 @@
                            </div>
                         </div>
 
-                        <button type="submit" class="btn btn btn-primary log-btn w-100 rounded-3 d-flex align-items-center justify-content-center gap-3"
+                        <button type="submit" class="btn btn-primary log-btn w-100 rounded-3 d-flex align-items-center justify-content-center gap-3"
                            [disabled]="loading" (click)="login()">
-                           @if (loading) { <div class="spinner-border" role="status"> <span class="visually-hidden">Logando...</span> </div> }
-                           @else { LOGIN <i class="bx bx-chevron-right"></i>  }
+                           @if (loading) { <div class="spinner-border" role="status"> <span class="visually-hidden">Entrando...</span> </div> }
+                           @else { LOGIN  }
                         </button>
                      </form>
 
@@ -104,10 +104,10 @@
                            </div>
                         </div>
       
-                        <button type="submit" class="btn btn btn-primary log-btn w-100 rounded-3 d-flex align-items-center justify-content-center gap-3"
+                        <button type="submit" class="btn btn-primary log-btn w-100 rounded-3 d-flex align-items-center justify-content-center gap-3"
                            [disabled]="loading" (click)="createUser()">
-                           @if (loading) { <div class="spinner-border" role="status"> <span class="visually-hidden">Logando...</span> </div> }
-                           @else { CRIAR CONTA <i class="bx bx-chevron-right"></i> }
+                           @if (loading) { <div class="spinner-border" role="status"> <span class="visually-hidden">Cadastrando...</span> </div> }
+                           @else { CRIAR CONTA }
                         </button>
                      </form>
 
@@ -135,9 +135,9 @@
             <div id="other-logins" class="text-center">
                <p class="mb-0">ou</p>
                <div class="d-flex align-items-center justify-content-center gap-2">
-                  <a type="button" class="btn btn-outline-primary"> <i class="bxl bx-google"></i> </a>
-                  <a type="button" class="btn btn-outline-primary"> <i class="bxl bx-github"></i> </a>
-                  <a type="button" class="btn btn-outline-primary"> <i class="bxl bx-microsoft"></i> </a>
+                  <a type="button" class="btn btn-lg btn-outline-primary d-flex align-items-center justify-content-center rounded-circle"> <i class="bxl bx-google"></i> </a>
+                  <a type="button" class="btn btn-lg btn-outline-primary d-flex align-items-center justify-content-center rounded-circle"> <i class="bxl bx-github"></i> </a>
+                  <a type="button" class="btn btn-lg btn-outline-primary d-flex align-items-center justify-content-center rounded-circle"> <i class="bxl bx-microsoft"></i> </a>
                </div>
             </div>
          </div>
