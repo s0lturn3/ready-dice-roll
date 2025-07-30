@@ -1,13 +1,20 @@
-<div class="row h-100">
-   <div class="col-5 background-image"></div>
-
-   <div class="col-7 p-3 d-flex flex-column justify-content-center align-items-center">
-      <div class="content">
-         <div class="auth-header mb-3 text-center">
-            <img src="../../../../assets/icons/Logo=Default.png" alt="logo">
+<div class="d-flex align-items-center justify-content-center h-100">
+   <div id="login-image-left" class="col-7 h-100 py-3 ps-3">
+      <div class="h-100 background-image">
+         <div class="h-100 w-100 inner-content">
+            <span>Sua aventura começa aqui.</span>
          </div>
-   
-         <div class="auth-body" style="min-width: 450px;">
+      </div>
+   </div>
+
+   <div class="col-5 p-5 h-100 d-flex flex-column justify-content-center align-items-center">
+      <div class="content d-flex flex-column justify-content-between h-100">
+         <div id="auth-header" class="text-center d-flex flex-row align-items-center justify-content-center gap-2 mt-5">
+            <img src="../../../../assets/icons/Logo=White.png" alt="logo" height="32px">
+            <h2 class="mb-0">Ready, Dice, Roll!</h2>
+         </div>
+
+         <div id="auth-body" style="min-width: 450px;">
             <div class="form-fields">
                @switch (step) {
                   @case (1) {
@@ -16,6 +23,7 @@
                            <div class="col">
                               <label for="loginEmailInput" class="form-label">E-mail</label>
                               <input type="email" id="loginEmailInput" class="form-control rounded-3" formControlName="EMAIL"
+                                 placeholder="Digite seu e-mail"
                                  [class.invalid]="EMAIL_LOGIN.invalid && (EMAIL_LOGIN.touched || EMAIL_LOGIN.dirty)">
                            </div>
                         </div>
@@ -24,6 +32,7 @@
                            <div class="col">
                               <label for="loginPasswordInput" class="form-label">Senha</label>
                               <input type="password" id="loginPasswordInput" class="form-control mb-1 rounded-3" formControlName="SENHA"
+                                 placeholder="Digite sua senha"
                                  [class.invalid]="SENHA_LOGIN.invalid && (SENHA_LOGIN.touched || SENHA_LOGIN.dirty)">
 
                               <a type="button" class="fw-bold cursor-pointer text-decoration-none text-primary">Esqueceu sua senha?</a>
@@ -39,14 +48,14 @@
                            </div>
                         </div>
 
-                        <button type="submit" class="btn btn btn-primary log-btn w-100 rounded-3 d-flex align-items-center justify-content-center gap-3"
+                        <button type="submit" class="btn btn-primary log-btn w-100 rounded-3 d-flex align-items-center justify-content-center gap-3"
                            [disabled]="loading" (click)="login()">
-                           @if (loading) { <div class="spinner-border" role="status"> <span class="visually-hidden">Logando...</span> </div> }
-                           @else { LOGIN <box-icon name="log-in-circle" color="currentColor"></box-icon> }
+                           @if (loading) { <div class="spinner-border" role="status"> <span class="visually-hidden">Entrando...</span> </div> }
+                           @else { LOGIN  }
                         </button>
                      </form>
 
-                     <span>É novo por aqui? <a class="text-primary text-decoration-none fw-bold cursor-pointer" (click)="step = 2">Crie uma conta aqui</a></span>
+                     <!-- <span>É novo por aqui? <a class="text-primary text-decoration-none fw-bold cursor-pointer" (click)="step = 2">Crie uma conta aqui</a></span> -->
                   }
                   @case (2) {
                      <form [formGroup]="signinForm" class="w-100 mb-4" data-bs-theme="dark">
@@ -54,6 +63,7 @@
                            <div class="col">
                               <label for="signinUsernameInput" class="form-label">Usuário</label>
                               <input type="text" id="signinUsernameInput" class="form-control rounded-3" formControlName="USERNAME"
+                                 placeholder="Digite seu nome de usuário"
                                  [class.invalid]="USERNAME_SIGNIN.invalid && (USERNAME_SIGNIN.touched || USERNAME_SIGNIN.dirty)">
                            </div>
                         </div>
@@ -62,6 +72,7 @@
                            <div class="col">
                               <label for="signinEmailInput" class="form-label">E-mail</label>
                               <input type="email" id="signinEmailInput" class="form-control rounded-3" formControlName="EMAIL"
+                                 placeholder="Digite seu e-mail"
                                  [class.invalid]="EMAIL_SIGNIN.invalid && (EMAIL_SIGNIN.touched || EMAIL_SIGNIN.dirty)">
                            </div>
                         </div>
@@ -70,6 +81,7 @@
                            <div class="col">
                               <label for="signinPasswordInput" class="form-label">Senha</label>
                               <input type="password" id="signinPasswordInput" class="form-control rounded-3" formControlName="SENHA"
+                                 placeholder="Digite sua senha"
                                  [class.invalid]="SENHA_SIGNIN.invalid && (SENHA_SIGNIN.touched || SENHA_SIGNIN.dirty)">
                            </div>
                         </div>
@@ -78,6 +90,7 @@
                            <div class="col">
                               <label for="signinConfirmPasswordInput" class="form-label">Confirmar senha</label>
                               <input type="password" id="signinConfirmPasswordInput" class="form-control rounded-3" formControlName="CONFIRM_SENHA"
+                                 placeholder="Confirme sua senha"
                                  [class.invalid]="CONFIRM_SENHA_SIGNIN.invalid && (CONFIRM_SENHA_SIGNIN.touched || CONFIRM_SENHA_SIGNIN.dirty)">
                            </div>
                         </div>
@@ -91,31 +104,42 @@
                            </div>
                         </div>
       
-                        <button type="submit" class="btn btn btn-primary log-btn w-100 rounded-3 d-flex align-items-center justify-content-center gap-3"
+                        <button type="submit" class="btn btn-primary log-btn w-100 rounded-3 d-flex align-items-center justify-content-center gap-3"
                            [disabled]="loading" (click)="createUser()">
-                           @if (loading) { <div class="spinner-border" role="status"> <span class="visually-hidden">Logando...</span> </div> }
-                           @else { CRIAR CONTA <box-icon name="log-in-circle" color="currentColor"></box-icon> }
+                           @if (loading) { <div class="spinner-border" role="status"> <span class="visually-hidden">Cadastrando...</span> </div> }
+                           @else { CRIAR CONTA }
                         </button>
                      </form>
 
-                     <span>Já tem uma conta? <a class="text-primary text-decoration-none fw-bold cursor-pointer" (click)="step = 1">Entre aqui</a></span>
+                     <!-- <span>Já tem uma conta? <a class="text-primary text-decoration-none fw-bold cursor-pointer" (click)="step = 1">Entre aqui</a></span> -->
                   }
                   @case (3) {
-      
+
                   }
                }
             </div>
-   
-            <!-- <div class="alternate-logins">
-               <div class="d-flex flex-column">
-                  <p class="text-center">Ou entre com</p>
-                  <div class="d-flex flex-row justify-content-center gap-5">
-                     <button class="btn btn-outline-primary d-flex align-items-center justify-content-center p-3 rounded-3"> <box-icon name="google" type="logo" color="currentColor" ></box-icon> </button>
-                     <button class="btn btn-outline-primary d-flex align-items-center justify-content-center p-3 rounded-3"> <box-icon name="microsoft" type="logo" color="currentColor" ></box-icon> </button>
-                     <button class="btn btn-outline-primary d-flex align-items-center justify-content-center p-3 rounded-3"> <box-icon name="github" type="logo" color="currentColor" ></box-icon> </button>
-                  </div>
+         </div>
+
+         <div id="auth-footer" class="align-self-center w-100 text-center">
+            @switch (step) {
+               @case (1) {
+                  <span>Não tem uma conta? <a class="text-primary text-decoration-none fw-bold cursor-pointer" (click)="step = 2">Junte-se a nós</a></span>
+               }
+               @case (2) {
+                  <span>Já tem uma conta? <a class="text-primary text-decoration-none fw-bold cursor-pointer" (click)="step = 1">Entre por aqui</a></span>
+               }
+               @case (3) {
+
+               }
+            }
+            <div id="other-logins" class="text-center">
+               <p class="mb-0">ou</p>
+               <div class="d-flex align-items-center justify-content-center gap-2">
+                  <a type="button" class="btn btn-lg btn-outline-primary d-flex align-items-center justify-content-center rounded-circle"> <i class="bxl bx-google"></i> </a>
+                  <a type="button" class="btn btn-lg btn-outline-primary d-flex align-items-center justify-content-center rounded-circle"> <i class="bxl bx-github"></i> </a>
+                  <a type="button" class="btn btn-lg btn-outline-primary d-flex align-items-center justify-content-center rounded-circle"> <i class="bxl bx-microsoft"></i> </a>
                </div>
-            </div> -->
+            </div>
          </div>
       </div>
    </div>
