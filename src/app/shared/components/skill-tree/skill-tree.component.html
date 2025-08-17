@@ -1,4 +1,4 @@
-<div style="height: 750px;">
+<!-- <div style="height: 700px;">
   <ngx-graph 
     [links]="links" 
     [nodes]="nodes"
@@ -60,10 +60,6 @@
         <svg:rect *ngIf="node.data.tipo === 'Evolução'" width="80" height="80"
           style="fill: white; stroke: gold; stroke-width: 3;" />
 
-        <!-- <svg:image *ngIf="node.data.icone" [attr.xlink:href]="node.data.icone" width="50" height="50" x="-25" y="-25" /> -->
-
-        <!-- <svg:text *ngIf="!node.data.icone" text-anchor="middle" font-size="12" fill="white">{{ node.label }}</svg:text> -->
-
       </svg:g>
     </ng-template>
 
@@ -78,23 +74,6 @@
       </svg:g>
     </ng-template>
   </ngx-graph>
-</div>
+</div> -->
 
-
-<!-- MARK: Exemplo básico -->
-<!-- <ngx-graph
-  [nodes]="nodes"
-  [links]="links"
-  [layoutSettings]="layoutSettings"
-  [draggingEnabled]="false"
-  [panningEnabled]="true"
-  [enableZoom]="true"
-  (nodeClick)="onNodeClick($event)">
-
-  <ng-template #nodeTemplate let-node>
-    <svg:g class="node" (click)="onNodeClick(node)">
-      <svg:rect width="150" height="50" fill="#e0e0e0" stroke="#000" stroke-width="1"></svg:rect>
-      <svg:text x="10" y="25" alignment-baseline="middle">{{node.label}}</svg:text>
-    </svg:g>
-  </ng-template>
-</ngx-graph> -->
+<div #cytoscapeContainer id="cy-container" style="height: 750px;"></div>

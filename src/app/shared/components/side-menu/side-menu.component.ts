@@ -1,13 +1,11 @@
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { NgxGraphModule } from '@swimlane/ngx-graph';
 import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'side-menu',
   standalone: true,
   imports: [
-    NgxGraphModule,
     RouterModule
   ],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
