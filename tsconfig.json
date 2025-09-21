@@ -9,8 +9,9 @@
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
     "skipLibCheck": true,
-    "types": [ "node" ],
-    "allowSyntheticDefaultImports": true,
+    "types": [
+      "node"
+    ],
     "esModuleInterop": true,
     "sourceMap": true,
     "declaration": false,

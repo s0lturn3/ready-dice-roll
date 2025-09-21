@@ -7,6 +7,10 @@ import { AuthGuard } from './core/guards/auth.guard';
 import { LoginGuard } from './core/guards/login.guard';
 import { authInterceptor } from './core/interceptors/auth.interceptor';
 
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import { providePrimeNG } from 'primeng/config';
+import { CustomPreset } from './custom-preset';
+
 export const appConfig: ApplicationConfig = {
   providers: [
     [
@@ -17,5 +21,14 @@ export const appConfig: ApplicationConfig = {
     provideHttpClient(
       withInterceptors([ authInterceptor ]),
     ),
+
+    // PrimeNG
+    provideAnimationsAsync(),
+    providePrimeNG({
+      theme: {
+        preset: CustomPreset
+      },
+      ripple: true
+    })
   ]
 };

@@ -4,16 +4,15 @@ import { FooterComponent } from "../../shared/components/footer/footer.component
 import { HeaderComponent } from "../../shared/components/header/header.component";
 
 @Component({
-  selector: 'app-home',
-  standalone: true,
-  imports: [
-    HeaderComponent,
-    FooterComponent,
-    RouterModule
-  ],
-  schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
-  templateUrl: './home.component.html',
-  styleUrl: './home.component.scss'
+    selector: 'app-home',
+    imports: [
+        HeaderComponent,
+        FooterComponent,
+        RouterModule
+    ],
+    schemas: [CUSTOM_ELEMENTS_SCHEMA],
+    templateUrl: './home.component.html',
+    styleUrl: './home.component.scss'
 })
 export class HomeComponent implements OnInit {
 

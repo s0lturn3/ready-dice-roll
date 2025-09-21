@@ -3,14 +3,13 @@ import { RouterModule } from '@angular/router';
 import { SkillTreeComponent } from '../../../../shared/components/skill-tree/skill-tree.component';
 
 @Component({
-  selector: 'habilidades-list',
-  standalone: true,
-  imports: [
-    SkillTreeComponent,
-    RouterModule
-  ],
-  templateUrl: './habilidades-list.component.html',
-  styleUrl: './habilidades-list.component.scss'
+    selector: 'habilidades-list',
+    imports: [
+        SkillTreeComponent,
+        RouterModule
+    ],
+    templateUrl: './habilidades-list.component.html',
+    styleUrl: './habilidades-list.component.scss'
 })
 export class HabilidadesListComponent {
 

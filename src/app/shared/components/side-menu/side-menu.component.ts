@@ -3,14 +3,13 @@ import { RouterModule } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 
 @Component({
-  selector: 'side-menu',
-  standalone: true,
-  imports: [
-    RouterModule
-  ],
-  schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
-  templateUrl: './side-menu.component.html',
-  styleUrl: './side-menu.component.scss'
+    selector: 'side-menu',
+    imports: [
+        RouterModule
+    ],
+    schemas: [CUSTOM_ELEMENTS_SCHEMA],
+    templateUrl: './side-menu.component.html',
+    styleUrl: './side-menu.component.scss'
 })
 export class SideMenuComponent {
 

@@ -1,19 +1,15 @@
 import { AfterViewInit, Component, ElementRef, inject, OnDestroy, OnInit, ViewChild } from '@angular/core';
 
 import cytoscape, { Core, EventObject } from 'cytoscape';
-import { PopoverModule } from 'ngx-bootstrap/popover';
-import { TooltipModule } from 'ngx-bootstrap/tooltip';
 import { SkillsService } from './skills.service';
 
 @Component({
-  selector: 'skill-tree',
-  standalone: true,
-  imports: [
-    TooltipModule,
-    PopoverModule,
-  ],
-  templateUrl: './skill-tree.component.html',
-  styleUrl: './skill-tree.component.scss'
+    selector: 'skill-tree',
+    imports: [
+
+    ],
+    templateUrl: './skill-tree.component.html',
+    styleUrl: './skill-tree.component.scss'
 })
 export class SkillTreeComponent implements OnInit, AfterViewInit, OnDestroy {
 

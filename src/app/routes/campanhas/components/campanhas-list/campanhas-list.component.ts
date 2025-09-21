@@ -4,13 +4,12 @@ import { CampanhaDto } from '../../../../shared/models/db/campanha.dto';
 import { CampanhasService } from '../../services/campanhas.service';
 
 @Component({
-  selector: 'campanhas-list',
-  standalone: true,
-  imports: [
-    RouterModule
-  ],
-  templateUrl: './campanhas-list.component.html',
-  styleUrl: './campanhas-list.component.scss'
+    selector: 'campanhas-list',
+    imports: [
+        RouterModule
+    ],
+    templateUrl: './campanhas-list.component.html',
+    styleUrl: './campanhas-list.component.scss'
 })
 export class CampanhasListComponent {
 

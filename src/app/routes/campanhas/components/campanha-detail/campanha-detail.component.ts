@@ -1,14 +1,21 @@
 import { Component } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
+import { ConfirmationService, MessageService } from 'primeng/api';
+import { ButtonModule } from 'primeng/button';
+import { ConfirmDialog } from 'primeng/confirmdialog';
+import { ToastModule } from 'primeng/toast';
 
 @Component({
   selector: 'campanha-detail',
-  standalone: true,
   imports: [
-    RouterModule
+    RouterModule,
+    ConfirmDialog, ToastModule, ButtonModule,
+    FormsModule
   ],
   templateUrl: './campanha-detail.component.html',
-  styleUrl: './campanha-detail.component.scss'
+  styleUrl: './campanha-detail.component.scss',
+  providers: [ConfirmationService, MessageService]
 })
 export class CampanhaDetailComponent {
 
@@ -39,7 +46,7 @@ export class CampanhaDetailComponent {
   // #endregion ==========> PROPERTIES <==========
 
 
-  constructor() { }
+  constructor(private confirmationService: ConfirmationService, private messageService: MessageService) { }
 
   ngOnInit(): void { }
 
@@ -66,7 +73,88 @@ export class CampanhaDetailComponent {
 
 
   // #region ==========> UTILS <==========
-  // [...]
+  outroTeste() {
+    this.messageService.add({
+        severity: 'error',
+        summary: 'OLOKO',
+        detail: 'TÁ FUNCIONANDO MLK',
+        life: 3000,
+    });
+    this.messageService.add({
+        severity: 'success',
+        summary: 'OLOKO',
+        detail: 'TÁ FUNCIONANDO MLK',
+        life: 3000,
+    });
+    this.messageService.add({
+        severity: 'warn',
+        summary: 'OLOKO',
+        detail: 'TÁ FUNCIONANDO MLK',
+        life: 3000,
+    });
+    this.messageService.add({
+        severity: 'info',
+        summary: 'OLOKO',
+        detail: 'TÁ FUNCIONANDO MLK',
+        life: 3000,
+    });
+  }
+
+  confirm1(event: Event) {
+        this.confirmationService.confirm({
+            target: event.target as EventTarget,
+            message: 'Are you sure that you want to proceed?',
+            header: 'Confirmation',
+            closable: true,
+            closeOnEscape: true,
+            icon: 'pi pi-exclamation-triangle',
+            rejectButtonProps: {
+                label: 'Cancel',
+                severity: 'secondary',
+                outlined: true,
+            },
+            acceptButtonProps: {
+                label: 'Save',
+            },
+            accept: () => {
+                this.messageService.add({ severity: 'info', summary: 'Confirmed', detail: 'You have accepted' });
+            },
+            reject: () => {
+                this.messageService.add({
+                    severity: 'error',
+                    summary: 'Rejected',
+                    detail: 'You have rejected',
+                    life: 3000,
+                });
+            },
+        });
+    }
+
+    confirm2(event: Event) {
+        this.confirmationService.confirm({
+            target: event.target as EventTarget,
+            message: 'Do you want to delete this record?',
+            header: 'Danger Zone',
+            icon: 'pi pi-info-circle',
+            rejectLabel: 'Cancel',
+            rejectButtonProps: {
+                label: 'Cancel',
+                severity: 'secondary',
+                outlined: true,
+            },
+            acceptButtonProps: {
+                label: 'Delete',
+                severity: 'danger',
+            },
+
+            accept: () => {
+                this.messageService.add({ severity: 'info', summary: 'Confirmed', detail: 'Record deleted' });
+            },
+            reject: () => {
+                this.messageService.add({ severity: 'error', summary: 'Rejected', detail: 'You have rejected' });
+            },
+        });
+    }
   // #endregion ==========> UTILS <==========
 
 }
