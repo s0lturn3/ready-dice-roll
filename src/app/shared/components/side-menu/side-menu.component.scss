@@ -89,6 +89,23 @@
   transform: translateY(65px);
 }
 
+.sidebar.collapsed .sidebar-nav .nav-link {
+  color: currentColor;
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  white-space: nowrap;
+  border-radius: 8px;
+  padding: 12px 15px;
+  align-items: center;
+  text-decoration: none;
+  transition: 0.4s ease;
+
+  &:hover {
+    color: #151A2D;
+    background: #fff;
+  }
+}
 .sidebar-nav .nav-link {
   color: #fff;
   display: flex;
@@ -111,6 +128,7 @@
 
 .sidebar.collapsed .sidebar-nav .nav-link .nav-label {
   opacity: 0;
+  display: none;
   pointer-events: none;
 }
 
