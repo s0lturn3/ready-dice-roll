@@ -4,10 +4,10 @@
       <img src="../../../assets/icons/Logo=White.png" alt="Me">
     </a>
     <button class="toggler sidebar-toggler">
-      <box-icon name="chevron-left" color="currentColor" style="min-width: 24px;"></box-icon>
+      <i class='bx  bx-chevron-left'  ></i>
     </button>
     <button class="toggler menu-toggler">
-      <box-icon name="menu" color="currentColor" style="min-width: 24px;"></box-icon>
+      <i class='bx  bx-menu'  ></i> 
     </button>
   </header>
 
@@ -15,35 +15,42 @@
     <ul class="nav-list primary-nav">
       <li class="nav-item">
         <a routerLink="/manager/dashboard" routerLinkActive="router-link-active" class="nav-link">
-          <box-icon name="grid-alt" color="currentColor" style="min-width: 24px;"></box-icon>
+          <i class='bx  bx-dashboard-alt'  ></i> 
           <span class="nav-label">Dashboard</span>
         </a>
         <span class="nav-tooltip">Dashboard</span>
       </li>
       <li class="nav-item">
         <a routerLink="/manager/campaigns" routerLinkActive="router-link-active" class="nav-link">
-          <box-icon name="world" color="currentColor" style="min-width: 24px;"></box-icon>
+          <i class='bx  bx-note-book'></i>
           <span class="nav-label">Campanhas</span>
         </a>
         <span class="nav-tooltip">Campanhas</span>
       </li>
       <li class="nav-item">
         <a routerLink="/manager/systems" routerLinkActive="router-link-active" class="nav-link">
-          <box-icon name="cube" type="solid" color="currentColor" style="min-width: 24px;"></box-icon>
+          <i class='bx  bx-cube-inside'  ></i> 
           <span class="nav-label">Sistemas</span>
         </a>
         <span class="nav-tooltip">Sistemas</span>
       </li>
       <li class="nav-item">
-        <a routerLink="/manager" routerLinkActive="router-link-active" class="nav-link">
-          <box-icon name="bell" type="solid" color="currentColor" style="min-width: 24px;"></box-icon>
-          <span class="nav-label">Notificações</span>
+        <a routerLink="/manager/systems" routerLinkActive="router-link-active" class="nav-link">
+          <i class='bx  bx-note'></i>
+          <span class="nav-label">Notas</span>
         </a>
-        <span class="nav-tooltip">Notificações</span>
+        <span class="nav-tooltip">Notas</span>
+      </li>
+      <li class="nav-item">
+        <a routerLink="/manager/systems" routerLinkActive="router-link-active" class="nav-link">
+          <i class='bx  bx-database'></i>
+          <span class="nav-label">Outros</span>
+        </a>
+        <span class="nav-tooltip">Outros</span>
       </li>
       <li class="nav-item">
         <a routerLink="/manager/settings" routerLinkActive="router-link-active" class="nav-link">
-          <box-icon name="cog" color="currentColor" style="min-width: 24px;"></box-icon>
+          <i class='bx  bx-cog'></i>
           <span class="nav-label">Settings</span>
         </a>
         <span class="nav-tooltip">Settings</span>
@@ -61,7 +68,7 @@
       </li>
       <li class="nav-item" (click)="logout()">
         <a class="nav-link">
-          <box-icon name="log-out" color="currentColor" style="min-width: 24px;"></box-icon>
+          <i class='bx  bx-arrow-out-left-square-half'  ></i> 
           <span class="nav-label">Logout</span>
         </a>
         <span class="nav-tooltip">Logout</span>
