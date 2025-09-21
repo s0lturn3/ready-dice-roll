@@ -97,11 +97,6 @@ export class AuthService {
       'Accept': 'application/json'
     };
 
-    if (appendToken) {
-      const token = this.getToken();
-      if (token) headersConfig['Authorization'] = `Token ${token}`;
-    }
-
     return new HttpHeaders(headersConfig);
   }
 
