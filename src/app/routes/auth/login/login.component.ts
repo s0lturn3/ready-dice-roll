@@ -1,9 +1,12 @@
+import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
+import { MessageService } from 'primeng/api';
+import { ButtonModule } from 'primeng/button';
+import { ToastModule } from 'primeng/toast';
 
-import { CommonModule } from '@angular/common';
 import { Usuario } from '../../../shared/models/db/usuario.model';
 import { IUserLogin } from '../../../shared/models/iuser-login.model';
 import { AuthService } from '../../../shared/services/auth.service';
@@ -20,13 +23,15 @@ export enum AuthStep {
 }
 
 @Component({
-    selector: 'app-login',
-    imports: [
-        CommonModule,
-        ReactiveFormsModule,
-    ],
-    templateUrl: './login.component.html',
-    styleUrl: './login.component.scss'
+  selector: 'app-login',
+  imports: [
+    CommonModule,
+    ReactiveFormsModule,
+    ToastModule,
+    ButtonModule
+  ],
+  templateUrl: './login.component.html',
+  styleUrl: './login.component.scss'
 })
 export class LoginComponent implements OnInit {
 
@@ -83,6 +88,9 @@ export class LoginComponent implements OnInit {
   constructor(
     private _authService: AuthService,
     private _router: Router,
+
+    // PrimeNG
+    private messageService: MessageService
   ) { }
 
   ngOnInit(): void { }
@@ -108,13 +116,23 @@ export class LoginComponent implements OnInit {
         },
         error: error => {
           this.loading = false;
-          alert(error);
-          throw new Error(error);
+
+          this.messageService.add({
+            severity: 'error',
+            summary: 'Erro no login',
+            detail: error.error.errorMessage,
+            life: 3000,
+          });
         }
       });
     }
     else {
-      alert("Preencha os campos corretamente.");
+      this.messageService.add({
+        severity: 'warn',
+        summary: 'Erro nos campos',
+        detail: 'Preencha os campos corretamente.',
+        life: 3000,
+      });
     }
   }
   // #endregion GET
@@ -139,7 +157,7 @@ export class LoginComponent implements OnInit {
         },
         error: error => {
           this.loading = false;
-          alert(error);
+          alert(error.error.errorMessage);
           throw new Error(error);
         }
       });

@@ -3,19 +3,18 @@ import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { ButtonModule } from 'primeng/button';
-import { ConfirmDialog } from 'primeng/confirmdialog';
 import { ToastModule } from 'primeng/toast';
 
 @Component({
   selector: 'campanha-detail',
   imports: [
     RouterModule,
-    ConfirmDialog, ToastModule, ButtonModule,
+    ToastModule,
+    ButtonModule,
     FormsModule
   ],
   templateUrl: './campanha-detail.component.html',
-  styleUrl: './campanha-detail.component.scss',
-  providers: [ConfirmationService, MessageService]
+  styleUrl: './campanha-detail.component.scss'
 })
 export class CampanhaDetailComponent {
 

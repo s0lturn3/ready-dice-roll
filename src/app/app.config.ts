@@ -8,6 +8,7 @@ import { LoginGuard } from './core/guards/login.guard';
 import { authInterceptor } from './core/interceptors/auth.interceptor';
 
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import { ConfirmationService, MessageService } from 'primeng/api';
 import { providePrimeNG } from 'primeng/config';
 import { CustomPreset } from './custom-preset';
 
@@ -29,6 +30,9 @@ export const appConfig: ApplicationConfig = {
         preset: CustomPreset
       },
       ripple: true
-    })
+    }),
+
+    MessageService,
+    ConfirmationService
   ]
 };
