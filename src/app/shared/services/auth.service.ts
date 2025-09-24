@@ -4,6 +4,7 @@ import { BehaviorSubject, catchError, Observable, tap, throwError } from 'rxjs';
 import { environment } from '../../../environments/environment.development';
 
 import { Router } from '@angular/router';
+import { MessageService } from 'primeng/api';
 import { ApiResponse } from '../models/api-response.model';
 import { Usuario } from '../models/db/usuario.model';
 import { IUserLogin } from '../models/iuser-login.model';
@@ -30,6 +31,8 @@ export class AuthService {
   constructor(
     private _httpClient: HttpClient,
     private _router: Router,
+
+    private _message: MessageService
   ) {
     const token = this.getToken();
     this.loggedIn = new BehaviorSubject<boolean>(token ? true : false);
@@ -127,7 +130,7 @@ export class AuthService {
     window.localStorage.removeItem('loggedUserName');
     window.sessionStorage.removeItem('loggedUserName');
 
-    location.reload();
+    this._router.navigate(['/auth']);
   }
 
 

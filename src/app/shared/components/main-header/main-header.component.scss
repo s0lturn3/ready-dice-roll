@@ -1,0 +1,12 @@
+@use "../../styles/themes" as themes;
+@import "../../styles/variables";
+
+header {
+  width: 100%;
+  padding: 0;
+
+  a {
+    color: $text-light;
+    text-decoration: none;
+  }
+}

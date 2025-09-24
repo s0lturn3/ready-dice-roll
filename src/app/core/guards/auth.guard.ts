@@ -6,11 +6,12 @@
 
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, Router, RouterStateSnapshot } from '@angular/router';
+import { MessageService } from 'primeng/api';
 
 @Injectable()
 export class AuthGuard {
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private messageService: MessageService) { }
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
     const localToken = localStorage.getItem('authToken');
@@ -23,7 +24,18 @@ export class AuthGuard {
 
     // not logged in so redirect to login page with the return url
     this.router.navigate(['/auth']).then(() => {
-      alert('Você precisa estar logado para acessar essa página. Realize o login novamente.');
+
+      setTimeout(() => {
+        this.messageService.add({
+          severity: 'warn',
+          summary: 'Atenção',
+          detail: 'Você precisa estar logado para acessar essa página. Realize o login novamente.',
+          key: 'tc',
+          life: 3000,
+        })
+      }, 250);
+
+      console.warn('Você precisa estar logado para acessar essa página. Realize o login novamente.');
     });
     
     return false;

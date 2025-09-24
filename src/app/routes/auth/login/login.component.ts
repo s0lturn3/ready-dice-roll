@@ -115,14 +115,16 @@ export class LoginComponent implements OnInit {
           this._router.navigate(['/manager/dashboard']);
         },
         error: error => {
-          this.loading = false;
-
           this.messageService.add({
             severity: 'error',
             summary: 'Erro no login',
             detail: error.error.errorMessage,
+            key: 'tc',
             life: 3000,
           });
+
+          this.loading = false;
+          throw new Error(error.error.errorMessage);
         }
       });
     }
@@ -131,6 +133,7 @@ export class LoginComponent implements OnInit {
         severity: 'warn',
         summary: 'Erro nos campos',
         detail: 'Preencha os campos corretamente.',
+        key: 'tc',
         life: 3000,
       });
     }
@@ -156,9 +159,16 @@ export class LoginComponent implements OnInit {
           this._router.navigate(['/manager/dashboard']);
         },
         error: error => {
+          this.messageService.add({
+            severity: 'error',
+            summary: 'Erro ao cadastrar usuário',
+            detail: error.error.errorMessage,
+            key: 'tc',
+            life: 3000,
+          });
+          
           this.loading = false;
-          alert(error.error.errorMessage);
-          throw new Error(error);
+          throw new Error(error.error.errorMessage);
         }
       });
     }

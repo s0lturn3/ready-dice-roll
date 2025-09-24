@@ -4,8 +4,8 @@ import { LoginGuard } from './core/guards/login.guard';
 import { LoginComponent } from './routes/auth/login/login.component';
 import { DashboardComponent } from './routes/dashboard/dashboard.component';
 import { HomeComponent } from './routes/home/home.component';
+import { MainHeaderComponent } from './shared/components/main-header/main-header.component';
 import { PageNotFoundComponent } from './shared/components/page-not-found/page-not-found.component';
-import { SideMenuComponent } from './shared/components/side-menu/side-menu.component';
 import { UserNotAuthenticatedComponent } from './shared/components/user-not-authenticated/user-not-authenticated.component';
 
 
@@ -14,7 +14,7 @@ export const routes: Routes = [
 
    {
       path: 'manager',
-      component: SideMenuComponent,
+      component: MainHeaderComponent,
       children: [
          { path: 'dashboard', title: 'Dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
 

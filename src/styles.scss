@@ -13,6 +13,12 @@
 @import "./app/shared/styles/utilities";
 
 @import "./app/shared/styles/animations";
+
+
+@import "tailwindcss";
+@import "tailwindcss-primeui";
+
+@import "primeicons/primeicons.css";
 // #endregion IMPORT UTILS
 
 // #region FONTS
