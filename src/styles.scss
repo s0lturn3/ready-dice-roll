@@ -14,9 +14,9 @@
 
 @import "./app/shared/styles/animations";
 
-
-@import "tailwindcss";
-@import "tailwindcss-primeui";
+// Tailwind CSS + PrimeUI
+// @import "tailwindcss";
+// @import "tailwindcss-primeui";
 
 @import "primeicons/primeicons.css";
 // #endregion IMPORT UTILS
@@ -26,8 +26,6 @@
 // #endregion FONTS
 
 html, body {
-   // background-color: $color-surface-a0;
-   // color: $text-light;
    background-color: themes.$black !important;
 
    padding: 0;
