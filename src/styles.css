@@ -1,4 +1,9 @@
+/* #region FONTS */
+@import url("https://fonts.googleapis.com/css2?family=Quicksand&display=swap");
+/* #endregion FONTS */
+
 /* #region IMPORT UTILS */
+
 /* Aqui você precisa importar os arquivos como CSS. 
    Se esses arquivos são SCSS, terá que migrar para CSS puro também. */
 @import "./app/shared/styles/_variables.css";
@@ -18,9 +23,6 @@
 @import "primeicons/primeicons.css";
 /* #endregion IMPORT UTILS */
 
-/* #region FONTS */
-@import url("https://fonts.googleapis.com/css2?family=Quicksand&display=swap");
-/* #endregion FONTS */
 
 /* Defina as variáveis de tema como custom properties */
 :root {
@@ -70,7 +72,3 @@ a {
 ::-webkit-scrollbar-thumb:hover { background: var(--base-primary-darken1); }
 /* #endregion SCROLLBAR */
 
-/* #region Bootstrap */
-/* Se ainda quiser usar Bootstrap, importe direto o CSS: */
-/* @import "../node_modules/bootstrap/dist/css/bootstrap.min.css"; */
-/* #endregion Bootstrap */

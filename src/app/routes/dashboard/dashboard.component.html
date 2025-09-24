@@ -1,14 +1,21 @@
 <h1>Ready, Dice, Roll!</h1>
 
-<div class="d-flex flex-row align-items-center gap-3 my-3">
+<div class="flex flex-row items-center gap-6 my-6">
 
   @for (item of cards; track $index) {
-    <button class="btn btn-outline-primary w-25 p-3 text-start" [routerLink]="item.route" routerLinkActive="router-link-active" >
+    <button class="btn btn-outline-primary w-25 p-6 text-start" [routerLink]="item.route" routerLinkActive="router-link-active" >
       <h5 class="text-light">{{ item.title }}</h5>
       <p class="text-light mb-0">{{ item.content }}</p>
     </button>
   }
 
+</div>
+
+<div class="card flex justify-center gap-2">
+    <p-toast />
+    <p-confirmpopup />
+    <p-button (onClick)="confirm1($event)" label="Save" [outlined]="true" />
+    <p-button (onClick)="confirm2($event)" label="Delete" severity="danger" [outlined]="true" />
 </div>
 
 <!-- <skill-tree></skill-tree> -->

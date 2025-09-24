@@ -1,15 +1,15 @@
 <p>campanha-detail works!</p>
 
-<div class="d-flex justify-content-center gap-2">
+<div class="d-flex justify-center gap-2">
   <p-toast />
   <p-button label="Botão teste" (click)="outroTeste()"></p-button>
 </div>
 
 
-<div class="d-flex flex-row align-items-center flex-wrap gap-3 my-3">
+<div class="d-flex flex-row items-center flex-wrap gap-6 my-6">
 
   @for (item of $cards; track $index) {
-    <button class="btn btn-outline-primary p-3 text-start" [routerLink]="item.route" >
+    <button class="btn btn-outline-primary p-6 text-start" [routerLink]="item.route" >
       <h5 class="text-light">{{ item.title }}</h5>
     </button>
   }

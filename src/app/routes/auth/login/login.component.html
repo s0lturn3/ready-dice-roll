@@ -1,5 +1,5 @@
-<div class="d-flex align-items-center justify-content-center h-100">
-   <div id="login-image-left" class="col-7 h-100 py-3 ps-3">
+<div class="d-flex items-center justify-center h-100">
+   <div id="login-image-left" class="col-span-7 h-100 py-6 ps-3">
       <div class="h-100 background-image">
          <div class="h-100 w-100 inner-content">
             <span>Sua aventura começa aqui.</span>
@@ -7,9 +7,9 @@
       </div>
    </div>
 
-   <div class="col-5 p-5 h-100 d-flex flex-column justify-content-center align-items-center">
-      <div class="content d-flex flex-column justify-content-between h-100">
-         <div id="auth-header" class="text-center d-flex flex-row align-items-center justify-content-center gap-2 mt-5">
+   <div class="col-span-5 p-20 h-100 d-flex flex-col justify-center items-center">
+      <div class="content d-flex flex-col justify-between h-100">
+         <div id="auth-header" class="text-center d-flex flex-row items-center justify-center gap-2 mt-20">
             <img src="../../../../assets/icons/Logo=White.png" alt="logo" height="32px">
             <h2 class="mb-0">Ready, Dice, Roll!</h2>
          </div>
@@ -18,8 +18,8 @@
             <div class="form-fields">
                @switch (step) {
                   @case (1) {
-                     <form [formGroup]="loginForm" class="w-100 mb-4" data-bs-theme="dark">
-                        <div class="row mb-3">
+                     <form [formGroup]="loginForm" class="w-100 mb-12" data-bs-theme="dark">
+                        <div class="row mb-6">
                            <div class="col">
                               <label for="loginEmailInput" class="form-label">E-mail</label>
                               <input type="email" id="loginEmailInput" class="form-control rounded-3" formControlName="EMAIL"
@@ -28,7 +28,7 @@
                            </div>
                         </div>
 
-                        <div class="row mb-3">
+                        <div class="row mb-6">
                            <div class="col">
                               <label for="loginPasswordInput" class="form-label">Senha</label>
                               <input type="password" id="loginPasswordInput" class="form-control mb-1 rounded-3" formControlName="SENHA"
@@ -39,7 +39,7 @@
                            </div>
                         </div>
 
-                        <div class="row mb-4">
+                        <div class="row mb-12">
                            <div class="col">
                               <div class="form-check form-switch">
                                  <input class="form-check-input" type="checkbox" role="switch" id="loginRememberSwitch" formControlName="REMEMBER_ME">
@@ -48,7 +48,7 @@
                            </div>
                         </div>
 
-                        <button type="submit" class="btn btn-primary log-btn w-100 rounded-3 d-flex align-items-center justify-content-center gap-3"
+                        <button type="submit" class="btn btn-primary log-btn w-100 rounded-3 d-flex items-center justify-center gap-6"
                            [disabled]="loading" (click)="login()">
                            @if (loading) { <div class="spinner-border" role="status"> <span class="visually-hidden">Entrando...</span> </div> }
                            @else { LOGIN  }
@@ -56,8 +56,8 @@
                      </form>
                   }
                   @case (2) {
-                     <form [formGroup]="signinForm" class="w-100 mb-4" data-bs-theme="dark">
-                        <div class="row mb-3">
+                     <form [formGroup]="signinForm" class="w-100 mb-12" data-bs-theme="dark">
+                        <div class="row mb-6">
                            <div class="col">
                               <label for="signinUsernameInput" class="form-label">Usuário</label>
                               <input type="text" id="signinUsernameInput" class="form-control rounded-3" formControlName="USERNAME"
@@ -66,7 +66,7 @@
                            </div>
                         </div>
 
-                        <div class="row mb-3">
+                        <div class="row mb-6">
                            <div class="col">
                               <label for="signinEmailInput" class="form-label">E-mail</label>
                               <input type="email" id="signinEmailInput" class="form-control rounded-3" formControlName="EMAIL"
@@ -75,7 +75,7 @@
                            </div>
                         </div>
 
-                        <div class="row mb-3">
+                        <div class="row mb-6">
                            <div class="col">
                               <label for="signinPasswordInput" class="form-label">Senha</label>
                               <input type="password" id="signinPasswordInput" class="form-control rounded-3" formControlName="SENHA"
@@ -84,7 +84,7 @@
                            </div>
                         </div>
 
-                        <div class="row mb-3">
+                        <div class="row mb-6">
                            <div class="col">
                               <label for="signinConfirmPasswordInput" class="form-label">Confirmar senha</label>
                               <input type="password" id="signinConfirmPasswordInput" class="form-control rounded-3" formControlName="CONFIRM_SENHA"
@@ -93,7 +93,7 @@
                            </div>
                         </div>
 
-                        <div class="row mb-4">
+                        <div class="row mb-12">
                            <div class="col">
                               <div class="form-check form-switch">
                                  <input class="form-check-input" type="checkbox" role="switch" id="signinRememberSwitch" formControlName="REMEMBER_ME" >
@@ -102,7 +102,7 @@
                            </div>
                         </div>
       
-                        <button type="submit" class="btn btn-primary log-btn w-100 rounded-3 d-flex align-items-center justify-content-center gap-3"
+                        <button type="submit" class="btn btn-primary log-btn w-100 rounded-3 d-flex items-center justify-center gap-6"
                            [disabled]="loading" (click)="createUser()">
                            @if (loading) { <div class="spinner-border" role="status"> <span class="visually-hidden">Cadastrando...</span> </div> }
                            @else { CRIAR CONTA }
@@ -118,7 +118,7 @@
             </div>
          </div>
 
-         <div id="auth-footer" class="align-self-center w-100 text-center">
+         <div id="auth-footer" class="self-center w-100 text-center">
             @switch (step) {
                @case (1) {
                   <span>Não tem uma conta? <a class="text-primary text-decoration-none fw-bold cursor-pointer" (click)="step = 2">Junte-se a nós</a></span>
@@ -132,10 +132,10 @@
             }
             <div id="other-logins" class="text-center">
                <p class="mb-0">ou</p>
-               <div class="d-flex align-items-center justify-content-center gap-2">
-                  <a type="button" class="btn btn-lg btn-outline-primary d-flex align-items-center justify-content-center rounded-circle"> <i class="bxl bx-google"></i> </a>
-                  <a type="button" class="btn btn-lg btn-outline-primary d-flex align-items-center justify-content-center rounded-circle"> <i class="bxl bx-github"></i> </a>
-                  <a type="button" class="btn btn-lg btn-outline-primary d-flex align-items-center justify-content-center rounded-circle"> <i class="bxl bx-microsoft"></i> </a>
+               <div class="d-flex items-center justify-center gap-2">
+                  <a type="button" class="btn btn-lg btn-outline-primary d-flex items-center justify-center rounded-circle"> <i class="bxl bx-google"></i> </a>
+                  <a type="button" class="btn btn-lg btn-outline-primary d-flex items-center justify-center rounded-circle"> <i class="bxl bx-github"></i> </a>
+                  <a type="button" class="btn btn-lg btn-outline-primary d-flex items-center justify-center rounded-circle"> <i class="bxl bx-microsoft"></i> </a>
                </div>
             </div>
          </div>

@@ -1,13 +1,17 @@
-import { Component, CUSTOM_ELEMENTS_SCHEMA, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { RouterModule } from '@angular/router';
+import { ConfirmationService, MessageService } from 'primeng/api';
+import { ButtonModule } from 'primeng/button';
+import { ConfirmPopupModule } from 'primeng/confirmpopup';
+import { ToastModule } from 'primeng/toast';
 import { AuthService } from '../../shared/services/auth.service';
 
 @Component({
     selector: 'app-dashboard',
     imports: [
-        RouterModule
+      RouterModule,
+      ButtonModule, ToastModule, ConfirmPopupModule
     ],
-    schemas: [CUSTOM_ELEMENTS_SCHEMA],
     templateUrl: './dashboard.component.html',
     styleUrl: './dashboard.component.css'
 })
@@ -30,7 +34,10 @@ export class DashboardComponent implements OnInit {
   // #endregion ==========> PROPERTIES <==========
 
 
-  constructor(private _authService: AuthService) { }
+  constructor(
+    private _authService: AuthService,
+    private confirmationService: ConfirmationService, private messageService: MessageService
+  ) { }
 
   ngOnInit(): void { }
 
@@ -57,7 +64,50 @@ export class DashboardComponent implements OnInit {
 
 
   // #region ==========> UTILS <==========
-  
+  confirm1(event: Event) {
+        this.confirmationService.confirm({
+            target: event.currentTarget as EventTarget,
+            message: 'Are you sure you want to proceed?',
+            icon: 'pi pi-exclamation-triangle',
+            rejectButtonProps: {
+                label: 'Cancel',
+                severity: 'secondary',
+                outlined: true
+            },
+            acceptButtonProps: {
+                label: 'Save'
+            },
+            accept: () => {
+                this.messageService.add({ severity: 'info', summary: 'Confirmed', detail: 'You have accepted', life: 3000 });
+            },
+            reject: () => {
+                this.messageService.add({ severity: 'error', summary: 'Rejected', detail: 'You have rejected', life: 3000 });
+            }
+        });
+    }
+
+    confirm2(event: Event) {
+        this.confirmationService.confirm({
+            target: event.currentTarget as EventTarget,
+            message: 'Do you want to delete this record?',
+            icon: 'pi pi-info-circle',
+            rejectButtonProps: {
+                label: 'Cancel',
+                severity: 'secondary',
+                outlined: true
+            },
+            acceptButtonProps: {
+                label: 'Delete',
+                severity: 'danger'
+            },
+            accept: () => {
+                this.messageService.add({ severity: 'info', summary: 'Confirmed', detail: 'Record deleted', life: 3000 });
+            },
+            reject: () => {
+                this.messageService.add({ severity: 'error', summary: 'Rejected', detail: 'You have rejected', life: 3000 });
+            }
+        });
+    }
   // #endregion ==========> UTILS <==========
 
 }
