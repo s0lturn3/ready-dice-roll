@@ -1,15 +1,13 @@
-<app-header />
+<!-- <app-header />
 
 <div class="content">
    <div id="initial-frame" class="d-flex flex-col items-center gap-20">
-      <div class="d-flex flex-col items-center justify-center min-vh-100 gap-6">
-         <div class="d-flex flex-col items-center justify-center text-center gap-6">
+      <div class="d-flex flex-col items-centjustify-center  gap-6">
+         <div class="d-flex flex-col items-centjustify-center -6">
             <img src="assets/icons/Logo=Default.png" alt="main logo">
             <h1 class="fs-3 fw-bold w-75 text-wrap text-center">The ultimate tabletop RPG campaign manager.</h1>
          </div>
-         <div id="cta-buttons" class="d-flex flex-col items-center justify-center gap-2">
-            <div class="d-flex items-center justify-center gap-6">
-               <a type="button" class="btn btn-lg btn-primary" routerLink="/auth">Get Started</a>
+         <div id="cta-buttons" class="d-flex flex-col items-centjustify-center            <div class="d-flex items-centjustify-center               <a type="button" class="btn btn-lg btn-primary" routerLink="/auth">Get Started</a>
                <a type="button" class="btn btn-lg btn-outline-primary">Learn More</a>
             </div>
             <div id="waitlist-opt" class="text-center">Want to be notified when the first version drops? <a href="#" class="fw-bold text-primary text-decoration-none">Join the waitlist!</a></div>
@@ -18,22 +16,66 @@
    </div>
 
    <div id="characteristics-frame" class="d-flex items-center justify-evenly">
-      <div class="d-flex flex-col items-center justify-center text-center gap-6">
+      <div class="d-flex flex-col items-centjustify-center -6">
          <i class="bx bx-dice-roll bx-lg bx-tada-hover text-primary"></i> 
          <h3 class="fs-4 fw-bold text-center">Immersive</h3>
          <p class="text-center w-50 text-wrap">Manage your tabletop RPG campaigns with an intuitive interface, real-time session tracking, and character collaboration.</p>
       </div>
       
-      <div class="d-flex flex-col items-center justify-center text-center gap-6">
+      <div class="d-flex flex-col items-centjustify-center -6">
          <i class="bx bx-trees bx-lg bx-wiggle-hover text-primary"></i>
          <h3 class="fs-4 fw-bold text-center">Powerful</h3>
          <p class="text-center w-50 text-wrap">Experience a dynamic skill tree system, live party updates, and character sheets — all in one place.</p>
       </div>
       
-      <div class="d-flex flex-col items-center justify-center text-center gap-6">
+      <div class="d-flex flex-col items-centjustify-center -6">
          <i class="bx bx-reading bx-lg bx-bounce-hover text-primary"></i>
          <h3 class="fs-4 fw-bold text-center">Future-ready</h3>
          <p class="text-center w-50 text-wrap">Craft unforgettable adventures using tools built for longevity and flexibility. Say goodbye to messy spreadsheets.</p>
+      </div>
+   </div>
+</div>
+
+<app-footer /> -->
+
+
+
+<app-header />
+
+<div class="content">
+   <div id="initial-frame" class="flex flex-col items-center gap-20">
+      <div class="flex flex-col items-center justify-center min-h-screen gap-6">
+         <div class="flex flex-col items-center justify-center text-center gap-6">
+            <img src="assets/icons/Logo=Default.png" alt="main logo" class="">
+            <h1 class="text-5xl font-bold w-3/4 text-wrap text-center">The ultimate tabletop RPG campaign manager.</h1>
+         </div>
+         <div id="cta-buttons" class="flex flex-col items-center justify-center gap-2">
+            <div class="flex items-center justify-center gap-6">
+               <a type="button" class="inline-flex items-centjustify-center 2 border border-transparent text-base font-medium rounded-md shadow-sm /* btn-lg not found */ bg-blue-500 hover:bg-blue-700 text-white" routerlink="/auth">Get Started</a>
+               <a type="button" class="inline-flex items-centjustify-center 2 border border-transparent text-base font-medium rounded-md shadow-sm /* btn-lg not found */ /* btn-outline-primary not found */">Learn More</a>
+            </div>
+            <div id="waitlist-opt" class="text-center">Want to be notified when the first version drops? <a href="#" class="font-bold text-blue-500 decoration-none">Join the waitlist!</a></div>
+         </div>
+      </div>
+   </div>
+
+   <div id="characteristics-frame" class="flex items-center justify-evenly">
+      <div class="flex flex-col items-center justify-center text-center gap-6">
+         <i class="bx bx-dice-roll bx-lg bx-tada-hover text-blue-500"></i> 
+         <h3 class="text-xl font-bold text-center">Immersive</h3>
+         <p class="text-center w-1/2 text-wrap">Manage your tabletop RPG campaigns with an intuitive interface, real-time session tracking, and character collaboration.</p>
+      </div>
+      
+      <div class="flex flex-col items-center justify-center text-center gap-6">
+         <i class="bx bx-trees bx-lg bx-wiggle-hover text-blue-500"></i>
+         <h3 class="text-xl font-bold text-center">Powerful</h3>
+         <p class="text-center w-1/2 text-wrap">Experience a dynamic skill tree system, live party updates, and character sheets — all in one place.</p>
+      </div>
+      
+      <div class="flex flex-col items-center justify-center text-center gap-6">
+         <i class="bx bx-reading bx-lg bx-bounce-hover text-blue-500"></i>
+         <h3 class="text-xl font-bold text-center">Future-ready</h3>
+         <p class="text-center w-1/2 text-wrap">Craft unforgettable adventures using tools built for longevity and flexibility. Say goodbye to messy spreadsheets.</p>
       </div>
    </div>
 </div>
