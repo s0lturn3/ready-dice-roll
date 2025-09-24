@@ -1,0 +1,76 @@
+/* #region IMPORT UTILS */
+/* Aqui você precisa importar os arquivos como CSS. 
+   Se esses arquivos são SCSS, terá que migrar para CSS puro também. */
+@import "./app/shared/styles/_variables.css";
+@import "./app/shared/styles/_resets.css";
+@import "./app/shared/styles/_classes.css";
+@import "./app/shared/styles/_typography.css";
+@import "./app/shared/styles/_forms.css";
+@import "./app/shared/styles/_buttons.css";
+@import "./app/shared/styles/_utilities.css";
+@import "./app/shared/styles/_animations.css";
+@import "./app/shared/styles/_media_queries.css";
+
+/* Tailwind CSS + PrimeUI */
+@import "tailwindcss";
+@import "tailwindcss-primeui";
+
+@import "primeicons/primeicons.css";
+/* #endregion IMPORT UTILS */
+
+/* #region FONTS */
+@import url("https://fonts.googleapis.com/css2?family=Quicksand&display=swap");
+/* #endregion FONTS */
+
+/* Defina as variáveis de tema como custom properties */
+:root {
+  --black: #000000;
+
+  --base-dark-darken: #111111; /* precisa mapear dos teus arquivos SCSS */
+  --base-primary: #4560e9;
+  --base-primary-darken1: #2f45a1;
+
+  --color-primary: #4560e9;
+  --color-secondary: #e94560;
+  --color-success: #399E5A;
+  --color-danger: #B80C09;
+  --color-light: #E1E5EE;
+  --color-dark: #0E0F19;
+}
+
+html, body {
+  background-color: var(--black) !important;
+  padding: 0;
+  margin: 0;
+}
+
+html {
+  font-size: 16px;
+  font-family: "Quicksand", "sans-serif";
+}
+
+button {
+  font-family: "Quicksand", "sans-serif";
+}
+
+a {
+  text-decoration: none;
+}
+
+/* #region SCROLLBAR */
+::-webkit-scrollbar { width: 5px; }
+
+/* Track */
+::-webkit-scrollbar-track { background: var(--base-dark-darken); }
+
+/* Handle */
+::-webkit-scrollbar-thumb { background: var(--base-primary); }
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover { background: var(--base-primary-darken1); }
+/* #endregion SCROLLBAR */
+
+/* #region Bootstrap */
+/* Se ainda quiser usar Bootstrap, importe direto o CSS: */
+/* @import "../node_modules/bootstrap/dist/css/bootstrap.min.css"; */
+/* #endregion Bootstrap */

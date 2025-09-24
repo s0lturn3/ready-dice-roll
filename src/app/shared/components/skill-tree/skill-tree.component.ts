@@ -9,7 +9,7 @@ import { SkillsService } from './skills.service';
 
     ],
     templateUrl: './skill-tree.component.html',
-    styleUrl: './skill-tree.component.scss'
+    styleUrl: './skill-tree.component.css'
 })
 export class SkillTreeComponent implements OnInit, AfterViewInit, OnDestroy {
 

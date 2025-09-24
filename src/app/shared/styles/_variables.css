@@ -1,42 +1,46 @@
-/** Alternativa para texto principal (mais claro, para melhor contraste) */
-$text-light: #ece8f3;
-
-$font-family-base: "Quicksand", "sans-serif";
-
-$spacer: 1rem; // Base para espaçamentos
-$border-radius: 4px;
-
 :root {
+  /* Font & Layout */
+  --font-family-base: "Quicksand", "sans-serif";
+  --text-light: #ece8f3;
+  --spacer: 1rem;
+  --border-radius: 4px;
+
+  /* Primary */
   --base-primary: #4560e9;
   --base-primary-lighten1: #5B73EC;
   --base-primary-lighten2: #6D82EE;
   --base-primary-darken1: #3654E7;
   --base-primary-darken2: #2444E5;
 
+  /* Secondary */
   --base-secondary: #e94560;
   --base-secondary-lighten1: #EC5B73;
   --base-secondary-lighten2: #EE6D82;
   --base-secondary-darken1: #E73654;
   --base-secondary-darken2: #E52444;
 
+  /* Success */
   --base-success: #399E5A;
   --base-success-lighten1: #41B467;
   --base-success-lighten2: #4BBE71;
   --base-success-darken1: #369656;
   --base-success-darken2: #31874D;
 
+  /* Danger */
   --base-danger: #B80C09;
   --base-danger-lighten1: #D60E0A;
   --base-danger-lighten2: #EA0F0B;
   --base-danger-darken1: #AF0B08;
   --base-danger-darken2: #9C0A07;
 
+  /* Light */
   --base-light: #E1E5EE;
   --base-light-lighten1: #F2F4F8;
   --base-light-lighten2: #FFFFFF;
   --base-light-darken1: #D8DDE9;
   --base-light-darken2: #CBD2E2;
 
+  /* Dark */
   --base-dark: #0E0F19;
   --base-dark-lighten1: #161727;
   --base-dark-lighten2: #1D1F34;

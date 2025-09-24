@@ -9,7 +9,7 @@ import { SkillTreeComponent } from '../../../../shared/components/skill-tree/ski
         RouterModule
     ],
     templateUrl: './habilidades-list.component.html',
-    styleUrl: './habilidades-list.component.scss'
+    styleUrl: './habilidades-list.component.css'
 })
 export class HabilidadesListComponent {
 

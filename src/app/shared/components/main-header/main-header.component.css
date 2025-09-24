@@ -1,0 +1,9 @@
+header {
+  width: 100%;
+  padding: 0;
+}
+
+header a {
+  color: var(--text-light);
+  text-decoration: none;
+}

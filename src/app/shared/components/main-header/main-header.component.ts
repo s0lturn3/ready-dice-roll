@@ -19,7 +19,7 @@ import { StyleClass, StyleClassModule } from 'primeng/styleclass';
     StyleClassModule
   ],
   templateUrl: './main-header.component.html',
-  styleUrl: './main-header.component.scss'
+  styleUrl: './main-header.component.css'
 })
 export class MainHeaderComponent {
   @ViewChild('drawerRef') drawerRef!: Drawer;

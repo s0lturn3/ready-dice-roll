@@ -9,7 +9,7 @@ import { AuthService } from '../../services/auth.service';
     ],
     schemas: [CUSTOM_ELEMENTS_SCHEMA],
     templateUrl: './side-menu.component.html',
-    styleUrl: './side-menu.component.scss'
+    styleUrl: './side-menu.component.css'
 })
 export class SideMenuComponent {
 

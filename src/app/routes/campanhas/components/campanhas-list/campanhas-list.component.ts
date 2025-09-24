@@ -9,7 +9,7 @@ import { CampanhasService } from '../../services/campanhas.service';
         RouterModule
     ],
     templateUrl: './campanhas-list.component.html',
-    styleUrl: './campanhas-list.component.scss'
+    styleUrl: './campanhas-list.component.css'
 })
 export class CampanhasListComponent {
 

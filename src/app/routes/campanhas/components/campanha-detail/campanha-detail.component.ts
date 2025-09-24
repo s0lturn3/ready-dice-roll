@@ -14,7 +14,7 @@ import { ToastModule } from 'primeng/toast';
     FormsModule
   ],
   templateUrl: './campanha-detail.component.html',
-  styleUrl: './campanha-detail.component.scss'
+  styleUrl: './campanha-detail.component.css'
 })
 export class CampanhaDetailComponent {
 

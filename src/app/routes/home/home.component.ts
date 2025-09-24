@@ -12,7 +12,7 @@ import { HeaderComponent } from "../../shared/components/header/header.component
     ],
     schemas: [CUSTOM_ELEMENTS_SCHEMA],
     templateUrl: './home.component.html',
-    styleUrl: './home.component.scss'
+    styleUrl: './home.component.css'
 })
 export class HomeComponent implements OnInit {
 

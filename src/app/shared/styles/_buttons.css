@@ -1,0 +1,39 @@
+/* Defina no :root em variables.css */
+:root {
+  --color-primary-a10: #4560e9;         /* valor original */
+  --color-primary-a10-dark: #2f45a1;    /* versão escura manual */
+  --text-light: #ffffff;                /* exemplo, ajuste conforme teu projeto */
+}
+
+/* Botão base */
+.btn {
+  padding: 1rem;
+  text-align: center;
+  border: none;
+  border-radius: 12px;
+  transition: all 0.2s ease;
+}
+
+/* Botão primário */
+.btn-primary {
+  background-color: var(--color-primary-a10);
+  color: var(--text-light);
+}
+
+.btn-primary:hover,
+.btn-primary::selection {
+  background-color: var(--color-primary-a10-dark);
+}
+
+/* Botão primário contornado */
+.btn-outline-primary {
+  background-color: transparent;
+  border: 1px solid var(--color-primary-a10);
+  color: var(--color-primary-a10);
+}
+
+.btn-outline-primary:hover,
+.btn-outline-primary::selection {
+  background-color: var(--color-primary-a10);
+  color: var(--text-light);
+}

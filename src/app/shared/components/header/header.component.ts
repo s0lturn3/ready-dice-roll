@@ -7,7 +7,7 @@ import { RouterModule } from '@angular/router';
         RouterModule
     ],
     templateUrl: './header.component.html',
-    styleUrl: './header.component.scss'
+    styleUrl: './header.component.css'
 })
 export class HeaderComponent implements OnInit {
 

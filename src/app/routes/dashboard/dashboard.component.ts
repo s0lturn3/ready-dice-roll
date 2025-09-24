@@ -9,7 +9,7 @@ import { AuthService } from '../../shared/services/auth.service';
     ],
     schemas: [CUSTOM_ELEMENTS_SCHEMA],
     templateUrl: './dashboard.component.html',
-    styleUrl: './dashboard.component.scss'
+    styleUrl: './dashboard.component.css'
 })
 export class DashboardComponent implements OnInit {
 
