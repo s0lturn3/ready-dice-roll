@@ -5,7 +5,10 @@ import { Router } from '@angular/router';
 
 import { MessageService } from 'primeng/api';
 import { ButtonModule } from 'primeng/button';
+import { InputTextModule } from 'primeng/inputtext';
+import { PasswordModule } from 'primeng/password';
 import { ToastModule } from 'primeng/toast';
+import { ToggleSwitch } from 'primeng/toggleswitch';
 
 import { Usuario } from '../../../shared/models/db/usuario.model';
 import { IUserLogin } from '../../../shared/models/iuser-login.model';
@@ -28,7 +31,11 @@ export enum AuthStep {
     CommonModule,
     ReactiveFormsModule,
     ToastModule,
-    ButtonModule
+
+    ButtonModule,
+    InputTextModule,
+    PasswordModule,
+    ToggleSwitch
   ],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
@@ -173,7 +180,13 @@ export class LoginComponent implements OnInit {
       });
     }
     else {
-      alert("Preencha os campos corretamente.");
+      this.messageService.add({
+        severity: 'warn',
+        summary: 'Erro nos campos',
+        detail: 'Preencha os campos corretamente.',
+        key: 'tc',
+        life: 3000,
+      });
     }
   }
   // #endregion POST

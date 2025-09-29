@@ -1,4 +1,4 @@
-<div class="d-flex items-center justify-center h-100">
+<!-- <div class="d-flex items-center justify-center h-100">
    <div id="login-image-left" class="col-span-7 h-100 py-6 ps-3">
       <div class="h-100 background-image">
          <div class="h-100 w-100 inner-content">
@@ -108,8 +108,6 @@
                            @else { CRIAR CONTA }
                         </button>
                      </form>
-
-                     <!-- <span>Já tem uma conta? <a class="text-primary text-decoration-none fw-bold cursor-pointer" (click)="step = 1">Entre aqui</a></span> -->
                   }
                   @case (3) {
 
@@ -141,7 +139,156 @@
          </div>
       </div>
    </div>
+</div> -->
+
+<div class="flex items-center justify-center h-full w-full">
+   <div id="login-image-left" class="w-1/2 h-full py-6 ps-3">
+      <div class="h-full background-image">
+         <div class="h-full w-full inner-content">
+            <span>Sua aventura começa aqui.</span>
+         </div>
+      </div>
+   </div>
+
+   <div class="w-1/2 p-20 h-full flex flex-col justify-center items-center">
+      <div class="content flex flex-col justify-between h-full">
+         <div id="auth-header" class="text-center flex flex-row items-center justify-center gap-2 mt-20">
+            <img src="../../../../assets/icons/Logo=White.png" alt="logo" class="h-8" />
+            <h2 class="mb-0">Ready, Dice, Roll!</h2>
+         </div>
+
+         <div id="auth-body" class="min-w-[450px]">
+            <div class="form-fields">
+               @switch (step) {
+                  @case (1) {
+                     <form [formGroup]="loginForm" class="w-full mb-12" data-bs-theme="dark">
+                        <div class="mb-6">
+                           <div>
+                              <label for="loginEmailInput" class="block mb-2 text-sm font-medium">E-mail</label>
+                              <input pInputText formControlName="EMAIL" placeholder="Digite seu e-mail"
+                                 class="w-full rounded-lg border px-3 py-2"
+                                 [ngClass]="{
+                                    'ng-invalid ng-dirty': EMAIL_LOGIN.invalid && (EMAIL_LOGIN.touched || EMAIL_LOGIN.dirty)
+                                 }" />
+                           </div>
+                        </div>
+
+                        <div class="mb-6">
+                           <div>
+                              <label for="loginPasswordInput" class="block mb-2 text-sm font-medium">Senha</label>
+                              <div class="w-full">
+                                 <p-password formControlName="SENHA" id="loginPasswordInput" placeholder="Digite sua senha"
+                                    variant="outlined" [feedback]="false" [toggleMask]="true"
+                                    [style]="{ 'width': '100%' }" [inputStyle]="{ 'width': '100%' }"
+                                    [ngClass]="{
+                                       'ng-invalid ng-dirty': SENHA_LOGIN.invalid && (SENHA_LOGIN.touched || SENHA_LOGIN.dirty)
+                                    }" />
+                              </div>
+
+                              <a type="button" class="font-bold cursor-pointer no-underline text-primary">Esqueceu sua senha?</a>
+                           </div>
+                        </div>
+
+                        <div class="mb-12">
+                           <div class="flex items-center space-x-2">
+                              <p-toggleswitch id="loginRememberSwitch" formControlName="REMEMBER_ME" />
+                              <label class="select-none" for="loginRememberSwitch">Lembre-se de mim</label>
+                           </div>
+                        </div>
+
+                        <p-button label="LOGIN" icon="pi pi-sign-in" class="w-full" [style]="{ 'width': '100%' }" [loading]="loading" (onClick)="login()" />
+                     </form>
+                  }
+                  @case (2) {
+                     <form [formGroup]="signinForm" class="w-full mb-12" data-bs-theme="dark">
+                        <div class="mb-6">
+                           <div>
+                              <label for="signinUsernameInput" class="block mb-2 text-sm font-medium">Usuário</label>
+                              <input pInputText id="signinUsernameInput" formControlName="USERNAME" placeholder="Digite seu nome de usuário"
+                                 class="w-full rounded-lg border px-3 py-2"
+                                 [ngClass]="{
+                                    'ng-invalid ng-dirty': USERNAME_SIGNIN.invalid && (USERNAME_SIGNIN.touched || USERNAME_SIGNIN.dirty)
+                                 }" />
+                           </div>
+                        </div>
+
+                        <div class="mb-6">
+                           <div>
+                              <label for="signinEmailInput" class="block mb-2 text-sm font-medium">E-mail</label>
+                              <input pInputText id="signinEmailInput" formControlName="EMAIL" placeholder="Digite seu e-mail"
+                                 class="w-full rounded-lg border px-3 py-2"
+                                 [ngClass]="{
+                                    'ng-invalid ng-dirty': EMAIL_SIGNIN.invalid && (EMAIL_SIGNIN.touched || EMAIL_SIGNIN.dirty)
+                                 }" />
+                           </div>
+                        </div>
+
+                        <div class="mb-6">
+                           <div>
+                              <label for="signinPasswordInput" class="block mb-2 text-sm font-medium">Senha</label>
+                              <p-password formControlName="SENHA" id="signinPasswordInput" placeholder="Digite sua senha"
+                                 variant="outlined" [feedback]="false" [toggleMask]="true"
+                                 [style]="{ 'width': '100%' }" [inputStyle]="{ 'width': '100%' }"
+                                 [ngClass]="{
+                                    'ng-invalid ng-dirty': SENHA_SIGNIN.invalid && (SENHA_SIGNIN.touched || SENHA_SIGNIN.dirty)
+                                 }" />
+                           </div>
+                        </div>
+
+                        <div class="mb-6">
+                           <div>
+                              <label for="signinConfirmPasswordInput" class="block mb-2 text-sm font-medium">Confirmar senha</label>
+                              <p-password formControlName="CONFIRM_SENHA" id="signinConfirmPasswordInput" placeholder="Confirme sua senha"
+                                 variant="outlined" [feedback]="false" [toggleMask]="true"
+                                 [style]="{ 'width': '100%' }" [inputStyle]="{ 'width': '100%' }"
+                                 [ngClass]="{
+                                    'ng-invalid ng-dirty': CONFIRM_SENHA_SIGNIN.invalid && (CONFIRM_SENHA_SIGNIN.touched || CONFIRM_SENHA_SIGNIN.dirty)
+                                 }" />
+                           </div>
+                        </div>
+
+                        <div class="mb-12">
+                           <div class="flex items-center space-x-2">
+                              <p-toggleswitch id="signinRememberSwitch" formControlName="REMEMBER_ME" />
+                              <label class="select-none" for="signinRememberSwitch">Lembre-se de mim</label>
+                           </div>
+                        </div>
+
+                        <p-button label="CRIAR CONTA" icon="pi pi-sign-in" class="w-full" [style]="{ 'width': '100%' }" [loading]="loading" (onClick)="createUser()" />
+                     </form>
+                  }
+                  @case (3) {
+
+                  }
+               }
+            </div>
+         </div>
+
+         <div id="auth-footer" class="self-center w-full text-center">
+            @switch (step) {
+               @case (1) {
+                  <span>Não tem uma conta? <a class="text-primary no-underline font-bold cursor-pointer" (click)="step = 2">Junte-se a nós</a></span>
+               }
+               @case (2) {
+                  <span>Já tem uma conta? <a class="text-primary no-underline font-bold cursor-pointer" (click)="step = 1">Entre por aqui</a></span>
+               }
+               @case (3) {
+
+               }
+            }
+            <div id="other-logins" class="text-center">
+               <p class="mb-0">ou</p>
+               <div class="flex items-center justify-center gap-2">
+                  <p-button icon="pi pi-google" [rounded]="true" [outlined]="true" />
+                  <p-button icon="pi pi-github" [rounded]="true" [outlined]="true" />
+                  <p-button icon="pi pi-microsoft" [rounded]="true" [outlined]="true" />
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
 </div>
+
 
 <!-- TEMPLATES -->
 <p-toast position="top-center" key="tc" />
