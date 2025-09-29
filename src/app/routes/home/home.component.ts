@@ -1,4 +1,4 @@
-import { Component, CUSTOM_ELEMENTS_SCHEMA, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { FooterComponent } from "../../shared/components/footer/footer.component";
 import { HeaderComponent } from "../../shared/components/header/header.component";
@@ -10,7 +10,6 @@ import { HeaderComponent } from "../../shared/components/header/header.component
         FooterComponent,
         RouterModule
     ],
-    schemas: [CUSTOM_ELEMENTS_SCHEMA],
     templateUrl: './home.component.html',
     styleUrl: './home.component.css'
 })

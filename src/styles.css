@@ -11,6 +11,7 @@
 @import "./app/shared/styles/_classes.css";
 @import "./app/shared/styles/_typography.css";
 @import "./app/shared/styles/_forms.css";
+@import "./app/shared/styles/_themes.css";
 @import "./app/shared/styles/_buttons.css";
 @import "./app/shared/styles/_utilities.css";
 @import "./app/shared/styles/_animations.css";
