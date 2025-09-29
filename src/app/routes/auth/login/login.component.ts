@@ -13,6 +13,7 @@ import { ToggleSwitch } from 'primeng/toggleswitch';
 import { Usuario } from '../../../shared/models/db/usuario.model';
 import { IUserLogin } from '../../../shared/models/iuser-login.model';
 import { AuthService } from '../../../shared/services/auth.service';
+import { FormUtils } from '../../../shared/utils/form-utils';
 
 
 export enum AuthStep {
@@ -136,6 +137,8 @@ export class LoginComponent implements OnInit {
       });
     }
     else {
+      FormUtils.validateForm(this.loginForm);
+
       this.messageService.add({
         severity: 'warn',
         summary: 'Erro nos campos',
@@ -180,6 +183,8 @@ export class LoginComponent implements OnInit {
       });
     }
     else {
+      FormUtils.validateForm(this.signinForm);
+
       this.messageService.add({
         severity: 'warn',
         summary: 'Erro nos campos',
@@ -198,7 +203,14 @@ export class LoginComponent implements OnInit {
   private validateSenhas(): void {
     if (this.signinForm.controls["SENHA"].value !== this.signinForm.controls["CONFIRM_SENHA"].value) {
       this.signinForm.controls["CONFIRM_SENHA"].setErrors({ 'invalid': true });
-      alert("As senhas não coincidem.");
+      
+      this.messageService.add({
+        severity: 'error',
+        summary: 'Senhas inconsistentes',
+        detail: 'As senhas não coincidem.',
+        key: 'tc',
+        life: 3000,
+      });
     }
   }
   // #endregion ==========> UTILS <==========

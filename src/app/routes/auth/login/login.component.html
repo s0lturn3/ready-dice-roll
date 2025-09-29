@@ -161,7 +161,7 @@
             <div class="form-fields">
                @switch (step) {
                   @case (1) {
-                     <form [formGroup]="loginForm" class="w-full mb-12" data-bs-theme="dark">
+                     <form [formGroup]="loginForm" class="w-full mb-12" data-bs-theme="dark" (ngSubmit)="login()" (keyup.enter)="login()" >
                         <div class="mb-6">
                            <div>
                               <label for="loginEmailInput" class="block mb-2 text-sm font-medium">E-mail</label>
@@ -200,7 +200,7 @@
                      </form>
                   }
                   @case (2) {
-                     <form [formGroup]="signinForm" class="w-full mb-12" data-bs-theme="dark">
+                     <form [formGroup]="signinForm" class="w-full mb-12" data-bs-theme="dark" (ngSubmit)="createUser()" (keyup.enter)="createUser()" >
                         <div class="mb-6">
                            <div>
                               <label for="signinUsernameInput" class="block mb-2 text-sm font-medium">Usuário</label>
