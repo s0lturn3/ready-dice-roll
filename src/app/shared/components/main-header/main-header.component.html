@@ -1,36 +1,14 @@
 <header>
-   <div class="d-flex justify-between items-center container py-6">
+   <div class="flex justify-between items-center container mx-auto py-6">
       <h3>
-         <a routerLink="/home" class="logo text-decoration-none fw-bold text-primary">Ready, Dice, Roll</a>
+         <a routerlink="/home" class="logo text-3xl decoration-none font-bold">Ready, Dice, Roll</a>
       </h3>
-
       <nav>
-         <a type="button" class="btn btn-primary" routerLink="/auth" > Sign In </a>
+         <a type="button" routerLink="/auth" class="inline-flex items-center duration-150 justify-center px-4 py-2 border border-transparent text-base font-medium rounded-md shadow-sm bg-blue-500 hover:bg-blue-700 text-white"> Sign In </a>
       </nav>
    </div>
 </header>
 
-<div class="main-content">
-  <p-drawer [(visible)]="visible" [closable]="false">
-    <ng-template #header>
-        <div class="flex items-center gap-2">
-            <p-avatar image="https://primefaces.org/cdn/primeng/images/demo/avatar/amyelsner.png" shape="circle" />
-            <span class="font-bold">Amy Elsner</span>
-        </div>
-    </ng-template>
-    <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-        consequat.
-    </p>
-    <ng-template #footer>
-        <div class="flex items-center gap-2">
-            <button pButton label="Account" icon="pi pi-user" class="w-full" outlined></button>
-            <button pButton label="Logout" icon="pi pi-sign-out" class="w-full" severity="danger" text></button>
-        </div>
-    </ng-template>
-</p-drawer>
-
-  <p-button (click)="visible = true" icon="pi pi-bars" />
-
-  <router-outlet></router-outlet>
+<div class="main-content mt-4 p-4">
+    <router-outlet></router-outlet>
 </div>

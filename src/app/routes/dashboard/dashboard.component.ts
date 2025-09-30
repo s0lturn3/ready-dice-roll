@@ -3,6 +3,7 @@ import { RouterModule } from '@angular/router';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { AvatarModule } from 'primeng/avatar';
 import { ButtonModule } from 'primeng/button';
+import { CardModule } from 'primeng/card';
 import { ConfirmPopupModule } from 'primeng/confirmpopup';
 import { Drawer, DrawerModule } from 'primeng/drawer';
 import { ToastModule } from 'primeng/toast';
@@ -16,7 +17,8 @@ import { AuthService } from '../../shared/services/auth.service';
       ToastModule,
       ConfirmPopupModule,
       DrawerModule,
-      AvatarModule
+      AvatarModule,
+      CardModule
     ],
     templateUrl: './dashboard.component.html',
     styleUrl: './dashboard.component.css'
