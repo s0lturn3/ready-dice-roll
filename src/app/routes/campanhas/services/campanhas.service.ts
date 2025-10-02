@@ -1,9 +1,9 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, tap } from 'rxjs';
+import { Observable } from 'rxjs';
 import { environment } from '../../../../environments/environment.development';
-import { ApiResponse } from '../../../shared/models/api-response.model';
 import { CampanhaDto } from '../../../shared/models/db/campanha.dto';
+import { PaginationDto } from '../../../shared/models/pagination.dto';
 
 @Injectable({
   providedIn: 'root'
@@ -28,40 +28,41 @@ export class CampanhasService {
   // #endregion ==========> PROPERTIES <==========
 
 
-  constructor(private _httpClient: HttpClient) { }
+  constructor( private _http: HttpClient ) { }
 
 
   // #region ==========> API METHODS <==========
 
   // #region GET
-  public getCampanhas(): Observable<ApiResponse<CampanhaDto[]>> {
-    const url = `${this.BASE_URL}/list`;
+  public getCampanhas(params?: PaginationDto): Observable<any> {
+    return this._http.get<any>(`${this.BASE_URL}`, { params: { ...params } });
+  }
 
-    return this._httpClient.get<ApiResponse<any>>(url, { 'headers': this.HTTP_HEADERS })
-      .pipe( tap(response => {  }) );
+  public getCampanha(id: number): Observable<CampanhaDto> {
+    return this._http.get<CampanhaDto>(`${this.BASE_URL}/${id}`);
   }
   // #endregion GET
 
   // #region POST
-  public createCampanha(campanha: CampanhaDto): Observable<ApiResponse<any>> {
-    const url = `${this.BASE_URL}`;
-
-    return this._httpClient.post<ApiResponse<any>>(url, campanha, { 'headers': this.HTTP_HEADERS })
-      .pipe( tap(response => {  }) );
+  public createCampanha(campanha: Partial<CampanhaDto>): Observable<CampanhaDto> {
+    return this._http.post<CampanhaDto>(this.BASE_URL, campanha);
   }
   // #endregion POST
 
-  // #region PUT
-  public updateCampanha(campanha: CampanhaDto): Observable<ApiResponse<any>> {
-    const url = `${this.BASE_URL}/${campanha.Id}`;
-
-    return this._httpClient.patch<ApiResponse<any>>(url, campanha, { 'headers': this.HTTP_HEADERS })
-      .pipe( tap(response => {  }) );
+  // #region PATCH
+  public updateCampanha(id: number, campanha: Partial<CampanhaDto>): Observable<CampanhaDto> {
+    return this._http.patch<CampanhaDto>(`${this.BASE_URL}/${id}`, campanha);
   }
+  // #endregion PATCH
+
+  // #region PUT
+  // [...]
   // #endregion PUT
 
   // #region DELETE
-  // [...]
+  public deleteCampanha(id: number): Observable<any> {
+    return this._http.delete<any>(`${this.BASE_URL}/${id}`);
+  }
   // #endregion DELETE
 
   // #endregion ==========> API METHODS <==========

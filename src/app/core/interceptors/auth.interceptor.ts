@@ -1,6 +1,5 @@
 import { HttpInterceptorFn } from '@angular/common/http';
 
-
 export const authInterceptor: HttpInterceptorFn = (req, next) => {
   const token = window.localStorage['authToken'] || window.sessionStorage['authToken'];
 
@@ -14,4 +13,3 @@ export const authInterceptor: HttpInterceptorFn = (req, next) => {
 
   return next(req);
 };
-

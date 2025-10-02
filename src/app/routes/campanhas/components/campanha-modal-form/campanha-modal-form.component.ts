@@ -95,7 +95,7 @@ export class CampanhaModalFormComponent implements OnInit {
       };
 
       const request$ = this.campanha
-        ? this._campanhas.updateCampanha(record) // supondo que tenha update
+        ? this._campanhas.updateCampanha(record.Id, record) // supondo que tenha update
         : this._campanhas.createCampanha(record);
 
       request$.subscribe({
