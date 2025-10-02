@@ -1,11 +1,29 @@
-<p>campanhas-list works!</p>
+<p-button (click)="showDialog()" icon="pi pi-plus" label="Nova campanha" />
 
-<div class="d-flex flex-row items-center gap-6 my-6">
+<div class="flex items-center gap-6 my-6">
 
   @for (item of $campanhas; track $index) {
-    <button class="btn btn-outline-primary w-25 p-6 text-start" routerLink="info/{{item.Id}}" routerLinkActive="router-link-active" >
-      <h5 class="text-light">{{ item.Nome }}</h5>
-    </button>
+    <p-card [header]="item.Nome" [style]="{ width: '25rem' }" >
+      <div class="flex items-center justify-between">
+        <p class="m-0"> {{ item.Descricao }} </p>
+
+        <div class="flex gap-3 text-sm">
+          <p-button icon="pi pi-external-link" [rounded]="true" [text]="true" routerLink="info/{{item.Id}}" />
+          <p-button icon="pi pi-pencil" [rounded]="true" [text]="true" (onClick)="showDialog(item)" />
+        </div>
+      </div>
+    </p-card>
   }
 
 </div>
+
+
+<!-- TEMPLATES -->
+<p-toast position="top-center" key="tc" />
+
+<p-dialog header="Nova campanha" [modal]="true" [(visible)]="visible" [style]="{ width: '50rem' }">
+  @if (visible) {
+    <campanha-modal-form [campanha]="selectedCampanha" (onCancel)="visible = false" (onSave)="getCampanhas(); $event ? visible = false : null" />
+  }
+</p-dialog>
+<!-- TEMPLATES -->

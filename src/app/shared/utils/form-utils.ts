@@ -1,4 +1,4 @@
-import { UntypedFormGroup } from "@angular/forms";
+import { AbstractControl, UntypedFormGroup } from "@angular/forms";
 
 /** Classe estática que contém diversos métodos de utilidade para formulário. */
 export class FormUtils {
@@ -21,6 +21,12 @@ export class FormUtils {
 
       if (control instanceof UntypedFormGroup) this.validateForm(control);
     });
+  }
+
+
+  /** Informa se um Control está inválido ou não. */
+  public static isInvalidField(control: AbstractControl<any> | null | undefined): boolean {
+    return control ? control.invalid && (control.dirty || control.touched) : false;
   }
 
 }

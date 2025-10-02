@@ -43,11 +43,21 @@ export class CampanhasService {
   // #endregion GET
 
   // #region POST
-  // [...]
+  public createCampanha(campanha: CampanhaDto): Observable<ApiResponse<any>> {
+    const url = `${this.BASE_URL}`;
+
+    return this._httpClient.post<ApiResponse<any>>(url, campanha, { 'headers': this.HTTP_HEADERS })
+      .pipe( tap(response => {  }) );
+  }
   // #endregion POST
 
   // #region PUT
-  // [...]
+  public updateCampanha(campanha: CampanhaDto): Observable<ApiResponse<any>> {
+    const url = `${this.BASE_URL}/${campanha.Id}`;
+
+    return this._httpClient.patch<ApiResponse<any>>(url, campanha, { 'headers': this.HTTP_HEADERS })
+      .pipe( tap(response => {  }) );
+  }
   // #endregion PUT
 
   // #region DELETE
